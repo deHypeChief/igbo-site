@@ -1,0 +1,17 @@
+{
+  "name": "igbo-learning-site",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "server": "pnpm -C ./server start  ",
+    "client": "pnpm -C ./client run dev ",
+    "start": "concurrently \"pnpm  run client\" \" pnpm run server\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "concurrently": "^8.2.2"
+  }
+}

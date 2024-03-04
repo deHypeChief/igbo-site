@@ -1,0 +1,312 @@
+.hero {
+    min-height: 100vh;
+    overflow: hidden;
+    position: relative;
+    color: var(--baseColor);
+    padding-top: 2vh;
+}
+
+.heroWrap {
+    display: flex;
+    justify-content: space-between;
+}
+
+.heroImage {
+    width: 720px;
+    height: 100vh;
+    position: absolute;
+    right: 0;
+}
+
+.heroImage img {
+    transform: translateY(-15px) translateX(20px);
+}
+
+.heroContent {
+    padding-top: 30vh;
+    padding-left: 12vw;
+}
+
+.heroContent p {
+    padding-bottom: 30px;
+}
+
+/* Abpout Wave */
+.aboutIgbo {
+    position: relative;
+}
+
+.aboutWrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 10vh;
+    position: absolute;
+    width: 100%;
+    z-index: 1;
+}
+
+.aboutIgbo {
+    height: 100vh;
+    color: var(--baseColor);
+    position: relative;
+
+}
+
+.igboImg {
+    height: 550px;
+    width: 700px;
+    background: pink;
+    border-radius: 0 50px 50px 0;
+    clip-path: polygon(0 5%, 100% 0%, 100% 100%, 0 96%);
+}
+
+.igboContent {
+    padding-right: 130px;
+}
+
+.igboContent p {
+    padding-bottom: 30px;
+}
+
+.aboutWave {
+    top: 0;
+    width: 100%;
+}
+
+.bbWave {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.bbWave img {
+    transform: translateY(20px);
+    height: 100%;
+}
+
+
+
+
+/* features */
+.features {
+    padding: var(--spacing-side);
+    padding-top: 150px;
+    padding-bottom: 50px;
+}
+
+.fBox {
+    width: 330px;
+    background: var(--baseColor);
+    padding: 40px;
+    border-radius: 30px;
+    padding-bottom: 60px;
+    position: relative;
+    height: fit-content;
+    transition: 1s easec;
+}
+
+.featureWrap {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.fBox h2 {
+    font-family: mainFont;
+}
+
+.fIMgWrap {
+    margin-top: -120px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.fIMgWrap img {
+    width: 200px;
+}
+
+.fBox p {
+    padding-top: 20px;
+    font-weight: 700;
+    font-size: 18px;
+}
+
+.fButtonWrap {
+    position: absolute;
+    height: 60px;
+    width: 60px;
+    background: var(--main-ButtonColor);
+    right: 50px;
+    bottom: -20px;
+    border-radius: 100px;
+}
+
+.fclose {
+    height: 260px;
+}
+
+.fclose p {
+    display: none;
+}
+
+
+/* commuPlayWrap */
+.commu {
+    padding: var(--spacing-side);
+    padding-bottom: 100px;
+    padding-top: 100px;
+    color: white;
+}
+
+.commuPlayWrap {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.commuPlayWrap h1 {
+    max-width: 600px;
+}
+
+.commuPlayWrap p {
+    max-width: 600px;
+    padding-bottom: 40px;
+}
+
+.playCard {
+    height: 500px;
+    width: 450px;
+    margin-left: 30px;
+    background: var(--baseColor);
+    clip-path: polygon(0 5%, 100% 0%, 100% 100%, 0 96%);
+    /* border-radius: 30px; */
+    /* overflow: hidden; */
+}
+
+
+/* footer */
+footer {
+    padding: var(--spacing-side);
+    color: var(--baseColor);
+}
+
+.footerTop {
+    background: #FF5D39;
+    padding: 30px 0;
+    margin-bottom: 30px;
+    border-radius: 100px;
+}
+
+.footopWrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 40px;
+}
+
+.footerBottom {
+    display: flex;
+    padding: 0 40px 20px;
+    justify-content: space-between;
+}
+
+.fooLink {
+    display: flex;
+    gap: 80px;
+}
+
+
+@media screen and (max-width: 600px) {
+
+    .heroWrap {
+        display: block;
+        justify-content: space-between;
+    }
+    .hero {
+        min-height: 100vh;
+        overflow: initial;
+    }
+
+    .heroContent {
+        padding-top: 20vh;
+        padding-left: 30px;
+    }
+
+    .featureWrap {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 100px;
+        /* justify-content: space-around; */
+    }
+
+    .commuPlayWrap {
+        display: flex;
+        flex-direction: column;
+
+        align-items: center;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .playCard {
+        height: 300px;
+        width: 100vw;
+        margin-left: 0px;
+        clip-path: polygon(0 5%, 100% 0%, 100% 100%, 0 96%);
+        margin-bottom: 50px;
+    }
+
+    .footerBottom {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        padding: 0 0px 20px;
+        justify-content: space-between;
+    }
+
+    .playCard {
+        height: 300px;
+        width: 100vw;
+        margin-left: 0px;
+        clip-path: polygon(0 5%, 100% 0%, 100% 100%, 0 96%);
+    }
+    .aboutWrap {
+        display: flex;
+        flex-direction: column;
+    }
+    .aboutIgbo {
+        min-height: 100vh;
+        margin-bottom: 150px;
+margin-top: 100px;
+    }
+    .igboImg {
+        height: 400px;
+        width: 100vw;
+        border-radius: 0;
+        clip-path: polygon(0 5%, 100% 0%, 100% 100%, 0 96%);
+    }
+    .aboutWave {
+        display: none;
+    }
+    .igboContent {
+        padding-right: 0px;
+        padding-top: 50px;
+    }
+    .features {
+        padding-top: 60px;
+    }
+    .heroImage img {
+        transform: translateY(-48px) translateX(280px);
+    }
+    .heroImage img {
+        width: 70%;
+    }
+    .heroImage {
+        height: fit-content;
+    }
+}

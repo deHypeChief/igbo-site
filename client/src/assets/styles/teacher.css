@@ -1,0 +1,30 @@
+
+.teahPop{
+    position: absolute;
+    display:flex;
+    justify-content: center;
+    width: 100%;
+    padding-top:20vh;
+    padding-bottom: 100px;
+}
+.teachWrap{
+    background: var(--baseColor);
+    padding: 100px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    border-radius: 30px;
+    gap: 30px;
+}
+.tutorImg{
+    height: 200px;
+    width: 200px;
+    background-color: var(--primaryColor);
+    border-radius: 1000px;
+}
+.tutorBttnWrap{
+    display: flex;
+    gap: 50px;
+    padding-top: 40px;
+}

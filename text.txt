@@ -1,0 +1,13 @@
+let rad = [ ]
+
+
+// function 
+for (let i = 0; i < arrary.length; i++) {
+
+    hold number = math.random() < arrayLength
+    if number in rad ?
+        number = math.random() < arrayLength
+    : (
+        return htmlElement with index point
+    )
+}

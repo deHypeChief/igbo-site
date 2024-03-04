@@ -1,0 +1,29 @@
+.lessons{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: var(--spacing-side);
+    padding-top: 25vh;
+
+}
+.lessons h2{
+    font-size: 1.6rem;
+    font-family: mainFont;
+    opacity: 0.5;
+    color: white;
+}
+.lessons h1{
+    color: white;
+}
+
+.lessonBox{
+    background: white;
+    height: fit-content;
+    padding: 30px 40px;
+    width: 100%;
+    border-radius: 20px;
+    margin-top: 60px;
+    font-size: 25px;
+    font-weight: 900;
+    margin-bottom: 50px;
+}

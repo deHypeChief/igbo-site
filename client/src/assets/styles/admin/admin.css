@@ -1,0 +1,512 @@
+@font-face {
+    font-family: headerFont;
+    src: url(../../fonts/adminFont.ttf);
+}
+
+@font-face {
+    font-family: headerSub;
+    src: url(../../fonts/adminFont.ttf);
+}
+
+
+.adminBoard {
+    display: flex;
+    height: 100vh;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.greenA {
+    color: green;
+}
+
+/* Defaults */
+.adminBoard button {
+    font-size: 15px;
+    border-radius: 0;
+    width: 100%;
+    padding: 0;
+    background: black;
+    font-family: headerFont;
+    padding: 10px 10px;
+}
+
+.WorkSpace h2 {
+    font-size: 18px;
+    font-family: headerFont;
+    font-weight: 900;
+}
+
+.WorkSpace p {
+    font-size: 15px;
+    font-weight: 900;
+    font-family: headerSub;
+}
+
+.WorkSpace h1 {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-weight: 600;
+    font-size: 35px;
+}
+
+.shadowBox {
+    box-shadow: 1px 1px 30px rgba(0, 0, 0, 0.083);
+    border: 1px solid rgba(0, 0, 0, 0.281);
+    border-radius: 10px;
+}
+
+
+
+/* admin SideBar */
+.SideBar {
+    background: rgb(255, 249, 243);
+    width: 230px;
+    padding-top: 40px;
+    border-right: 2px solid white;
+}
+
+.sideBar {
+    padding: 0 20px;
+}
+
+.sbutton {
+    padding: 10px 20px 7px;
+    display: flex;
+    gap: 10px;
+    color: black;
+    border-radius: 10px;
+}
+
+.sbutton:hover {
+    background: rgba(255, 0, 0, 0.875);
+    color: white;
+}
+
+.sActive {
+    background: rgba(255, 0, 0, 0.875);
+    color: white;
+}
+
+.sbutton p {
+    font-size: 14px;
+    font-weight: 500;
+    color: black;
+    font-weight: 700;
+}
+
+.sbutton:hover p {
+    color: white;
+}
+
+.sActive p {
+    color: white;
+}
+
+.sideButtons {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding-top: 40px;
+}
+
+.logoSection {
+    padding: 0 20px;
+    display: flex;
+}
+
+.logoSection img {
+    width: 50px;
+}
+
+
+
+
+/* Admin Workspace */
+.WorkSpace {
+    background: rgb(255, 249, 243);
+    overflow-y: scroll;
+    overflow-x: hidden;
+    flex: 1;
+    padding: 40px 40px 0;
+}
+
+
+/* Utils  */
+.utitlsBar {
+    padding-bottom: 30px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.search {
+    height: 40px;
+    width: 200px;
+    /* background: gray; */
+    border-radius: 10px;
+}
+
+.search input {
+    height: 100%;
+    border: 0;
+    text-align: left;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    padding: 0px 20px;
+    font-weight: 500;
+    border-radius: 10px;
+}
+
+.currentUser {
+    height: 40px;
+    width: 40px;
+    background: black;
+    border-radius: 1000px;
+    overflow: hidden;
+}
+
+.utilsWrap {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+
+
+/* Overview */
+.overWrap {
+    display: flex;
+    gap: 40px;
+}
+
+.leftOver {
+    flex: 1;
+}
+
+.topSection {
+    display: flex;
+    gap: 18px;
+}
+
+.tSection {
+    flex: 1;
+    background: white;
+    height: 130px;
+    border-radius: 10px;
+    color: black;
+    padding: 20px 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.topUsersLevel {
+    padding-top: 30px;
+}
+
+.topQuickInfo {
+    padding: 0px 20px 20px;
+}
+
+.topQuickInfo h2 {
+    font-weight: 700;
+    font-size: 1.4rem;
+}
+
+.rankBox {
+    display: flex;
+    gap: 18px;
+}
+
+.rBox {
+    height: 120px;
+    flex: 1;
+    background: white;
+    border-radius: 10px;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+.rPofile {
+    height: 30px;
+    width: 30px;
+    background: black;
+    border-radius: 100px;
+}
+
+.rProfilSub {
+    display: flex;
+    padding-top: 15px;
+    justify-content: space-between;
+}
+
+.rProfilSub .rName {
+    font-size: 18px;
+}
+
+.rProfilSub .rEmail {
+    font-size: 12px;
+}
+
+
+
+
+.rightOver {
+    background: white;
+    width: 280px;
+    height: 480px;
+    border-radius: 20px;
+}
+
+
+
+
+
+.baseModule {
+    padding-top: 30px;
+    margin-bottom: 80px;
+}
+
+.baseStat {
+    padding: 30px;
+    background: white;
+    border-radius: 10px;
+}
+
+.topNames {
+    opacity: .7;
+}
+
+.topNames,
+.listStats {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.baseBox-name {
+    flex: 1;
+}
+
+.bS-name {
+    flex: 2;
+}
+
+.bs-button {
+    flex: 2;
+}
+
+.bs-mail {
+    flex: 3;
+
+}
+
+.gold {
+    color: gold;
+}
+
+.listStats-base {
+    width: 100%;
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+}
+
+
+/* User */
+.usersTop {
+    display: flex;
+    padding-bottom: 30px;
+    gap: 18px;
+}
+
+.userBox {
+    flex: 1;
+    height: 100px;
+    background: white;
+}
+
+.bs-button-user {
+    flex: 1;
+}
+
+/* Lesson */
+.lessonWrap {
+    gap: 30px;
+    display: flex;
+}
+
+.lessonLeft {
+    flex: 1;
+}
+
+.bS-name-lesson {
+    flex: 3;
+}
+
+.lessonRight {
+    background: white;
+    width: 400px;
+    height: 480px;
+    border-radius: 20px;
+}
+
+.listStats:hover {
+    background: rgba(0, 0, 0, 0.046);
+    padding: 10px 0;
+}
+
+.creatLesson {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.creatLesson h1 {
+    width: 180px;
+    text-align: center;
+    font-size: 2rem;
+}
+
+.creatLesson button {
+    width: fit-content;
+    margin-top: 30px;
+}
+
+
+/* Excerises */
+.Excerises {}
+
+.usersTop {
+    display: flex;
+    padding-bottom: 30px;
+    gap: 18px;
+}
+
+.userBox {
+    flex: 1;
+    height: 100px;
+    background: white;
+}
+
+
+.createLeesonBttn {
+    margin-top: 30px;
+}
+
+.lessonEditor {
+    position: fixed;
+    background: rgba(0, 0, 0, 0.169);
+    padding: 20px 20px;
+    width: 100%;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(8px);
+}
+
+.editor {
+    height: 100%;
+    width: 70vw;
+    background: white;
+    padding: 30px 40px;
+}
+
+
+/* form Exe */
+.formExAction {
+    display: flex;
+    gap: 30px;
+    padding: 30px;
+}
+
+.formExAction button {
+    width: fit-content;
+    padding: 15px 30px;
+}
+
+.qusetionBlock{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin: 30px 0;
+    padding: 30px;
+    background: rgba(222, 222, 222, 0.165);
+}
+
+.bl {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.bl input {
+    border-radius: 0;
+    font-family: headerSub;
+    text-align: left;
+    padding: 10px 15px;
+    width: 100%;
+}
+.editorExe{
+    height: 100%;
+    overflow-y: scroll;
+}
+.topexe{
+    display: flex;
+    justify-content: space-between;
+}
+
+
+/* lessono */
+.lesson-editor{
+    display: none;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+    background: rgba(128, 128, 128, 0.269);
+    align-items: center;
+    justify-content: center;
+}
+
+.lessonWrap-editor{
+    padding: 20px 30px 30px;
+    background: white;
+    border-radius: 20px;
+    width: 70vw;
+    height: 90vh;
+}
+
+.lessonEdit{
+    margin: 20px 0;
+    background: rgba(0, 0, 0, 0.011);
+    height: 75%;
+    overflow-y: scroll;
+}
+
+.lessonTop{
+    display: flex;
+    justify-content: space-between;
+}
+
+.formHeaderInputSec{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.formHeaderInputSec input {
+    border-radius: 0;
+    font-family: headerSub;
+    text-align: left;
+    padding: 10px 15px;
+    width: 50%;
+}
+.formHeaderInputSec select{
+    width: 50%;
+    padding: 10px 15px;
+    font-family: headerSub;
+}
