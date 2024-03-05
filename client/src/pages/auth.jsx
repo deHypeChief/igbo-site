@@ -41,7 +41,7 @@ export function SignIn() {
             <section className="auth">
                 <div className="authSignBox signIn">
                     <form className="authIn" onSubmit={handleSubmit} action='submit'>
-                        <h1>Login to you account</h1>
+                        <h1>Login to your account</h1>
                         <p>Welcome Back</p>
 
                         <input type="text" placeholder='Email Address'

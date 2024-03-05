@@ -13,12 +13,20 @@ import testRoute from './db/routes/testRoute.js';
 connectToMongoDB();
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3600;
 
 
 app.use(express.urlencoded({extended:false}))
 app.use(express.json());
-app.use(cors())
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', `${process.env.NODE_ENV === dev? 'http://localhost:5173' : "https://igbo-learning.vercel.app"}`);
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  res.setHeader('Access-Control-Allow-Credentials', 'true')
+  next();
+});
+
+
 
 
 // routes
