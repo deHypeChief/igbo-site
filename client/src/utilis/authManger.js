@@ -4,8 +4,16 @@ const API_BASE_URL = 'https://igbo-site.vercel.app/'; // Replace this with your 
 const api = axios.create({
     baseURL: API_BASE_URL,
 });
-
-
+function headers(token){
+    return(
+        {
+            
+            'Access-Control-Allow-Origin': "*",
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+        }
+    )
+}
 
 // user actions
 export function userSigned() {
@@ -36,10 +44,7 @@ export const createUser = async (endpoint, data) => {
 }
 export const getUser = async (endpoint, token) => {
     return await api.get(endpoint, {
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token}`
-        }
+        headers: headers(token)
     })
 }
 // QuickAction
@@ -71,23 +76,17 @@ export function adminSigned() {
 }
 export async function getAdmin(endpoint, token) {
     return await api.get(endpoint, {
-        headers: { Authorization: `Bearer ${token}` }
+        headers: headers(token)
     })
 }
 export async function adminGet(endpoint, token) {
     return await api.get(endpoint, {
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token}`
-        }
+        headers: headers(token)
     })
 }
 
 export async function adminPost(endpoint, payload, token) {
     return await api.post(endpoint, payload, {
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token}`
-        }
+        headers: headers(token)
     })
 }

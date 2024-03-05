@@ -16,21 +16,14 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 
-// middleware
-const allowedOrigins = ['http://localhost:5173', 'https://igbo-learning.vercel.app'];
 
-app.use(cors({
-  origin: function (origin, callback) {
-    // Check if the origin is in the list of allowed origins
-    if (!origin || allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }
-  },
-  methods: ['GET', 'POST'],
-  allowedHeaders: ['Content-Type', 'Authorization'],
-}));
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+  res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  res.header('Access-Control-Allow-Credentials', 'true'); 
+  next();
+});
 
 app.use(express.urlencoded({extended:false}))
 app.use(express.json());
