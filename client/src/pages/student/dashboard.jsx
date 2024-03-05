@@ -4,15 +4,26 @@ import { Button } from '../../components/button/button'
 import { ClientLayout } from '../../components/layout/layout'
 import { getUser, getUserData, userSigned } from '../../utilis/authManger'
 import { Link, useNavigate } from 'react-router-dom'
+import TeacherPopUp from '../teacher'
 export default function StudentDashboard() {
     const navTo = useNavigate()
+    const [teacherPoster, setTeacherPoster] = useState(false)
     const [data, setData] = useState({
         name: "--",
         level: "--",
         email: "--",
         exp: "--"
     })
-    const [lesson, setLesson] = useState([])
+    const [lesson, setLesson] = useState([
+        {}
+    ])
+
+    function openPoster(){
+        setTeacherPoster(true)
+    }
+    function closePoster(){
+        setTeacherPoster(false)
+    }
 
     useEffect(() => {
         if (!userSigned()) {
@@ -31,15 +42,18 @@ export default function StudentDashboard() {
                     }
                 })
 
-            getUserData("/lesson/", userSigned().token).then((data) => {
+            getUserData("/lesson/", userSigned().token)
+            .then((data) => {
+                console.log(data);
                 setLesson(data.data.data)
             })
         }
-    }, [data, navTo, lesson])
+    }, [])
 
     return (
         <ClientLayout>
             <div className="dashboardStu">
+                {teacherPoster ? <TeacherPopUp action={closePoster}/> : <></>}
                 <div className="profile">
                     <div className="profileWrap">
                         <div className="profileBox"></div>
@@ -100,7 +114,7 @@ export default function StudentDashboard() {
                 <div className="getTutor">
                     <h1>Get a private tutor</h1>
                     <p>Get a one on lesson with a teacher and improve on your Igbo skills faster</p>
-                    <Button>Get A Tutor</Button>
+                    <Button action={openPoster}>Get A Tutor</Button>
                 </div>
             </div>
         </ClientLayout>

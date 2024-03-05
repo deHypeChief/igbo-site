@@ -30,14 +30,7 @@ app.use((req, res, next) => {
 
 
 // routes
-
-app.use(express.static('build'));
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'build', 'index.html'));
-});
-
-
-app.get('/api', (req, res) => {
   res.send('Server is up and running')
 })
 
@@ -46,7 +39,6 @@ app.use('/api/admin', adminRoute);
 app.use('/api/user', userRoute);
 app.use('/api/lesson', lessonRoute)
 app.use('/api/test', testRoute)
-
 
 
 app.use((err, req, res, next) => {

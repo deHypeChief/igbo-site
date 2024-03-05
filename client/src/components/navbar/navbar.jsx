@@ -1,13 +1,14 @@
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { Button } from '../button/button'
 import './style.css'
 import { useEffect, useRef, useState } from 'react'
 import Logo from '../../assets/images/logo/learn_igbo_logo.svg'
-import { userSigned } from '../../utilis/authManger'
+import { userLogOut, userSigned } from '../../utilis/authManger'
 
 export default function Navbar() {
     const dropdown = useRef()
     const [drop, setDroped] = useState()
+    const navTo = useNavigate()
     useEffect(() => {
         console.log(userSigned());
         if (userSigned()) {
@@ -106,6 +107,8 @@ export default function Navbar() {
                                 <Link to="/u/topics">
                                     <p>View Topics</p>
                                 </Link>
+
+                                <p onClick={()=>{userLogOut(navTo('/signin'))}}>Log Out</p>
                             </div>
                         </div>
                     </div>

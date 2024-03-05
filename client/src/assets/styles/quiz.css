@@ -3,6 +3,8 @@
     padding: var(--spacing-side);
     padding: 0 150px;
     padding-top: 30vh;
+    overflow-y: hidden;
+    height: 100vh;
 }
 .quizInfo {
     width: 100%;
