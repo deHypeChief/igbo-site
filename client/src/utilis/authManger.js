@@ -1,5 +1,5 @@
 import axios from "axios";
-const API_BASE_URL = 'http://localhost:3000/api'; // Replace this with your API base URL
+const API_BASE_URL = 'https://igbo-site.vercel.app/'; // Replace this with your API base URL
 
 const api = axios.create({
     baseURL: API_BASE_URL,
@@ -13,15 +13,15 @@ export function userSigned() {
     if (userStat) {
         return JSON.parse(userStat)
     }
-    if(userStat == null){
+    if (userStat == null) {
         return false
     }
 }
 export function userLogOut(callback) {
-    if(userSigned()){
+    if (userSigned()) {
         localStorage.removeItem('user')
         callback()
-    }else{
+    } else {
         return null
     }
 }
@@ -36,14 +36,17 @@ export const createUser = async (endpoint, data) => {
 }
 export const getUser = async (endpoint, token) => {
     return await api.get(endpoint, {
-        headers: { Authorization: `Bearer ${token}` }
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+        }
     })
 }
 // QuickAction
-export const getUserData = async (endpoint)=>{
+export const getUserData = async (endpoint) => {
     return await api.get(endpoint)
 }
-export const postUserData = async (endpoint, data)=>{
+export const postUserData = async (endpoint, data) => {
     return await api.post(endpoint, data)
 }
 
@@ -62,7 +65,7 @@ export function adminSigned() {
     if (userStat) {
         return JSON.parse(userStat)
     }
-    if(userStat == null){
+    if (userStat == null) {
         return false
     }
 }
@@ -73,12 +76,18 @@ export async function getAdmin(endpoint, token) {
 }
 export async function adminGet(endpoint, token) {
     return await api.get(endpoint, {
-        headers: { Authorization: `Bearer ${token}` }
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+        }
     })
 }
 
-export async function adminPost(endpoint, payload, token){
+export async function adminPost(endpoint, payload, token) {
     return await api.post(endpoint, payload, {
-        headers: { Authorization: `Bearer ${token}` }
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+        }
     })
 }

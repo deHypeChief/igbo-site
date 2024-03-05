@@ -35,9 +35,9 @@ nav {
     width: 30px;
 }
 
-.dashBoardValue {
+.dashBoardValue-log {
     flex: 1;
-    display: flex;
+    display: none;
     justify-content: space-between;
 }
 

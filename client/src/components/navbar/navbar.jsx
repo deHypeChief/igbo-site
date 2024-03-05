@@ -9,11 +9,18 @@ export default function Navbar() {
     const dropdown = useRef()
     const [drop, setDroped] = useState()
     useEffect(() => {
+        console.log(userSigned());
         if (userSigned()) {
             document.getElementsByClassName("navContents")[0].style.display = "none"
             document.getElementsByClassName("navContents")[1].style.display = "none"
+            document.getElementsByClassName("dashBoardValue-log")[0].style.display = "flex"
+
+        }else{
+            document.getElementsByClassName("navContents")[0].style.display = "flex"
+            document.getElementsByClassName("navContents")[1].style.display = "block"
+            document.getElementsByClassName("dashBoardValue-log")[0].style.display = "none"
         }
-    })
+    }, [])
     const navLinks = [
         {
             title: "Home",
@@ -86,7 +93,7 @@ export default function Navbar() {
                     </div>
 
 
-                    <div className="dashBoardValue">
+                    <div className="dashBoardValue-log" id="logedInuser">
                         <p className="dashBoaedTitle" id="dasboardTitle">
                             Dashboard
                         </p>
