@@ -3,7 +3,7 @@ import '../../assets/styles/admin/admin.css'
 import { Icon } from '@iconify/react';
 import logo from '../../assets/images/logo/learn_igbo_logo.svg'
 import mainLady from '../../assets/images/IMG-20240224-WA0011.jpg'
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { adminGet, adminSigned, adminPost } from '../../utilis/authManger';
 import { useNavigate } from 'react-router-dom';
 
@@ -17,7 +17,8 @@ export default function Admin() {
 
     useEffect(() => {
         const token = JSON.parse(localStorage.getItem('admin')).token
-        adminGet('/user/ad/users', token)
+        setInterval(()=>{
+            adminGet('/user/ad/users', token)
             .then((data) => {
                 setUserData(data.data.data)
             }).catch((error) => {
@@ -35,6 +36,8 @@ export default function Admin() {
             .then((data) => {
                 setTestData(data.data.data)
             })
+        }, 500)
+
     }, [])
 
     function handleSideButton(e) {
@@ -85,10 +88,17 @@ export default function Admin() {
                             </div>
                             <div className="sbutton" onClick={handleSideButton}>
                                 <div className="sImage">
+                                    <Icon icon="ic:outline-payments" style={{ fontSize: '20px' }} />
+                                </div>
+                                <p>Payments</p>
+                            </div>
+                            <div className="sbutton" onClick={handleSideButton}>
+                                <div className="sImage">
                                     <Icon icon="material-symbols:admin-panel-settings-rounded" style={{ fontSize: '20px' }} />
                                 </div>
                                 <p>Admin</p>
                             </div>
+
                         </div>
                     </div>
                 </div>
@@ -108,8 +118,8 @@ export default function Admin() {
                         </div>
                     </div>
                     {
-                        dashboardTitle == "Overview" && userData && lessonData && testData ? <Overview userPayload={userData} lessonPayload={lessonData} /> :
-                            (dashboardTitle === "Users" ? <Users userPayload={userData} /> :
+                        dashboardTitle == "Overview" && userData && lessonData && testData ? <Overview userPayload={userData} lessonPayload={lessonData} exePayload={testData} /> :
+                            (dashboardTitle === "Users" ? <Users userPayload={userData} lessonPayload={lessonData} exePayload={testData} /> :
                                 dashboardTitle === "Lessons" ? <Lesson lessonPayload={lessonData} /> :
                                     dashboardTitle === "Excerises" ? <Excerises exePayload={testData} /> : "Loading resources")
                     }
@@ -121,7 +131,7 @@ export default function Admin() {
 
 
 function Overview(props) {
-    const { userPayload, lessonPayload } = props
+    const { userPayload, lessonPayload, exePayload } = props
 
     return (
         <>
@@ -141,7 +151,7 @@ function Overview(props) {
                         </div>
                         <div className="shadowBox tSection">
                             <h2>Total Excerises</h2>
-                            <h1>20</h1>
+                            <h1>{exePayload ? exePayload.length : "loading..."}</h1>
                         </div>
                     </div>
 
@@ -243,7 +253,7 @@ function Overview(props) {
 
 
 function Users(props) {
-    const { userPayload } = props
+    const { userPayload, lessonPayload, exePayload } = props
     return (
         <>
             <div className="topSection">
@@ -253,11 +263,11 @@ function Users(props) {
                 </div>
                 <div className="shadowBox tSection">
                     <h2>Total Lessons</h2>
-                    <h1>{userPayload ? userPayload.length : " loading..."}</h1>
+                    <h1>{lessonPayload ? lessonPayload.length : " loading..."}</h1>
                 </div>
                 <div className="shadowBox tSection">
                     <h2>Total Excerises</h2>
-                    <h1>20</h1>
+                    <h1>{exePayload ? exePayload.length : "loading..."}</h1>
                 </div>
             </div>
 
@@ -303,7 +313,7 @@ function Users(props) {
                             userPayload.map((item) => {
                                 return (
                                     <>
-                                        <div className="listStats">
+                                        <div key={item}className="listStats">
                                             <div className="baseBox-name bS-name">
                                                 <p>{item.name}</p>
                                             </div>
@@ -339,53 +349,92 @@ function Users(props) {
 }
 
 
-import EditorJS from '@editorjs/editorjs';
-import Header from '@editorjs/header';
-import Paragraph from '@editorjs/paragraph';
+
 
 function Lesson(props) {
-    const editorRef = useRef(null);
-
+    const { lessonPayload } = props
     function closeForm() {
         document.getElementById("lessonEditor").style.display = "none"
-        cleanupEditor
+        alert("Your About to leave the editor")
     }
     function openExeEditor() {
-        if (!editorRef.current) {
-            editorRef.current = new EditorJS({
-                holder: 'editorjs-container',
-                tools: {
-                    header: {
-                        class: Header,
-                        inlineToolbar: ['marker', 'link']
-                    }
-                },
-                placeholder: 'Let`s write an awesome story!'
-            });
-        }
         document.getElementById("lessonEditor").style.display = "flex"
     }
 
 
-    const cleanupEditor = () => {
-        if (editorRef.current && editorRef.current.destroy) {
-            editorRef.current.destroy();
+    const editorTools = [
+        {
+            type: "H1",
+            action: () => { createBlock("h1") }
+        },
+        {
+            type: "H2",
+            action: () => { createBlock("h2") }
+        },
+        {
+            type: "P",
+            action: () => { createBlock("p") }
         }
-    };
+    ]
+
+    function createBlock(type) {
+        const element = document.createElement(type)
+        const absTools = document.getElementById("abs-Tools")
 
 
-    const handleSave = async () => {
-        try {
-            const savedData = await editorRef.current.save();
-            console.log('Content saved:', savedData);
-            // Here you can handle the JSON data, e.g., send it to the server, store it in state, etc.
-        } catch (error) {
-            console.error('Save failed:', error);
+        element.classList.add('ri-Blocks')
+        element.contentEditable = true
+        element.innerText = type
+        document.getElementById("ri-Editor").append(element)
+
+
+        let x = element.offsetLeft
+        let y = element.offsetTop
+        let elementHeight = element.clientHeight
+        let offset = 8
+        absTools.style.top = `${y + elementHeight + offset}px`
+        absTools.style.right = `${x}px`
+
+        element.addEventListener('click', (e) => {
+
+            let x = e.target.offsetLeft
+            let y = e.target.offsetTop
+            let elementHeight = e.target.clientHeight
+            let offset = 8
+
+            console.log(x, y, e);
+
+            absTools.style.top = `${y + elementHeight + offset}px`
+            absTools.style.right = `${x}px`
+        })
+    }
+
+    async function saveLesson(e) {
+        e.preventDefault()
+        let documentData = []
+        const Body = document.getElementById('ri-Editor').children
+        console.log(Body);
+
+        for (let i = 1; i < Body.length; i++) {
+            const element = Body[i];
+            let tags = {
+                type: element.localName,
+                content: element.innerText
+            }
+
+            documentData.push(tags)
         }
-    };
+
+        await adminPost('lesson/ad/createLesson', {
+            title: document.getElementById('lessonTitle-editor').value,
+            level: parseInt(document.getElementById('lessonLevel-editor').value),
+            note: JSON.stringify(documentData)
+        }, adminSigned().token).then((data) => {
+            console.log(data);
+        })
+    }
 
 
-    const { lessonPayload } = props
     return (
         <>
             <div className="lessonWrap">
@@ -400,9 +449,6 @@ function Lesson(props) {
                                 </div>
                                 <div className="baseBox-name">
                                     <p>Lesson</p>
-                                </div>
-                                <div className="baseBox-name">
-                                    <p>Exp</p>
                                 </div>
                                 <div className="baseBox-name">
                                     <p>Action</p>
@@ -420,9 +466,6 @@ function Lesson(props) {
                                                 </div>
                                                 <div className="baseBox-name">
                                                     <p>{item.level}</p>
-                                                </div>
-                                                <div className="baseBox-name">
-                                                    <p>{item.xp}</p>
                                                 </div>
 
                                                 <div className="baseBox-name">
@@ -445,21 +488,42 @@ function Lesson(props) {
 
 
             <div className="lesson-editor" id='lessonEditor'>
-                <div className="lessonWrap-editor">
+                <form className="lessonWrap-editor" onSubmit={saveLesson}>
                     <div className="lessonTop">
-                        <div className="lessTopInfp">
-                            <h1>Lesson Title</h1>
-                            <p>Level 1</p>
+                        <div className="exrText">
+                            <h1>New Lesson</h1>
+                            <p>Create a new lesson to engage your students</p>
                         </div>
                         <div className="icoRExe" onClick={closeForm}>
                             <Icon icon="mingcute:close-fill" width="1.2em" height="1.2em" />
                         </div>
                     </div>
-                    <div className="lessonEdit" id='editorjs-container'></div>
-                    <div className="lessonAction">
-                        <button onClick={handleSave}>Save</button>
+                    <br />
+                    <div className="formHeaderInputSec">
+                        <input type="text" placeholder='Lesson Title' required id='lessonTitle-editor' />
+                        <input type="text" placeholder='Lesson Level' required id='lessonLevel-editor' />
                     </div>
-                </div>
+
+
+                    <div className="lessonEditorBox" id="editorjs-container">
+                        <div className="ri-Editor" id="ri-Editor">
+
+                            <div className="abs-Tool" id="abs-Tools">
+                                {
+                                    editorTools.map((item) => {
+                                        return (
+                                            <div key={item.type} onClick={item.action} className="abs-too-block">
+                                                <p>{item.type}</p>
+                                            </div>
+                                        )
+                                    })
+                                }
+                            </div>
+                        </div>
+
+                        <button>Save Lesson</button>
+                    </div>
+                </form>
             </div>
         </>
     )
@@ -470,6 +534,11 @@ function Lesson(props) {
 function Excerises(props) {
     const { exePayload } = props
     const [quizCount, setQuizCount] = useState(2)
+    // const [avLesson, setAvLesson] = useState()
+
+    useEffect(() => {
+    }, [])
+
     const formPayload = {
         testType: "",
         questions: "",
@@ -534,8 +603,12 @@ function Excerises(props) {
             }
         }
         formPayload.questions = JSON.stringify(exceriseGroup)
-        console.log(formPayload);
         adminPost("test/ad/createTest", formPayload, adminSigned().token)
+            .then((data) => {
+
+            }).catch((error) => {
+                alert(error.response.data.message);
+            })
     }
     return (
         <>
@@ -653,9 +726,6 @@ function Excerises(props) {
                     </form>
 
                 </div>
-
-
-
             </div>
         </>
     )

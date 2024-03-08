@@ -309,4 +309,7 @@ margin-top: 100px;
     .heroImage {
         height: fit-content;
     }
+    .fIMgWrap:nth-child(3) h2{
+        margin-top: -200px;
+    }
 }

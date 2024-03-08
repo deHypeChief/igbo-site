@@ -33,6 +33,7 @@ export default function StudentDashboard() {
             getUser("/user/me", userSigned().token)
             
                 .then((data) => {
+                console.log(data);
                     setData(data.data.data, userSigned().token)
                 })
                 .catch((error) => {
@@ -44,7 +45,6 @@ export default function StudentDashboard() {
 
             getUserData("/lesson/", userSigned().token)
             .then((data) => {
-                console.log(data);
                 setLesson(data.data.data)
             })
         }
@@ -82,7 +82,7 @@ export default function StudentDashboard() {
                             <h3 className="lessText">
                                 2
                             </h3>
-                            <p>Current <br /> Level</p>
+                            <p>Current <br /> Rank</p>
                         </div>
                         <div className="lessBox">
                             <h3 className="lessText">

@@ -92,3 +92,24 @@ export async function getUsers(req, res) {
             })
         })
 }
+
+
+export async function updateExp(req, res) {
+    const { exp } = req.body
+
+    const _user = await User.findById(req.user.id)
+
+    if (_user) {
+        await User.findByIdAndUpdate(req.user.id, { exp: _user.exp + parseInt(exp) }).select('-password')
+            .then((data) => {
+                res.status(200).json({
+                    messagees: "User Leved Up",
+                    data: data
+                })
+            }).catch((error) => {
+                res.status(403).json(
+                    { message: "error updating exp" }
+                )
+            })
+    }
+}

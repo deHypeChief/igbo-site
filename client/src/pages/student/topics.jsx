@@ -36,10 +36,10 @@ export default function Topics() {
                                         <p>Get your bacis solid by learning the
                                             basiscs of Igbo</p>
                                         <div className="topic-bttnWrap">
-                                            <Link to={"/u/lesson/" + item._id}>
+                                            <Link to={"/u/lesson/" + item.level}>
                                                 <Button>Start Lesson</Button>
                                             </Link>
-                                            <Link to={"/u/quiz/" + item._id}>
+                                            <Link to={`/u/quiz/${item.level}`} >
                                                 <Button>Take Quiz</Button>
                                             </Link>
                                         </div>

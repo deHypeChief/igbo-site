@@ -5,18 +5,9 @@ settings:
   excludeLinksFromLockfile: false
 
 dependencies:
-  '@editorjs/editorjs':
-    specifier: ^2.29.0
-    version: 2.29.0
-  '@editorjs/header':
-    specifier: ^2.8.1
-    version: 2.8.1
-  '@editorjs/list':
-    specifier: ^1.9.0
-    version: 1.9.0
-  '@editorjs/paragraph':
-    specifier: ^2.11.3
-    version: 2.11.3
+  '@payaza/web-sdk':
+    specifier: 0.1.0-beta.12
+    version: 0.1.0-beta.12
   axios:
     specifier: ^1.6.7
     version: 1.6.7
@@ -29,8 +20,14 @@ dependencies:
   react-router-dom:
     specifier: ^6.22.0
     version: 6.22.1(react-dom@18.2.0)(react@18.2.0)
+  uuid:
+    specifier: ^9.0.1
+    version: 9.0.1
 
 devDependencies:
+  '@editorjs/header':
+    specifier: ^2.8.1
+    version: 2.8.1
   '@iconify/react':
     specifier: ^4.1.1
     version: 4.1.1(react@18.2.0)
@@ -290,35 +287,15 @@ packages:
       to-fast-properties: 2.0.0
     dev: true
 
-  /@codexteam/icons@0.0.4:
-    resolution: {integrity: sha512-V8N/TY2TGyas4wLrPIFq7bcow68b3gu8DfDt1+rrHPtXxcexadKauRJL6eQgfG7Z0LCrN4boLRawR4S9gjIh/Q==}
-    dev: false
-
   /@codexteam/icons@0.0.5:
     resolution: {integrity: sha512-s6H2KXhLz2rgbMZSkRm8dsMJvyUNZsEjxobBEg9ztdrb1B2H3pEzY6iTwI4XUPJWJ3c3qRKwV4TrO3J5jUdoQA==}
-    dev: false
-
-  /@editorjs/editorjs@2.29.0:
-    resolution: {integrity: sha512-w2BVboSHokMBd/cAOZn0UU328o3gSZ8XUvFPA2e9+ciIGKILiRSPB70kkNdmhHkuNS3q2px+vdaIFaywBl7wGA==}
-    dev: false
+    dev: true
 
   /@editorjs/header@2.8.1:
     resolution: {integrity: sha512-y0HVXRP7m2W617CWo3fsb5HhXmSLaRpb9GzFx0Vkp/HEm9Dz5YO1s8tC7R8JD3MskwoYh7V0hRFQt39io/r6hA==}
     dependencies:
       '@codexteam/icons': 0.0.5
-    dev: false
-
-  /@editorjs/list@1.9.0:
-    resolution: {integrity: sha512-BQEvZW4vi0O0dBvGNljiKxiE89vMSHoM2Tu2OzKUndoj7pY9AxqpgCh1qvwIVsJAlG4Lbt/vBFQilnoStMmI6A==}
-    dependencies:
-      '@codexteam/icons': 0.0.4
-    dev: false
-
-  /@editorjs/paragraph@2.11.3:
-    resolution: {integrity: sha512-ON72lhvhgWzPrq4VXpHUeut9bsFeJgVATDeL850FVToOwYHKvdsNpfu0VgxEodhkXgzU/IGl4FzdqC2wd3AJUQ==}
-    dependencies:
-      '@codexteam/icons': 0.0.4
-    dev: false
+    dev: true
 
   /@esbuild/aix-ppc64@0.19.12:
     resolution: {integrity: sha512-bmoCYyWdEL3wDQIVbcyzRyeKLgk2WtWLTWz1ZIAZF/EGbNOwSA6ew3PftJ1PqMiOOGu0OyFMzG53L0zqIpPeNA==}
@@ -647,6 +624,10 @@ packages:
       '@nodelib/fs.scandir': 2.1.5
       fastq: 1.17.1
     dev: true
+
+  /@payaza/web-sdk@0.1.0-beta.12:
+    resolution: {integrity: sha512-g8qSi1Macp6Yy31e19trw3qH3husbWiuhIGBQkdjqKgq/MnS/0CDrF8OjxVituPcQsWneDjk7Kvvtp3sBDI6YQ==}
+    dev: false
 
   /@remix-run/router@1.15.1:
     resolution: {integrity: sha512-zcU0gM3z+3iqj8UX45AmWY810l3oUmXM7uH4dt5xtzvMhRtYVhKGOmgOd1877dOPPepfCjUv57w+syamWIYe7w==}
@@ -2483,6 +2464,11 @@ packages:
     dependencies:
       punycode: 2.3.1
     dev: true
+
+  /uuid@9.0.1:
+    resolution: {integrity: sha512-b+1eJOlsR9K8HJpow9Ok3fiWOWSIcIzXodvv0rQjVoOVNpWMpxf1wZNpt4y9h10odCNrqnYp1OBzRktckBe3sA==}
+    hasBin: true
+    dev: false
 
   /vite@5.1.4:
     resolution: {integrity: sha512-n+MPqzq+d9nMVTKyewqw6kSt+R3CkvF9QAKY8obiQn8g1fwTscKxyfaYnC632HtBXAQGc1Yjomphwn1dtwGAHg==}

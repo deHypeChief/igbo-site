@@ -1,59 +1,27 @@
 import '../../assets/styles/quiz.css'
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { Button } from "../../components/button/button"
 import successImg from "../../assets/images/9486910-removebg-preview 1.png"
 import { Link, useParams } from "react-router-dom"
 import { ClientLayout } from "../../components/layout/layout"
+import { postUserData } from '../../utilis/authManger'
 
 export default function Quiz() {
     const [passed, setPassed] = useState(null)
     const { id } = useParams()
 
-    const [questions, setQuestions] = useState([
-        {
-            que: "what is iri abuo",
-            correctAns: "12",
-            answers: [
-                "12",
-                "40",
-                "15",
-                "30"
-            ]
-        },
-        {
-            que: "what is iri abuo",
-            correctAns: "12",
-            answers: [
-                "12",
-                "40",
-                "15",
-                "30"
-            ]
-        },
-        {
-            que: "what is iri abuo",
-            correctAns: "12",
-            answers: [
-                "12",
-                "40",
-                "15",
-                "30"
-            ]
-        },
-        {
-            que: "what is iri abuo",
-            correctAns: "12",
-            answers: [
-                "12",
-                "40",
-                "15",
-                "30"
-            ],
-        }
-    ])
+    const [questions, setQuestions] = useState([])
+    const [test, setTest] = useState([])
 
     let userAns = []
     let correct_ans = 0
+
+    useEffect(() => {
+        postUserData('/test/testLevel', { level: id }).then((data) => {
+            setTest(data.data.data)
+            setQuestions(JSON.parse(data.data.data.questions))
+        })
+    }, [])
 
 
     function GetAns(ans, id) {
@@ -64,19 +32,20 @@ export default function Quiz() {
 
             console.log("done");
             questions.forEach((data, index) => {
-                if (data.correctAns == userAns[index]) {
+                if (data.correctAnswer == userAns[index]) {
                     correct_ans += 1
                 }
             })
             if (correct_ans == questions.length) {
-                setPassed(true)
+                postUserData("/user/exp", { exp: test.xp }).then(() => {
+                    setPassed(true)
+                })
             } else {
                 setPassed(false)
             }
 
         }
     }
-
     return (
         <ClientLayout>
 
@@ -93,19 +62,19 @@ export default function Quiz() {
                             <div key={"quz" + indexMain} id={"quz" + indexMain} className="quizInfo">
                                 <div className="quizTopSection">
                                     <h2>Question {indexMain += 1}</h2>
-                                    <h1>{items.que}</h1>
+                                    <h1>{items.question}</h1>
                                 </div>
                                 <div className="quizOptions">
                                     {
-                                        items.answers.map((ans, index) => {
+                                        items.options.split(",").map((ans, index) => {
                                             do {
-                                                let radNumber = Math.floor(Math.random() * items.answers.length)
+                                                let radNumber = Math.floor(Math.random() * items.options.split(",").length)
 
                                                 if (rads.includes(radNumber)) {
-                                                    radNumber = Math.floor(Math.random() * items.answers.length)
+                                                    radNumber = Math.floor(Math.random() * items.options.split(",").length)
                                                 } else {
                                                     rads.push(radNumber)
-                                                    return <Button action={() => { GetAns(items.answers[radNumber], "quz" + indexNum) }} key={"ans" + index}>{items.answers[radNumber]}</Button>
+                                                    return <Button action={() => { GetAns(items.options.split(",")[radNumber], "quz" + indexNum) }} key={"ans" + index}>{items.options.split(",")[radNumber]}</Button>
                                                 }
                                             } while (rads.length < 4);
                                         })

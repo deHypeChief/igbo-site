@@ -1,5 +1,5 @@
 import express from 'express'
-import { createLesson, deletLesson, getLessonById, getLessons } from '../controllers/lessonController.js'
+import { createLesson, deletLesson,  getLessonByLevel,  getLessons } from '../controllers/lessonController.js'
 import { protectAdmin, protectUser } from '../middleware/authMiddleware.js'
 const lessonRoute = express.Router()
 
@@ -12,6 +12,6 @@ lessonRoute.get('/ad/lessons',protectAdmin, getLessons)
 
 // users
 lessonRoute.get('/', getLessons)
-lessonRoute.post('/oneLesson', getLessonById)
+lessonRoute.post('/oneLesson', getLessonByLevel)
 
 export default lessonRoute

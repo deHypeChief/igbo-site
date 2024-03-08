@@ -18,10 +18,6 @@ const lessonSchema = new mongoose.Schema({
     quiz: {
         type: Boolean,
         default: false,
-    },
-    xp:{
-        type: Number,
-        required: true
     }
 });
 

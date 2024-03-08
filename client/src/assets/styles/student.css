@@ -108,3 +108,31 @@
     font-weight: 900;
     padding: 20px 0 30px;
 }
+
+
+@media screen and (max-width: 600px) {
+    .dashboardStu{
+        display: flex;
+        flex-direction: column;
+    }
+    .getTutor {
+        width: initial;
+    }
+    .profileBox {
+        height: 50px;
+        width: 50px;
+    }
+    .profileWrap {
+        display: flex;
+        flex-direction: column;
+        align-items: initial;
+
+        gap: 10px;
+    }
+    .profile {
+        width: initial;
+    }
+    .profileInfo h1 {
+        font-size: 1.5rem;
+    }
+}

@@ -1,3 +1,4 @@
+import Lesson from '../models/lessonModel.js'
 import Test from '../models/testModel.js'
 
 
@@ -61,4 +62,50 @@ export async function deleteTest(req, res) {
             message: "No Test Id"
         })
     }
+}
+
+export async function getTestByLevel(req, res){
+    const {level} = req.body
+    await Test.findOne({lesson: level}).then((data)=>{
+        res.status(200).json({
+            messagees: "requested test found",
+            data: data
+        })
+    }).catch(()=>{
+        res.status(500).json({
+            message: "Error getting Lesson",
+            error: error
+        })
+    })
+}
+
+export async function getLessonWithOutQuiz(req, res){
+    let _lesson = []
+    let _test = []
+    let data = []
+
+    await Lesson.find().then((data)=>{
+        _lesson = data
+    })
+    await Test.find().then((data)=>{
+        _test = data
+    })
+
+    if(_lesson && _test){
+        _lesson.forEach((item, index)=>{
+            if(item.level != _test[index].lesson){
+                data.push(item)
+            }
+        })
+
+        res.status(200).json({
+            messagees: "requested test found",
+            data: data,
+        })
+    }else{
+        res.status(400).json({
+            message: "Error getting Lesson with out quiz",
+        })
+    }
+    
 }

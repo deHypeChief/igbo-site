@@ -8,6 +8,8 @@ import Lesson from "./pages/student/lesson";
 import Quiz from "./pages/student/quiz";
 import AdminAuth from "./pages/admin/adminAuth";
 import Admin from "./pages/admin/adminBoard";
+import Pricing from "./pages/student/pricing";
+import 'setimmediate';
 
 export default function App(){
     return(
@@ -27,6 +29,7 @@ export default function App(){
                         <Route path='/u/topics' element={<Topics />} />
                         <Route path='/u/lesson/:id' element={<Lesson/>}/>
                         <Route path='/u/quiz/:id' element={<Quiz/>}/>
+                        <Route path="/u/pricing" element={<Pricing/>}/>
                     </Route>
 
                     <Route path='/admin'>

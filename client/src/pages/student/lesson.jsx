@@ -1,4 +1,3 @@
-import Navbar from "../../components/navbar/navbar";
 import '../../assets/styles/lesson.css'
 import { ClientLayout } from "../../components/layout/layout";
 import { Link, useNavigate, useParams } from "react-router-dom";
@@ -18,14 +17,18 @@ export default function Lesson() {
         if (!userSigned()) {
             navTo('/signin')
         } else {
-            postUserData('/lesson/oneLesson', { id: id }).then((data) => {
-                console.log(data);
+            postUserData('/lesson/oneLesson', { level: id }).then((data) => {
                 setLessonData(data.data.data)
+                document.getElementById("dasboardTitle").innerText = data.data.data.title
             }).catch(error => {
                 console.log(error);
             })
         }
-    }, [id, lessonData, navTo])
+
+
+        
+
+    }, [])
 
     return (
         <ClientLayout>
@@ -38,7 +41,7 @@ export default function Lesson() {
                     {lessonData.note}
 
                 </div>
-                <Link to={'/u/quiz/' + id }>
+                <Link to={'/u/quiz/' + parseInt(lessonData.level) }>
                     <Button>Start Quiz</Button>
                 </Link>
 

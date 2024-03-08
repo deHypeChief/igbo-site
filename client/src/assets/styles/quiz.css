@@ -1,8 +1,9 @@
+
 .quiz{
     color: white;
     padding: var(--spacing-side);
     padding: 0 150px;
-    padding-top: 30vh;
+    padding-top: 22vh;
     overflow-y: hidden;
     height: 100vh;
 }
@@ -70,7 +71,14 @@
     width: 200px;
     margin-top: -35px;
 }
+.qButtons{
+    display: flex;
+    justify-content: space-between;
+}
 
+.quizOptions .mainBttnWrap{
+    width: 100%;
+}
 
 @media screen and (max-width: 600px){
     .quiz {

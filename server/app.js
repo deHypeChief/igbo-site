@@ -27,7 +27,7 @@ app.use((req, res, next) => {
 });
 
 
-
+app.options(`${process.env.NODE_ENV === "dev"? 'http://localhost:5173' : "https://igbo-learning.vercel.app"}`, cors());
 
 // routes
 app.get('/', (req, res) => {
@@ -39,7 +39,6 @@ app.use('/api/admin', adminRoute);
 app.use('/api/user', userRoute);
 app.use('/api/lesson', lessonRoute)
 app.use('/api/test', testRoute)
-
 
 app.use((err, req, res, next) => {
   console.error(err.stack);

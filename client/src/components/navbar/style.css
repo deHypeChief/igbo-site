@@ -59,7 +59,7 @@ nav {
     position: absolute;
     height: fit-content;
     padding: 30px;
-    width: 350px;
+    width: 300px;
     background: white;
     right: 100px;
     margin-top: 40px;
@@ -72,10 +72,31 @@ nav {
 .userDropDown p{
     font-weight: 900;
 }
-
+.hamMenu{
+    display: none;
+}
+.hamDropDown{
+    position: fixed;
+    top: 0;
+    height: 100vh;
+    background: white;
+    width: 100%;
+    left: 0;
+    z-index: -1;
+    padding: 150px 40px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    display: none;
+}
+.hamDropDown a{
+    font-size: 2.5rem;
+}
+.hamDropDown a .mainBttnWrap{
+    width: 100%;
+}
 
 @media screen and (max-width: 600px) {
-
     .navWrap {
         padding: 20px 30px;
         transition: 0.6s;
@@ -84,12 +105,31 @@ nav {
     .navBox {
         padding: 15px 50px;
     }
-
     .content {
         display: none;
     }
-
     .navBox .button {
         display: none;
+    }
+    .navContents{
+        display: none;
+    }
+    .hamMenu{
+        display: block;
+    }
+    .userDropDown {
+        width: 100%; 
+        right: 0px;
+        padding: 40px 30px;
+        border-radius: 0;
+        gap: 20px;
+        padding-bottom: 200px;
+    }
+    .userDropDown p{
+        font-size:30px;
+        font-weight: 900;
+    }
+    .navBox {
+        padding: 15px 25px;
     }
 }

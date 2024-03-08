@@ -1,0 +1,41 @@
+.abs-Tool {
+    display: flex;
+    gap: 10px;
+    position: absolute;
+}
+
+
+.abs-too-block {
+    height: 30px;
+    width: 30px;
+    background: black;
+    border: 2px solid rgba(0, 0, 0, 0.109);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border-radius: 8px;
+
+
+}
+
+.abs-too-block p {
+    font-size: .9rem;
+    font-weight: 900;
+    color: white;
+}
+
+
+.ri-Editor {
+    position: relative;
+    min-height: 80vh;
+    padding-bottom: 80px;
+}
+.ri-Blocks:focus-visible{
+    outline: none;
+    border: none;
+    border-radius: 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.246);
+}
+.ri-Editor .ri-Blocks{
+    max-width: initial;
+}

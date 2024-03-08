@@ -4,19 +4,22 @@ import './style.css'
 import { useEffect, useRef, useState } from 'react'
 import Logo from '../../assets/images/logo/learn_igbo_logo.svg'
 import { userLogOut, userSigned } from '../../utilis/authManger'
+import { Icon } from '@iconify/react'
 
 export default function Navbar() {
     const dropdown = useRef()
     const [drop, setDroped] = useState()
+    const [hamOpen, setHamOpen] = useState(true)
+
     const navTo = useNavigate()
     useEffect(() => {
-        console.log(userSigned());
+        // console.log(userSigned());
         if (userSigned()) {
             document.getElementsByClassName("navContents")[0].style.display = "none"
             document.getElementsByClassName("navContents")[1].style.display = "none"
             document.getElementsByClassName("dashBoardValue-log")[0].style.display = "flex"
 
-        }else{
+        } else {
             document.getElementsByClassName("navContents")[0].style.display = "flex"
             document.getElementsByClassName("navContents")[1].style.display = "block"
             document.getElementsByClassName("dashBoardValue-log")[0].style.display = "none"
@@ -42,12 +45,24 @@ export default function Navbar() {
     ]
 
     useEffect(() => {
+        if (userSigned()) {
+            document.getElementsByClassName("hamMenu")[0].style.display = "none"
+        }
         document.getElementById("dasboardTitle").innerText = "Dashboard"
         const nav = document.getElementsByTagName('nav')[0]
         const navWrap = document.getElementsByClassName('navWrap')[0]
 
+        document.getElementsByClassName("navContents")[0].style.display = "none"
+        document.getElementsByClassName("navContents")[1].style.display = "none"
+
         const screenWidth = window.screen.width
         let offset = 50
+
+        if (scrollY < offset - 10) {
+            document.getElementsByClassName("navContents")[0].style.display = "none"
+            document.getElementsByClassName("navContents")[1].style.display = "none"
+        }
+
         document.onscroll = (e) => {
             if (scrollY > offset) {
                 nav.style.background = "white"
@@ -55,7 +70,9 @@ export default function Navbar() {
             }
             if (scrollY < offset - 10) {
                 nav.style.background = "transparent"
-                navWrap.style.padding = screenWidth < 600 ? "20px 30px" : "20px 70px"
+                navWrap.style.padding = screenWidth < 600 ? "20px 20px" : "20px 70px"
+                document.getElementsByClassName("navContents")[0].style.display = "none"
+                document.getElementsByClassName("navContents")[1].style.display = "none"
                 console.log(screenWidth);
             }
         }
@@ -70,6 +87,17 @@ export default function Navbar() {
             setDroped(true)
         }
     }
+
+    function handleHambuger() {
+        if (hamOpen) {
+            setHamOpen(false)
+            document.getElementById("hamDropDown").style.display = 'flex'
+        } else {
+            setHamOpen(true)
+            document.getElementById("hamDropDown").style.display = 'none'
+        }
+    }
+
 
     return (
         <nav>
@@ -94,6 +122,33 @@ export default function Navbar() {
                     </div>
 
 
+                    <div className="hamMenu">
+                        <div className="hamWrap" onClick={handleHambuger}>
+                            {
+                                hamOpen ? (
+                                    <Icon icon="ic:round-menu" width="2em" height="2em" />
+                                ) : (
+                                    <Icon icon="ic:round-close" width="2em" height="2em" />
+                                )
+                            }
+                        </div>
+
+                        <div className="hamDropDown" id='hamDropDown'>
+                            {navLinks.map((value) => {
+                                return (
+                                    <Link key={value.title} to={value.link}>{value.title}</Link>
+                                )
+                            })}
+
+                            <Link to="/signin">
+                                <button>Sign in</button>
+                            </Link>
+
+                        </div>
+
+                    </div>
+
+
                     <div className="dashBoardValue-log" id="logedInuser">
                         <p className="dashBoaedTitle" id="dasboardTitle">
                             Dashboard
@@ -107,8 +162,11 @@ export default function Navbar() {
                                 <Link to="/u/topics">
                                     <p>View Topics</p>
                                 </Link>
+                                <Link to="/u/pricing">
+                                    <p>View Pricing</p>
+                                </Link>
 
-                                <p onClick={()=>{userLogOut(navTo('/signin'))}}>Log Out</p>
+                                <p onClick={() => { userLogOut(navTo('/signin')) }}>Log Out</p>
                             </div>
                         </div>
                     </div>

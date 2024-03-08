@@ -3,7 +3,7 @@ import Lesson from '../models/lessonModel.js'
 export async function createLesson(req, res) {
     const { level, title, note, xp } = req.body
 
-    if (!level || !title || !note || !xp) {
+    if (!level || !title || !note ) {
         res.status(500).json({ message: "some fields are missing" })
     } else {
         const exsiting_Level = await Lesson.findOne({ level })
@@ -17,8 +17,7 @@ export async function createLesson(req, res) {
             await Lesson.create({
                 level,
                 title,
-                note,
-                xp
+                note
             }).then((data) => {
                 res.status(201).json({
                     message: "Lesson Created",
@@ -26,7 +25,6 @@ export async function createLesson(req, res) {
                         level: data.level,
                         title: data.title,
                         note: data.note,
-                        exp: data.xp
                     }
                 })
             }).catch((error) => {
@@ -50,14 +48,14 @@ export async function getLessons(req, res){
     })
 }
 
-export async function getLessonById(req, res){
-    const {id} = req.body
-    await Lesson.findById(id).then((data)=>{
+export async function getLessonByLevel(req, res){
+    const {level} = req.body
+    await Lesson.findOne({level: level}).then((data)=>{
         res.status(200).json({
             messagees: "requested lesson found",
             data: data
         })
-    }).catch(()=>{
+    }).catch((error)=>{
         res.status(500).json({
             message: "Error getting Lesson",
             error: error

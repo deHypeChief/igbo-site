@@ -10,16 +10,15 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@editorjs/editorjs": "^2.29.0",
-    "@editorjs/header": "^2.8.1",
-    "@editorjs/list": "^1.9.0",
-    "@editorjs/paragraph": "^2.11.3",
+    "@payaza/web-sdk": "0.1.0-beta.12",
     "axios": "^1.6.7",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.22.0"
+    "react-router-dom": "^6.22.0",
+    "uuid": "^9.0.1"
   },
   "devDependencies": {
+    "@editorjs/header": "^2.8.1",
     "@iconify/react": "^4.1.1",
     "@types/react": "^18.2.55",
     "@types/react-dom": "^18.2.19",
