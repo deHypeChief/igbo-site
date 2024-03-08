@@ -9,7 +9,6 @@ import Quiz from "./pages/student/quiz";
 import AdminAuth from "./pages/admin/adminAuth";
 import Admin from "./pages/admin/adminBoard";
 import Pricing from "./pages/student/pricing";
-import 'setimmediate';
 
 export default function App(){
     return(
