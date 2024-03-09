@@ -18,7 +18,9 @@ const PORT = process.env.PORT || 3600;
 
 app.use(express.urlencoded({ extended: false }))
 app.use(express.json());
-app.use(cors())
+app.use(cors({
+  orign: "https://igbo-learning.vercel.app/"
+}))
 
 // routes
 app.get('/', (req, res) => {
