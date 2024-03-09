@@ -3,7 +3,6 @@ const API_BASE_URL = 'https://igbo-site.vercel.app/api'; // Replace this with yo
 
 const api = axios.create({
     baseURL: API_BASE_URL,
-    mode: 'no-cors',
 });
 
 
