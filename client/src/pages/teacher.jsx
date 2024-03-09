@@ -14,7 +14,9 @@ export default function TeacherPopUp(props) {
                     <h1>Mrs Nneka Agu</h1>
                     <p>Discover the new possibility in the way she approaches Igbo learning. She is a well seasoned instructor with a vast knowledge in Igbo learning</p>
                     <div className="tutorBttnWrap">
-                        <Button>Get Tutor</Button>
+                        <Link to={'/u/pricing'}>
+                            <Button>Get Tutor</Button>
+                        </Link>
                         <Button action={props.action}>Home</Button>
                     </div>
                 </div>

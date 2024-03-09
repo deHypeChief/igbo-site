@@ -13,26 +13,54 @@ export default function Navbar() {
 
     const navTo = useNavigate()
     useEffect(() => {
-        // console.log(userSigned());
+        const screenWidth = window.screen.width
+        let offset = 50
+
         if (userSigned()) {
             document.getElementsByClassName("navContents")[0].style.display = "none"
             document.getElementsByClassName("navContents")[1].style.display = "none"
+            document.getElementsByClassName("hamMenu")[0].style.display = "none"
             document.getElementsByClassName("dashBoardValue-log")[0].style.display = "flex"
 
         } else {
-            document.getElementsByClassName("navContents")[0].style.display = "flex"
-            document.getElementsByClassName("navContents")[1].style.display = "block"
-            document.getElementsByClassName("dashBoardValue-log")[0].style.display = "none"
+            if (screenWidth > 600) {
+                document.getElementsByClassName("navContents")[0].style.display = "flex"
+                document.getElementsByClassName("navContents")[1].style.display = "block"
+                document.getElementsByClassName("dashBoardValue-log")[0].style.display = "none"
+            }
+            if (screenWidth < 600) {
+                document.getElementsByClassName("navContents")[0].style.display = "none"
+                document.getElementsByClassName("navContents")[1].style.display = "none"
+                document.getElementsByClassName("dashBoardValue-log")[0].style.display = "none"
+            }
         }
-    }, [])
+
+        document.getElementById("dasboardTitle").innerText = "Dashboard"
+        const nav = document.getElementsByTagName('nav')[0]
+        const navWrap = document.getElementsByClassName('navWrap')[0]
+
+        document.onscroll = (e) => {
+            if (scrollY > offset) {
+                nav.style.background = "white"
+                navWrap.style.padding = screenWidth < 600 ? "10px 0px" : "10px 70px"
+            }
+            if (scrollY < offset - 10) {
+                nav.style.background = "transparent"
+                document.getElementsByClassName("navContents")[0].style.display = "none"
+                document.getElementsByClassName("navContents")[1].style.display = "none"
+                console.log(screenWidth);
+            }
+        }
+    }, [hamOpen])
+
     const navLinks = [
         {
             title: "Home",
             link: "/"
         },
         {
-            title: "About Us",
-            link: "/"
+            title: "Pricing",
+            link: "/u/pricing"
         },
         {
             title: "Topics",
@@ -43,41 +71,6 @@ export default function Navbar() {
             link: "/"
         }
     ]
-
-    useEffect(() => {
-        if (userSigned()) {
-            document.getElementsByClassName("hamMenu")[0].style.display = "none"
-        }
-        document.getElementById("dasboardTitle").innerText = "Dashboard"
-        const nav = document.getElementsByTagName('nav')[0]
-        const navWrap = document.getElementsByClassName('navWrap')[0]
-
-        document.getElementsByClassName("navContents")[0].style.display = "none"
-        document.getElementsByClassName("navContents")[1].style.display = "none"
-
-        const screenWidth = window.screen.width
-        let offset = 50
-
-        if (scrollY < offset - 10) {
-            document.getElementsByClassName("navContents")[0].style.display = "none"
-            document.getElementsByClassName("navContents")[1].style.display = "none"
-        }
-
-        document.onscroll = (e) => {
-            if (scrollY > offset) {
-                nav.style.background = "white"
-                navWrap.style.padding = screenWidth < 600 ? "10px 0px" : "10px 70px"
-            }
-            if (scrollY < offset - 10) {
-                nav.style.background = "transparent"
-                navWrap.style.padding = screenWidth < 600 ? "20px 20px" : "20px 70px"
-                document.getElementsByClassName("navContents")[0].style.display = "none"
-                document.getElementsByClassName("navContents")[1].style.display = "none"
-                console.log(screenWidth);
-            }
-        }
-    }, [])
-
     function handleDropdown() {
         if (drop) {
             dropdown.current.style.display = "none"
@@ -87,7 +80,6 @@ export default function Navbar() {
             setDroped(true)
         }
     }
-
     function handleHambuger() {
         if (hamOpen) {
             setHamOpen(false)
@@ -108,6 +100,7 @@ export default function Navbar() {
                             <img src={Logo} alt="" />
                         </Link>
                     </div>
+
                     <div className="content navContents" >
                         {navLinks.map((value) => {
                             return (

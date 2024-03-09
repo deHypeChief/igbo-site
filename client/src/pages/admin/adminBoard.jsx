@@ -36,7 +36,7 @@ export default function Admin() {
             .then((data) => {
                 setTestData(data.data.data)
             })
-        }, 500)
+        }, 100)
 
     }, [])
 
@@ -92,12 +92,12 @@ export default function Admin() {
                                 </div>
                                 <p>Payments</p>
                             </div>
-                            <div className="sbutton" onClick={handleSideButton}>
+                            {/* <div className="sbutton" onClick={handleSideButton}>
                                 <div className="sImage">
                                     <Icon icon="material-symbols:admin-panel-settings-rounded" style={{ fontSize: '20px' }} />
                                 </div>
                                 <p>Admin</p>
-                            </div>
+                            </div> */}
 
                         </div>
                     </div>
@@ -121,7 +121,8 @@ export default function Admin() {
                         dashboardTitle == "Overview" && userData && lessonData && testData ? <Overview userPayload={userData} lessonPayload={lessonData} exePayload={testData} /> :
                             (dashboardTitle === "Users" ? <Users userPayload={userData} lessonPayload={lessonData} exePayload={testData} /> :
                                 dashboardTitle === "Lessons" ? <Lesson lessonPayload={lessonData} /> :
-                                    dashboardTitle === "Excerises" ? <Excerises exePayload={testData} /> : "Loading resources")
+                                    dashboardTitle === "Excerises" ? <Excerises exePayload={testData} /> : 
+                                        dashboardTitle === "Payments" ? <Payments exePayload={testData}/> :  "Loading resources..." )
                     }
                 </div>
             </div>
@@ -250,8 +251,6 @@ function Overview(props) {
         </>
     )
 }
-
-
 function Users(props) {
     const { userPayload, lessonPayload, exePayload } = props
     return (
@@ -347,10 +346,6 @@ function Users(props) {
         </>
     )
 }
-
-
-
-
 function Lesson(props) {
     const { lessonPayload } = props
     function closeForm() {
@@ -528,9 +523,6 @@ function Lesson(props) {
         </>
     )
 }
-
-
-
 function Excerises(props) {
     const { exePayload } = props
     const [quizCount, setQuizCount] = useState(2)
@@ -688,12 +680,8 @@ function Excerises(props) {
                                 <option value="quiz">Quiz</option>
                                 <option value="assigment">Assigment</option>
                             </select>
-                            <select name="">
-                                <option value="Select Level" id='lessonLevel'>Select Level</option>
-                                <option value="1">Level 1</option>
-                                <option value="2">Level 1</option>
-                                <option value="3">Level 1</option>
-                            </select>
+                            <input type="text" placeholder='Level of the Quiz' />
+
                         </div>
 
                         <div id="quizFormWrap">
@@ -725,6 +713,64 @@ function Excerises(props) {
                         </div>
                     </form>
 
+                </div>
+            </div>
+        </>
+    )
+}
+
+function Payments(props){
+    const { exePayload } = props
+
+    return(
+        <>
+                        <div className="lessonWrap">
+                <div className="lessonLeft">
+                    <div className="userList">
+
+                        <div className="shadowBox baseStat">
+
+                            <div className="topNames">
+                                <div className="baseBox-name bS-name-lesson">
+                                    <p>Name</p>
+                                </div>
+                                <div className="baseBox-name">
+                                    <p>Email</p>
+                                </div>
+                                <div className="baseBox-name">
+                                    <p>Paid For</p>
+                                </div>
+                                <div className="baseBox-name">
+                                    <p>Amount</p>
+                                </div>
+                            </div>
+                            <br />
+
+                            <div className="listStats-base">
+                                {
+                                    exePayload.map((item, index) => {
+                                        return (
+                                            <div key={"exe" + index} className="listStats">
+                                                <div className="baseBox-name bS-name-lesson">
+                                                    <p>{item.lesson}</p>
+                                                </div>
+                                                <div className="baseBox-name">
+                                                    <p>{item.testType}</p>
+                                                </div>
+                                                <div className="baseBox-name">
+                                                    <p>{item.xp}</p>
+                                                </div>
+                                                <div className="baseBox-name">
+                                                    <Icon icon="ic:baseline-delete" />
+                                                </div>
+                                            </div>
+                                        )
+                                    })
+                                }
+                            </div>
+
+                        </div>
+                    </div>
                 </div>
             </div>
         </>

@@ -20,39 +20,32 @@ export default function Topics() {
     return (
         <ClientLayout>
             <section className="topicWrap">
-                <div className="moveBttns">
-                    <div className="topicMove_bttn disabled"></div>
-                </div>
-                <div className="topicArea">
-                    {
-                        lesson.map((item, index) => {
-                            return (
-                                <>
-                                    <div key={"less" + index} className="topicInfo">
-                                        <h2>Level {index += 1}</h2>
-                                        <h1>
-                                            {item.title}
-                                        </h1>
-                                        <p>Get your bacis solid by learning the
-                                            basiscs of Igbo</p>
-                                        <div className="topic-bttnWrap">
-                                            <Link to={"/u/lesson/" + item.level}>
-                                                <Button>Start Lesson</Button>
-                                            </Link>
-                                            <Link to={`/u/quiz/${item.level}`} >
-                                                <Button>Take Quiz</Button>
-                                            </Link>
-                                        </div>
-                                    </div>
-                                    <div className="topicSubComp"></div>
-                                </>
-                            )
-                        })
-                    }
-                </div>
-                <div className="moveBttns">
-                    <div className="topicMove_bttn"></div>
-                </div>
+
+                {
+                    lesson.map((item) => {
+                        return (
+                            <div key={item.level} className="topicBox">
+                                <div className="card-topic">
+                                    <h2 className="level-topic">
+                                        level {item.level}
+                                    </h2>
+                                    <h1 className="title-topic">
+                                        {item.title}
+                                    </h1>
+                                    <p className="pah-topic">
+                                        Get your bacis solid by learning the
+                                        basiscs of Igbo
+                                    </p>
+                                </div>
+                                <Link to={"/u/lesson/" + item.level}>
+                                    <Button>Start Lesson</Button>
+                                </Link>
+                            </div>
+                        )
+                    })
+                }
+                
+
             </section>
         </ClientLayout>
     )

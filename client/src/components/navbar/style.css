@@ -95,6 +95,9 @@ nav {
 .hamDropDown a .mainBttnWrap{
     width: 100%;
 }
+.navContents{
+    display: flex;
+}
 
 @media screen and (max-width: 600px) {
     .navWrap {
