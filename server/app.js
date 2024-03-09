@@ -18,9 +18,23 @@ const PORT = process.env.PORT || 3600;
 
 app.use(express.urlencoded({ extended: false }))
 app.use(express.json());
-app.use(cors({
-  orign: "https://igbo-learning.vercel.app/"
-}))
+
+
+const allowedOrigins = ['https://igbo-learning.vercel.app/', 'http://localhost:5173/' ];
+const corsOptions = {
+  origin: function (origin, callback) {
+    if (allowedOrigins.includes(origin) || !origin) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  }
+};
+
+// Apply CORS middleware
+app.use(cors(corsOptions));
+
+
 
 // routes
 app.get('/', (req, res) => {
