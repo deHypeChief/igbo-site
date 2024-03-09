@@ -16,18 +16,15 @@ const app = express();
 const PORT = process.env.PORT || 3600;
 
 
-app.use(express.urlencoded({extended:false}))
+app.use(express.urlencoded({ extended: false }))
 app.use(express.json());
-app.use((req, res, next) => {
-  res.setHeader('Access-Control-Allow-Origin', `${process.env.NODE_ENV === "dev"? 'http://localhost:5173' : "https://igbo-learning.vercel.app"}`);
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-  res.setHeader('Access-Control-Allow-Credentials', 'true')
-  next();
-});
+app.use(cors(
+  {
+    origin: process.env.NODE_ENV === "dev" ? 'http://localhost:5173' : "https://igbo-learning.vercel.app",
+  }
+));
 
 
-app.options(`${process.env.NODE_ENV === "dev"? 'http://localhost:5173' : "https://igbo-learning.vercel.app"}`, cors());
 
 // routes
 app.get('/', (req, res) => {

@@ -99,7 +99,6 @@ export function SignUp() {
 
     return (
         <ClientLayout>
-            <Navbar />
             <section className="auth signup">
                 {accComplete ? <AccountCreated /> : (
 
