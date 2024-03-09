@@ -3,6 +3,8 @@ const API_BASE_URL = 'https://igbo-site.vercel.app/api'; // Replace this with yo
 
 const api = axios.create({
     baseURL: API_BASE_URL,
+    withCredentials: true, 
+    mode: 'no-cors',
 });
 
 
@@ -10,6 +12,7 @@ const api = axios.create({
 function headers(token){
     return(
         {
+            'Access-Control-Allow-Origin': '*',
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${token}`
         }
@@ -45,7 +48,6 @@ export const createUser = async (endpoint, data) => {
 }
 export const getUser = async (endpoint, token) => {
     return await api.get(endpoint, {
-        withCredentials: true, 
         headers: headers(token)
     })
 }
@@ -83,14 +85,12 @@ export async function getAdmin(endpoint, token) {
 }
 export async function adminGet(endpoint, token) {
     return await api.get(endpoint, {
-        withCredentials: true, 
         headers: headers(token)
     })
 }
 
 export async function adminPost(endpoint, payload, token) {
     return await api.post(endpoint, payload, {
-        withCredentials: true, 
         headers: headers(token)
     })
 }
