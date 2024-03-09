@@ -10,7 +10,7 @@ const api = axios.create({
 function headers(token){
     return(
         {
-            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Origin': 'https://igbo-learning.vercel.app/',
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${token}`
         }
