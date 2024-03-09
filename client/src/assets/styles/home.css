@@ -219,9 +219,16 @@ footer {
     gap: 80px;
 }
 
+.heroLink{
+    display :flex;
+    gap: 15px;
+}
+
 
 @media screen and (max-width: 600px) {
-
+    .heroLink{
+        flex-direction: column;
+    }
     .heroWrap {
         display: block;
         justify-content: space-between;

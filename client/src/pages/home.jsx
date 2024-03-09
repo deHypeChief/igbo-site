@@ -68,9 +68,14 @@ export default function Home() {
                             Discover the new possibility in the way we
                             approach Igbo learning
                         </p>
+                        <div className="heroLink">
+                        <Link to='/signin'>
+                            <Button>Sign In</Button>
+                        </Link>
                         <Link to='/demo/:id'>
                             <Button>Play Demo</Button>
                         </Link>
+                        </div>
                     </div>
                     <div className="heroImage">
                         <img src={heroImg} alt="hero image of kids smiling" />
