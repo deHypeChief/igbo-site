@@ -46,8 +46,6 @@ export default function Navbar() {
             }
             if (scrollY < offset - 10) {
                 nav.style.background = "transparent"
-                document.getElementsByClassName("navContents")[0].style.display = "none"
-                document.getElementsByClassName("navContents")[1].style.display = "none"
                 console.log(screenWidth);
             }
         }
