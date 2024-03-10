@@ -17,7 +17,6 @@ export default function Admin() {
 
     useEffect(() => {
         const token = JSON.parse(localStorage.getItem('admin')).token
-        setInterval(()=>{
             adminGet('/user/ad/users', token)
             .then((data) => {
                 setUserData(data.data.data)
@@ -36,7 +35,6 @@ export default function Admin() {
             .then((data) => {
                 setTestData(data.data.data)
             })
-        }, 100)
 
     }, [])
 
