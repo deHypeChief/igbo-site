@@ -19,7 +19,7 @@ export default function Home() {
         if(userSigned()){
             navTo('/u')
         }
-    }, [])
+    })
 
     
     const featuresList = [
@@ -89,10 +89,10 @@ export default function Home() {
 
                     </div>
                     <div className="igboContent">
-                        <h1>Igbo is Fun</h1>
-                        <p>Kids love fun and that is where we come in, with various amazing topics for your kids </p>
-                        <Link to="/signup">
-                            <Button>Get Started</Button>
+                        <h1>About The Author</h1>
+                        <p>Hi, i am Name an igbo content creator </p>
+                        <Link to="/u/pricing">
+                            <Button>Get A tutor</Button>
                         </Link>
                     </div>
                 </div>
@@ -114,7 +114,9 @@ export default function Home() {
                                     </div>
                                     <h2>{value.title}</h2>
                                     <p>{value.des}</p>
-                                    <div className="fButtonWrap" onClick={() => { handleFeatures(value.id) }}></div>
+                                    <div className="fButtonWrap" onClick={() => { handleFeatures(value.id) }}>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="1.2em" height="1.2em" viewBox="0 0 1408 1408"><path fill="currentColor" d="M1408 608v192q0 40-28 68t-68 28H896v416q0 40-28 68t-68 28H608q-40 0-68-28t-28-68V896H96q-40 0-68-28T0 800V608q0-40 28-68t68-28h416V96q0-40 28-68t68-28h192q40 0 68 28t28 68v416h416q40 0 68 28t28 68"/></svg>
+                                    </div>
                                 </div>
                             )
                         })

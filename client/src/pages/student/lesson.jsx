@@ -24,11 +24,7 @@ export default function Lesson() {
                 console.log(error);
             })
         }
-
-
-        
-
-    }, [])
+    })
 
     return (
         <ClientLayout>
@@ -38,7 +34,25 @@ export default function Lesson() {
                     {lessonData.title}
                 </h1>
                 <div className="lessonBox">
-                    {lessonData.note}
+                    {
+                        JSON.parse(lessonData.note).map((item, index)=>{
+                            if(item.type === "h1"){
+                                return(
+                                    <h1 key={"a"+index}>{item.content}</h1>
+                                )
+                            }
+                            if(item.type === "h2"){
+                                return(
+                                    <h2 key={"a"+index}>{item.content}</h2>
+                                )
+                            }
+                            if(item.type === "p"){
+                                return(
+                                    <p key={"a"+index}>{item.content}</p>
+                                )
+                            }
+                        })
+                    }
 
                 </div>
                 <Link to={'/u/quiz/' + parseInt(lessonData.level) }>
