@@ -35,7 +35,7 @@ export default function Lesson() {
                 </h1>
                 <div className="lessonBox">
                     {
-                        JSON.parse(lessonData.note).map((item, index)=>{
+                        lessonData.note.map((item, index)=>{
                             if(item.type === "h1"){
                                 return(
                                     <h1 key={"a"+index}>{item.content}</h1>
