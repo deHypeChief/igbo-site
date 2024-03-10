@@ -1,6 +1,9 @@
 import axios from "axios";
 // https://igbo-site.vercel.app
-const API_BASE_URL = 'https://igbo-site.vercel.app/api'; // Replace this with your API base URL
+
+const urlOrigin = "http://localhost:3030"
+
+const API_BASE_URL = urlOrigin+'/api'; // Replace this with your API base URL
 
 const api = axios.create({
     baseURL: API_BASE_URL,
@@ -10,7 +13,6 @@ function headers(token) {
     return {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${token}`,
-        'Origin': window.location.origin
     };
 }
 

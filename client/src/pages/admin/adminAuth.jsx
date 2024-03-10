@@ -27,6 +27,7 @@ export default function AdminAuth() {
     authAdmin('/admin/adminAuth', formData).then((data) => {
       if (data) {
         localStorage.setItem("admin", JSON.stringify(data.data))
+        alert("Login Valid")
         navTo('/admin/dashboard')
       }
     }).catch((error) => {

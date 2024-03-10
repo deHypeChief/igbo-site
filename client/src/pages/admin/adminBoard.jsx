@@ -17,7 +17,7 @@ export default function Admin() {
 
     useEffect(() => {
         const token = JSON.parse(localStorage.getItem('admin')).token
-            adminGet('/user/ad/users', token)
+        adminGet('/user/ad/users', token)
             .then((data) => {
                 setUserData(data.data.data)
             }).catch((error) => {
@@ -36,7 +36,7 @@ export default function Admin() {
                 setTestData(data.data.data)
             })
 
-    }, [])
+    })
 
     function handleSideButton(e) {
         const otherButtons = document.getElementsByClassName("sActive")
@@ -119,8 +119,8 @@ export default function Admin() {
                         dashboardTitle == "Overview" && userData && lessonData && testData ? <Overview userPayload={userData} lessonPayload={lessonData} exePayload={testData} /> :
                             (dashboardTitle === "Users" ? <Users userPayload={userData} lessonPayload={lessonData} exePayload={testData} /> :
                                 dashboardTitle === "Lessons" ? <Lesson lessonPayload={lessonData} /> :
-                                    dashboardTitle === "Excerises" ? <Excerises exePayload={testData} /> : 
-                                        dashboardTitle === "Payments" ? <Payments exePayload={testData}/> :  "Loading resources..." )
+                                    dashboardTitle === "Excerises" ? <Excerises exePayload={testData} /> :
+                                        dashboardTitle === "Payments" ? <Payments exePayload={testData} /> : "Loading resources...")
                     }
                 </div>
             </div>
@@ -310,7 +310,7 @@ function Users(props) {
                             userPayload.map((item) => {
                                 return (
                                     <>
-                                        <div key={item}className="listStats">
+                                        <div key={item} className="listStats">
                                             <div className="baseBox-name bS-name">
                                                 <p>{item.name}</p>
                                             </div>
@@ -395,8 +395,6 @@ function Lesson(props) {
             let elementHeight = e.target.clientHeight
             let offset = 8
 
-            console.log(x, y, e);
-
             absTools.style.top = `${y + elementHeight + offset}px`
             absTools.style.right = `${x}px`
         })
@@ -423,8 +421,26 @@ function Lesson(props) {
             level: parseInt(document.getElementById('lessonLevel-editor').value),
             note: JSON.stringify(documentData)
         }, adminSigned().token).then((data) => {
+            alert("Lesson Uplaoded")
+            clearEditor()
             console.log(data);
+        }).catch((error) => {
+            alert(error.response.data.message)
         })
+    }
+
+    function clearEditor() {
+        document.getElementById('lessonTitle-editor').value = "";
+        document.getElementById('lessonLevel-editor').value = "";
+
+        let editorContent = document.getElementById("ri-Editor").children;
+        for (let i = 1; i < editorContent.length; i++) {
+            const element = editorContent[i];
+            console.log(element);
+
+            element.parentNode.removeChild(element);
+        }
+        document.getElementById("lessonEditor").style.display = "none"
     }
 
 
@@ -593,13 +609,37 @@ function Excerises(props) {
             }
         }
         formPayload.questions = JSON.stringify(exceriseGroup)
+
         adminPost("test/ad/createTest", formPayload, adminSigned().token)
             .then((data) => {
-
+                console.log(data);
+                alert("Exersice Created")
+                clearEditor()
             }).catch((error) => {
                 alert(error.response.data.message);
             })
     }
+
+    function clearEditor() {
+        document.getElementById('quizLevel').value = "";
+        document.getElementById('quizMark').value = "";
+        document.getElementById('quizType').value = "Select Level";
+        document.getElementById('que-exe').value = "";
+        document.getElementById('cor-exe').value = "";
+        document.getElementById('opp-exe').value = "";
+
+
+        setQuizCount(2)
+        let editorContent = document.getElementById("quizFormWrap").children;
+        for (let i = 1; i < editorContent.length; i++) {
+            const element = editorContent[i];
+            console.log(element);
+
+            element.parentNode.removeChild(element);
+        }
+        document.getElementById("lessonEditor").style.display = "none"
+    }
+
     return (
         <>
             <div className="lessonWrap">
@@ -671,14 +711,14 @@ function Excerises(props) {
                     <br />
                     <form action="" id={'quizFrom'} onSubmit={handleSubmit}>
                         <div className="formHeaderInputSec">
-                            <input type="text" placeholder='Marks for the Quiz' />
+                            <input type="text" id={"quizMark"} placeholder='Marks for the Quiz' />
 
-                            <select name="" >
+                            <select required id="quizType" name="" >
                                 <option value="Select Level" id='LessonType'>Select Exercise Type</option>
                                 <option value="quiz">Quiz</option>
                                 <option value="assigment">Assigment</option>
                             </select>
-                            <input type="text" placeholder='Level of the Quiz' />
+                            <input type="text" id={"quizLevel"} placeholder='Level of the Quiz' />
 
                         </div>
 
@@ -686,16 +726,16 @@ function Excerises(props) {
                             <div className="qusetionBlock">
                                 <div className="bl">
                                     <p>Question 1</p>
-                                    <input type="text" />
+                                    <input type="text" id="que-exe"/>
                                 </div>
 
                                 <div className="bl">
                                     <p>Answers|  Seprate answers with commas, max of FOUR answers</p>
-                                    <input type="text" />
+                                    <input type="text" id="opp-exe"/>
                                 </div>
                                 <div className="bl">
                                     <p>Correct Answer</p>
-                                    <input type="text" />
+                                    <input type="text" id="cor-exe"/>
                                 </div>
 
                             </div>
@@ -717,12 +757,12 @@ function Excerises(props) {
     )
 }
 
-function Payments(props){
+function Payments(props) {
     const { exePayload } = props
 
-    return(
+    return (
         <>
-                        <div className="lessonWrap">
+            <div className="lessonWrap">
                 <div className="lessonLeft">
                     <div className="userList">
 
