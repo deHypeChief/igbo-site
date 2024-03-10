@@ -24,8 +24,18 @@
     height: 70px;
     width: 70px;
     border-radius: 10px;
-    background: gray;
+    background: black;
+    color: white;
     margin-bottom: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.p-image svg{
+    font-size: 30px;
+}
+.pricingTop:nth-child(2) svg{
+    font-size: 40px;
 }
 .p-cardTitle{
     padding: 20px 0 10px;

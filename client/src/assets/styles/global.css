@@ -4,7 +4,7 @@
 }
 @font-face {
     font-family: mainFont;
-    src: url("../fonts/vont.otf");
+    src: url("../fonts/Ojuju-VariableFont_wght.ttf");
 }
 *{
     margin: 0;
@@ -43,8 +43,9 @@ img{
     width: 100%;
 }
 h1{
-    font-size: 3.4rem;
+    font-size: 5rem;
     font-family: mainFont;
+    font-weight: 900;
 }
 p{
     font-size: 18px;

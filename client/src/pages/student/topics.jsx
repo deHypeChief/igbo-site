@@ -20,7 +20,6 @@ export default function Topics() {
     return (
         <ClientLayout>
             <section className="topicWrap">
-
                 {
                     lesson.map((item) => {
                         return (

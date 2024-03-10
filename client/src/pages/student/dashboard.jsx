@@ -102,7 +102,7 @@ export default function StudentDashboard() {
                                     <div key={"les" + index } className="nextLessWrap">
                                         <h1>{item.title}</h1>
                                         <p>Get a one on lesson with a teacher and improve on your Igbo skills faster</p>
-                                        <Link to={"/u/lesson/" + item._id}>
+                                        <Link to={"/u/lesson/" + item.level}>
                                             <Button>Start Lesson</Button>
                                         </Link>
                                     </div>

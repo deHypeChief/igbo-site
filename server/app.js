@@ -13,7 +13,7 @@ const app = express();
 const PORT = process.env.PORT || 3600;
 
 app.use(cors({
-  origin: 'https://igbo-learning.vercel.app',
+  origin: process.env.NODE_ENV == "dev" ? 'http://localhost:5173':'https://igbo-learning.vercel.app',
 }));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
