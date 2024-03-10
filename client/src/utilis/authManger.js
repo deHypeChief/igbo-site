@@ -1,7 +1,7 @@
 import axios from "axios";
 // https://igbo-site.vercel.app
 
-const urlOrigin = "http://localhost:3030"
+const urlOrigin = "https://igbo-site.vercel.app"
 
 const API_BASE_URL = urlOrigin+'/api'; // Replace this with your API base URL
 
