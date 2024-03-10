@@ -18,6 +18,7 @@ export default function Lesson() {
             navTo('/signin')
         } else {
             postUserData('/lesson/oneLesson', { level: id }).then((data) => {
+                console.log(data.data.data);
                 setLessonData(data.data.data)
                 document.getElementById("dasboardTitle").innerText = data.data.data.title
             }).catch(error => {
