@@ -99,7 +99,7 @@ export default function StudentDashboard() {
                                         <h1>{item.title}</h1>
                                         <p>Get a one on lesson with a teacher and improve on your Igbo skills faster</p>
                                         <Link to={"/u/lesson/" + item.level}>
-                                            <Button>Start Lesson</Button>
+                                            <Button>Current Lesson</Button>
                                         </Link>
                                     </div>
                                 )
