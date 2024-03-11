@@ -11,6 +11,7 @@ import { authUser, createUser } from "../utilis/authManger"
 
 export function SignIn() {
     const navTo = useNavigate()
+    const [loading, setLoading] = useState(false)
     const [formData, setFormData] = useState({
         email: '',
         password: ''
@@ -24,9 +25,11 @@ export function SignIn() {
     };
     const handleSubmit = (event) => {
         event.preventDefault();
+        setLoading(true)
         // Do something with the form data, like sending it to a server
         authUser('/user/authUser', formData).then((data) => {
             if (data) {
+                setLoading(false)
                 alert("Login Valid")
                 console.log(data);
                 localStorage.setItem("user", JSON.stringify( data.data))
@@ -58,7 +61,7 @@ export function SignIn() {
                             onChange={handleInputChange} />
 
                         <p className='authSecP'>Don&apos;t have an account <Link to={'/signup'}>Sign Up</Link></p>
-                        <Button>Sign In</Button>
+                        <Button>{loading ? "loadding ..." : "Sign In"}</Button>
                     </form>
                 </div>
             </section>
@@ -68,6 +71,7 @@ export function SignIn() {
 
 export function SignUp() {
     const [accComplete, isAccComplete] = useState(false)
+    const [loading, setLoading] = useState(false)
     const navTo = useNavigate()
 
 
@@ -84,10 +88,12 @@ export function SignUp() {
         });
     };
     const handleSubmit = (event) => {
+        setLoading(true)
         event.preventDefault();
         // Do something with the form data, like sending it to a server
         createUser('/user/createUser', formData).then((data) => {
             if (data) {
+                setLoading(false)
                 isAccComplete(true)
                 localStorage.setItem("user", JSON.stringify( data.data))
             }
@@ -125,7 +131,7 @@ export function SignUp() {
                                 placeholder='Password' required />
 
                             <p className='authSecP'>Already have an account <Link to={'/signin'}>Sign In</Link></p>
-                            <Button>Sign Up</Button>
+                            <Button>{loading ? "loadding ..." : "Sign In"}</Button>
                         </form>
                     </div>
                 )}

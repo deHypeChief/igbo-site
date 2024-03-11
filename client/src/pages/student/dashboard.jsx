@@ -5,6 +5,9 @@ import { ClientLayout } from '../../components/layout/layout'
 import { getUser, getUserData, userSigned } from '../../utilis/authManger'
 import { Link, useNavigate } from 'react-router-dom'
 import TeacherPopUp from '../teacher'
+
+import dashProfile from '../../assets/images/A kid called BEAST _ NFT.jpeg'
+
 export default function StudentDashboard() {
     const navTo = useNavigate()
     const [teacherPoster, setTeacherPoster] = useState(false)
@@ -29,10 +32,11 @@ export default function StudentDashboard() {
         if (!userSigned()) {
             navTo('/signin')
         } else {
-
+            getUser("/user/me", userSigned().token).then((data) => {
+                console.log(data);
+                setData(data.data.data, userSigned().token)
+            })
             
-            
-
             getUserData("/lesson/", userSigned().token)
             .then((data) => {
                 setLesson(data.data.data)
@@ -46,7 +50,9 @@ export default function StudentDashboard() {
                 {teacherPoster ? <TeacherPopUp action={closePoster}/> : <></>}
                 <div className="profile">
                     <div className="profileWrap">
-                        <div className="profileBox"></div>
+                        <div className="profileBox">
+                            <img src={dashProfile} alt="" />
+                        </div>
                         <div className="profileInfo">
                             <h1>{data ? data.name : "loading"}</h1>
                             <p>{data ? data.email : "loading"}</p>

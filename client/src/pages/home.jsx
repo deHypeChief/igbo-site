@@ -92,7 +92,7 @@ export default function Home() {
                     </div>
                     <div className="igboContent">
                         <h1>About The Author</h1>
-                        <p>I’m Nneka Agu, a mother, teacher, trainer. I am passionate about impacting young mind’s through trainings (growing up great series), teaching ( Igbo online classes).
+                        <p>I’m Nneka Agu, a mother, teacher, trainer. I am passionate about impacting young mind’s through trainings (growing up great series), teaching ( Igbo online classes). <br /><br /> 
 Join me as we explore this journey together</p>
                         <Link to="/u/pricing">
                             <Button>Get a tutor</Button>
@@ -138,7 +138,9 @@ Join me as we explore this journey together</p>
                         <h1>Learn with
                             our Community</h1>
                         <p>Kids love fun and that is where we come in, with various amazing topics for your kids </p>
-                        <Button>Follow Us</Button>
+                        <Link to="">
+                        <Button>Join Us</Button>
+                        </Link>
                     </div>
                 </div>
             </section>
