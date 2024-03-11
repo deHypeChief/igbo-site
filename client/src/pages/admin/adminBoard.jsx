@@ -457,7 +457,7 @@ function Lesson(props) {
                                     <p>Title</p>
                                 </div>
                                 <div className="baseBox-name">
-                                    <p>Lesson</p>
+                                    <p>Module</p>
                                 </div>
                                 <div className="baseBox-name">
                                     <p>Action</p>
