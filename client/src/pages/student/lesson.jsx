@@ -11,6 +11,10 @@ export default function Lesson() {
         title: "--",
         note: "--"
     })
+    const [noteData, setNoteData] = useState([])
+
+    let obj
+
     const { id } = useParams()
     const navTo = useNavigate()
     useEffect(() => {
@@ -18,14 +22,16 @@ export default function Lesson() {
             navTo('/signin')
         } else {
             postUserData('/lesson/oneLesson', { level: id }).then((data) => {
-                console.log(data.data.data);
+                eval('obj = ' + data.data.data.note)
+                setNoteData(obj)
+
                 setLessonData(data.data.data)
                 document.getElementById("dasboardTitle").innerText = data.data.data.title
             }).catch(error => {
                 console.log(error);
             })
         }
-    })
+    }, [])
 
     return (
         <ClientLayout>
@@ -36,27 +42,26 @@ export default function Lesson() {
                 </h1>
                 <div className="lessonBox">
                     {
-                        lessonData.note.map((item, index)=>{
-                            if(item.type === "h1"){
-                                return(
-                                    <h1 key={"a"+index}>{item.content}</h1>
+                        noteData?.map((item, index) => {
+                            if (item.type === "h1") {
+                                return (
+                                    <h1 className="h1head" key={"a" + index}>{item.content}</h1>
                                 )
                             }
-                            if(item.type === "h2"){
-                                return(
-                                    <h2 key={"a"+index}>{item.content}</h2>
+                            if (item.type === "h2") {
+                                return (
+                                    <h2 className="h2head" key={"a" + index}>{item.content}</h2>
                                 )
                             }
-                            if(item.type === "p"){
-                                return(
-                                    <p key={"a"+index}>{item.content}</p>
+                            if (item.type === "p") {
+                                return (
+                                    <p className="phead" key={"a" + index}>{item.content}</p>
                                 )
                             }
                         })
                     }
-
                 </div>
-                <Link to={'/u/quiz/' + parseInt(lessonData.level) }>
+                <Link to={'/u/quiz/' + parseInt(lessonData.level)}>
                     <Button>Start Quiz</Button>
                 </Link>
 
@@ -64,3 +69,4 @@ export default function Lesson() {
         </ClientLayout>
     )
 }
+

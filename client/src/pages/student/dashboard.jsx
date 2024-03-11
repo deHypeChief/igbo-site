@@ -30,18 +30,8 @@ export default function StudentDashboard() {
             navTo('/signin')
         } else {
 
-            getUser("/user/me", userSigned().token)
             
-                .then((data) => {
-                console.log(data);
-                    setData(data.data.data, userSigned().token)
-                })
-                .catch((error) => {
-                    console.log(error.response.status);
-                    if(error.response.status == 401){
-                        navTo("/signin")
-                    }
-                })
+            
 
             getUserData("/lesson/", userSigned().token)
             .then((data) => {

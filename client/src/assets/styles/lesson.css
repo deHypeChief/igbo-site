@@ -4,7 +4,7 @@
     align-items: center;
     padding: var(--spacing-side);
     padding-top: 25vh;
-
+    padding-bottom: 100px;
 }
 .lessons h2{
     font-size: 1.6rem;
@@ -26,6 +26,10 @@
     font-size: 25px;
     font-weight: 900;
     margin-bottom: 50px;
+    color: black;
+}
+.lessonBox .h1head, .lessonBox .h2head, .lessonBox .phead{
+    color: black;
 }
 
 @media screen and (max-width: 600px) {

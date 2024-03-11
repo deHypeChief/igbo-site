@@ -135,4 +135,7 @@
     .profileInfo h1 {
         font-size: 1.5rem;
     }
+    .getTutor, .profile, .stats, .lesson{
+        padding : 40px 50px;
+    }
 }

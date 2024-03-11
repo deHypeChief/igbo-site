@@ -46,6 +46,7 @@
 }
 .authSignBox .authSecP a{
     font-size: .8rem;
+    color: var(--primaryColor);
 }
 
 .authIn{
@@ -72,6 +73,7 @@
 .accWrap{
     display: flex;
     flex-direction: column;
+    align-items: center;
     gap: 40px;
 }
 

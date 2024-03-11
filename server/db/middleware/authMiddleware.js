@@ -22,7 +22,7 @@ export async function protectUser(req, res, next) {
         }
     }
     if (!token) {
-        rerutn(res.status(401).json({
+        return(res.status(401).json({
             message: "Not authorized T-"
         }))
     }

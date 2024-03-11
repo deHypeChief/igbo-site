@@ -100,7 +100,10 @@ export async function updateExp(req, res) {
     const _user = await User.findById(req.user.id)
 
     if (_user) {
-        await User.findByIdAndUpdate(req.user.id, { exp: _user.exp + parseInt(exp) }).select('-password')
+        await User.findByIdAndUpdate(req.user.id, {
+            exp: _user.exp + parseInt(exp),
+            level: _user.level += 1
+        }).select('-password')
             .then((data) => {
                 res.status(200).json({
                     messagees: "User Leved Up",

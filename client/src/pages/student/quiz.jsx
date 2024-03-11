@@ -4,7 +4,7 @@ import { Button } from "../../components/button/button"
 import successImg from "../../assets/images/9486910-removebg-preview 1.png"
 import { Link, useParams } from "react-router-dom"
 import { ClientLayout } from "../../components/layout/layout"
-import { postUserData } from '../../utilis/authManger'
+import { postUser, postUserData, userSigned } from '../../utilis/authManger'
 
 export default function Quiz() {
     const [passed, setPassed] = useState(null)
@@ -21,6 +21,8 @@ export default function Quiz() {
             setTest(data.data.data)
             setQuestions(JSON.parse(data.data.data.questions))
         })
+
+       
     }, [])
 
 
@@ -37,7 +39,7 @@ export default function Quiz() {
                 }
             })
             if (correct_ans == questions.length) {
-                postUserData("/user/exp", { exp: test.xp }).then(() => {
+                postUser("/user/exp", { exp: test.xp },userSigned().token).then(() => {
                     setPassed(true)
                 })
             } else {
@@ -117,12 +119,9 @@ function Failed(props) {
             <section className="qBox">
                 <div className="qBoxWrap">
                     <img src={successImg} alt="" />
-                    <h1>Omo Serious Mess up</h1>
-                    <p>Y fee try again</p>
+                    <h1>You Lost</h1>
+                    <p>Try harder next time</p>
                     <div className="qButtons">
-                        <Link to={'/u/quiz/' + id}>
-                            <Button>Try Again</Button>
-                        </Link>
                         <Link to={"/u/lesson/" + id}>
                             <Button>Retake Lesson</Button>
                         </Link>

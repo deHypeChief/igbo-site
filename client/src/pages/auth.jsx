@@ -27,6 +27,7 @@ export function SignIn() {
         // Do something with the form data, like sending it to a server
         authUser('/user/authUser', formData).then((data) => {
             if (data) {
+                alert("Login Valid")
                 console.log(data);
                 localStorage.setItem("user", JSON.stringify( data.data))
                 navTo('/u')
@@ -89,13 +90,11 @@ export function SignUp() {
             if (data) {
                 isAccComplete(true)
                 localStorage.setItem("user", JSON.stringify( data.data))
-                navTo('/u')
             }
         }).catch((error)=> {
             alert(error.response.data.message)
         })
     };
-
 
     return (
         <ClientLayout>
@@ -142,7 +141,9 @@ function AccountCreated() {
             <div className="accCreate">
                 <div className="accWrap">
                     <h1>Your Account Has Been Created</h1>
-                    <Button>Get Started</Button>
+                    <Link to="/u">
+                        <Button>Get Started</Button>
+                    </Link>
                 </div>
             </div>
         </ClientLayout>

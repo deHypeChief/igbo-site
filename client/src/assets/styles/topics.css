@@ -1,6 +1,5 @@
 .topicWrap{
     display: flex;
-    padding: 0 60px;
     padding-top: 26vh;
     justify-content: space-between;
     flex-wrap: wrap;
@@ -30,4 +29,14 @@
 }
 .pah-topic{
     font-weight: 900;
+}
+
+@media screen and (max-width: 600px) {
+    .topicWrap {
+        padding: 25vh 20px 100px;
+    }
+    .pah-topic {
+        font-weight: 900;
+        padding-top: 10px;
+    }
 }

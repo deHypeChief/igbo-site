@@ -59,10 +59,18 @@
     background: pink;
     border-radius: 0 50px 50px 0;
     clip-path: polygon(0 5%, 100% 0%, 100% 100%, 0 96%);
+    display: flex;
+    justify-content: center;
+    flex: 1;
+}
+
+.igboImg img {
+    width: 900px;
+    transform: translateX(-60px);
 }
 
 .igboContent {
-    padding-right: 130px;
+    padding: 0px 100px 0;
 }
 
 .igboContent p {
@@ -110,10 +118,12 @@
     display: flex;
     align-items: center;
     justify-content: space-around;
+    position: relative;
 }
 
 .fBox h2 {
     font-family: mainFont;
+    font-weight: 700;
 }
 
 .fIMgWrap {
@@ -122,6 +132,15 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    position: absolute;
+    left: 0;
+}
+.fIMgWrap h2{
+    font-weight: 800;
+}
+.vTitles{
+    padding-top: 60px;
+    font-size: 28px;
 }
 
 .fIMgWrap img {
@@ -141,7 +160,13 @@
     background: var(--main-ButtonColor);
     right: 50px;
     bottom: -20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     border-radius: 100px;
+}
+.fButtonWrap svg{
+    color: white;
 }
 
 .fclose {
@@ -185,6 +210,13 @@
     clip-path: polygon(0 5%, 100% 0%, 100% 100%, 0 96%);
     /* border-radius: 30px; */
     /* overflow: hidden; */
+    display: flex;
+    justify-content: center;
+}
+
+.playCard img{
+    width: 900px;
+    transform: translateX(60px);
 }
 
 
@@ -219,20 +251,30 @@ footer {
     gap: 80px;
 }
 
-.heroLink{
-    display :flex;
+.heroLink {
+    display: flex;
     gap: 15px;
 }
 
+.vTitles:nth-child(1) {
+    margin-top: -40px;
+}
 
 @media screen and (max-width: 600px) {
-    .heroLink{
-        flex-direction: column;
+    .heroLink {
+        /* flex-direction: column; */
+        margin-top: 20px;
     }
+    .igboContent {
+        padding: 0px 29px 0;
+    }
+    
+
     .heroWrap {
         display: block;
         justify-content: space-between;
     }
+
     .hero {
         min-height: 100vh;
         overflow: initial;
@@ -282,41 +324,46 @@ footer {
         margin-left: 0px;
         clip-path: polygon(0 5%, 100% 0%, 100% 100%, 0 96%);
     }
+
     .aboutWrap {
         display: flex;
         flex-direction: column;
+        gap: 30px;
     }
+
     .aboutIgbo {
         min-height: 100vh;
         margin-bottom: 150px;
-margin-top: 100px;
+        margin-top: 100px;
     }
+
     .igboImg {
         height: 400px;
         width: 100vw;
         border-radius: 0;
         clip-path: polygon(0 5%, 100% 0%, 100% 100%, 0 96%);
     }
+
     .aboutWave {
         display: none;
     }
-    .igboContent {
-        padding-right: 0px;
-        padding-top: 50px;
-    }
+
     .features {
-        padding-top: 60px;
+        padding-top: 295px;
     }
+    .playCard img {
+        transform: translateX(0px);
+    }
+
     .heroImage img {
         transform: translateY(-48px) translateX(280px);
     }
+
     .heroImage img {
         width: 70%;
     }
+
     .heroImage {
         height: fit-content;
-    }
-    .fIMgWrap:nth-child(3) h2{
-        margin-top: -200px;
     }
 }

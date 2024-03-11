@@ -90,5 +90,16 @@
         font-size: 2rem;
         padding-bottom: 30px;
     }
-
+    .qBoxWrap {
+        border-radius: 0px;
+    }
+    .qBoxWrap {
+        padding: 50px 20px;
+    }
+    .qButtons {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+    }
 }

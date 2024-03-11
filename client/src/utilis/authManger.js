@@ -3,7 +3,7 @@ import axios from "axios";
 
 const urlOrigin = "https://igbo-site.vercel.app"
 
-const API_BASE_URL = urlOrigin+'/api'; // Replace this with your API base URL
+const API_BASE_URL = urlOrigin + '/api'; // Replace this with your API base URL
 
 const api = axios.create({
     baseURL: API_BASE_URL,
@@ -21,10 +21,9 @@ export function userSigned() {
     return userStat ? JSON.parse(userStat) : false;
 }
 
-export function userLogOut(callback) {
+export function userLogOut() {
     if (userSigned()) {
         localStorage.removeItem('user');
-        callback();
     } else {
         return null;
     }
@@ -41,6 +40,9 @@ export const createUser = async (endpoint, data) => {
 export const getUser = async (endpoint, token) => {
     return await api.get(endpoint, { headers: headers(token) });
 };
+export const postUser = async (endpoint, payload, token) => {
+    return await api.post(endpoint, payload, { headers: headers(token) });
+};
 
 export const getUserData = async (endpoint) => {
     return await api.get(endpoint);
@@ -49,6 +51,11 @@ export const getUserData = async (endpoint) => {
 export const postUserData = async (endpoint, data) => {
     return await api.post(endpoint, data);
 };
+
+
+
+
+
 
 export async function authAdmin(endpoint, payload) {
     return await api.post(endpoint, payload);
