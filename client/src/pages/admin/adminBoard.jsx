@@ -532,9 +532,9 @@ function Lesson(props) {
                                     lessonPayload.map((item, index) => {
                                         return (
                                             <>
-                                                {index === 0 ? (<h2>Beginner Level</h2>) : (
-                                                    index === 5 ? <h2>Intermediate Level</h2> :(
-                                                        index === 9 ? <h2>Advanced Level </h2> : <></>
+                                                {index === 0 ? (<h2>  <br /> Beginner Level</h2>) : (
+                                                    index === 5 ? <h2> <br /> Intermediate Level</h2> :(
+                                                        index === 9 ? <h2> <br /> Advanced Level </h2> : <></>
                                                     )
                                                 )}
                                                 <div key={'ex' + index} className="listStats" onClick={() => { OpenCreatedLesson(item.level) }}>
