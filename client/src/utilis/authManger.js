@@ -9,6 +9,7 @@ const API_BASE_URL = urlOrigin + '/api'; // Replace this with your API base URL
 
 const api = axios.create({
     baseURL: API_BASE_URL,
+    orign: urlOrigin
 });
 
 function headers(token) {

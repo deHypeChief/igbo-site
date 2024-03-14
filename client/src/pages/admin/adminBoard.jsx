@@ -533,8 +533,8 @@ function Lesson(props) {
                                         return (
                                             <>
                                                 {index === 0 ? (<h2>  <br /> Beginner Level</h2>) : (
-                                                    index === 5 ? <h2> <br /> Intermediate Level</h2> :(
-                                                        index === 9 ? <h2> <br /> Advanced Level </h2> : <></>
+                                                    index === 4 ? <h2> <br /> Intermediate Level</h2> :(
+                                                        index === 8 ? <h2> <br /> Advanced Level </h2> : <></>
                                                     )
                                                 )}
                                                 <div key={'ex' + index} className="listStats" onClick={() => { OpenCreatedLesson(item.level) }}>
