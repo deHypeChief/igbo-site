@@ -1,5 +1,4 @@
-
-.quiz{
+.quiz {
     color: white;
     padding: var(--spacing-side);
     padding: 0 150px;
@@ -7,6 +6,7 @@
     overflow-y: hidden;
     height: 100vh;
 }
+
 .quizInfo {
     width: 100%;
     height: 100vh;
@@ -16,7 +16,8 @@
     align-items: center;
     text-align: center;
 }
-.quizTopSection h1{ 
+
+.quizTopSection h1 {
     max-width: 600px;
     font-size: 3rem;
     padding-bottom: 30px;
@@ -24,17 +25,18 @@
 
 
 
-.quizOptions{
+.quizOptions {
     max-width: 300px;
     display: flex;
     gap: 15px;
     flex-wrap: wrap;
 }
-.quizOptions button{
+
+.quizOptions button {
     text-align: left;
 }
-    
-.qBox{
+
+.qBox {
     position: fixed;
     height: 100vh;
     z-index: 20;
@@ -45,7 +47,8 @@
     top: 0;
     backdrop-filter: blur(30px);
 }
-.qBoxWrap{
+
+.qBoxWrap {
     margin-top: 100px;
     width: 420px;
     height: 450px;
@@ -56,50 +59,94 @@
     align-items: center;
     border-radius: 30px;
 }
-.qBoxWrap h1{
+
+.qBoxWrap h1 {
     font-size: 2rem;
     text-align: center;
 }
-.qBoxWrap p{
+
+.qBoxWrap p {
     font-size: 1rem;
     font-weight: 900;
     text-align: center;
     max-width: 200px;
     padding-bottom: 20px;
 }
-.qBoxWrap img{
+
+.qBoxWrap img {
     width: 200px;
     margin-top: -35px;
 }
-.qButtons{
+
+.qButtons {
     display: flex;
     justify-content: space-between;
 }
 
-.quizOptions .mainBttnWrap{
+.quizOptions .mainBttnWrap {
     width: 100%;
 }
 
-@media screen and (max-width: 600px){
+
+.imgSucessPerson {
+    position: fixed;
+    width: 100%;
+    bottom: -20px;
+    overflow-x: hidden;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 80px;
+    pointer-events: none;
+}
+
+.imgSucessPerson img {
+    width: 500px;
+}
+
+@media screen and (max-width: 600px) {
     .quiz {
         padding: 0 30px;
         padding-top: 28vh;
     }
+
     .quizTopSection h1 {
         max-width: 600px;
         font-size: 2rem;
         padding-bottom: 30px;
     }
+
     .qBoxWrap {
+        margin-top: 20px;
         border-radius: 0px;
     }
+
     .qBoxWrap {
         padding: 50px 20px;
     }
+
     .qButtons {
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: space-between;
     }
+
+    .imgSucessPerson {
+        padding: 0 0px;
+    }
+    .imgSucessPerson img {
+    width: 300px;
+}
+    .im-fail{
+    width: 300px;
+    margin-left: -100px;
+}
+.im-left{
+     width: 300px;
+    margin-left: -130px;   
+}
+.im-right{
+     width: 300px;
+    margin-left: 50px;
+}
 }

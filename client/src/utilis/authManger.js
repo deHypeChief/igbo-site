@@ -2,10 +2,10 @@ import axios from "axios";
 // https://igbo-site.vercel.app
 
 
-const isDev = false
+const isDev = true
 const urlOrigin = isDev ? "http://localhost:3031" : "https://igbo-site.vercel.app"
 
-const API_BASE_URL = urlOrigin + '/api'; // Replace this with your API base URL
+const API_BASE_URL = urlOrigin + '/api'; // Replace this with your API base URL 
 
 const api = axios.create({
     baseURL: API_BASE_URL,
@@ -66,6 +66,13 @@ export async function authAdmin(endpoint, payload) {
 export function adminSigned() {
     const userStat = localStorage.getItem('admin');
     return userStat ? JSON.parse(userStat) : false;
+}
+export function adminLogOut() {
+    if (adminSigned()) {
+        localStorage.removeItem('admin');
+    } else {
+        return null;
+    }
 }
 
 export async function getAdmin(endpoint, token) {

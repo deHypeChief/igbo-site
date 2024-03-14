@@ -140,4 +140,7 @@
     .getTutor, .profile, .stats, .lesson{
         padding : 40px 50px;
     }
+    .profile{
+        padding: 40px 20px;
+    }
 }

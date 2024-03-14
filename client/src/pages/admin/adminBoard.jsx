@@ -4,7 +4,7 @@ import { Icon } from '@iconify/react';
 import logo from '../../assets/images/logo/learn_igbo_logo.svg'
 import mainLady from '../../assets/images/IMG-20240224-WA0011.jpg'
 import { useEffect, useState } from 'react';
-import { adminGet, adminSigned, adminPost } from '../../utilis/authManger';
+import { adminGet, adminSigned, adminPost, adminLogOut } from '../../utilis/authManger';
 import { useNavigate } from 'react-router-dom';
 
 export default function Admin() {
@@ -23,6 +23,7 @@ export default function Admin() {
             }).catch((error) => {
                 if (error.response.status == 401) {
                     navTo('/admin')
+                    adminLogOut()
                 }
             })
 
@@ -54,6 +55,13 @@ export default function Admin() {
     return (
         <>
             <div className="adminBoard">
+                <div className="screenNotSuported">
+                    <h1>
+                        Screen size is not supported
+                    </h1>
+                    <p>Use a laptop for editing lessons</p>
+                </div>
+
                 <div className="SideBar">
                     <div className="sideBar">
                         <div className="logoSection">
@@ -299,9 +307,6 @@ function Users(props) {
                             <p>Rank</p>
 
                         </div>
-                        <div className="baseBox-name bs-button-user">
-                            <p></p>
-                        </div>
                     </div>
                     <br />
 
@@ -329,9 +334,6 @@ function Users(props) {
                                                 <p>Gold</p>
 
                                             </div>
-                                            <div className="baseBox-name bs-button-user">
-                                                <button>View Student</button>
-                                            </div>
                                         </div>
                                     </>
                                 )
@@ -345,12 +347,14 @@ function Users(props) {
     )
 }
 function Lesson(props) {
+    const [isUpdate, setUpdate] = useState(false)
+    const [loading, setLoading] = useState(false)
     const { lessonPayload } = props
     function closeForm() {
-        document.getElementById("lessonEditor").style.display = "none"
-        alert("Your About to leave the editor")
+        clearEditor()
     }
     function openExeEditor() {
+        clearEditor()
         document.getElementById("lessonEditor").style.display = "flex"
     }
 
@@ -358,26 +362,26 @@ function Lesson(props) {
     const editorTools = [
         {
             type: "H1",
-            action: () => { createBlock("h1") }
+            action: () => { createBlock("h1", "Main header") }
         },
         {
             type: "H2",
-            action: () => { createBlock("h2") }
+            action: () => { createBlock("h2", "Sub header") }
         },
         {
             type: "P",
-            action: () => { createBlock("p") }
+            action: () => { createBlock("p", "Text") }
         }
     ]
 
-    function createBlock(type) {
+    function createBlock(type, text) {
         const element = document.createElement(type)
         const absTools = document.getElementById("abs-Tools")
 
 
         element.classList.add('ri-Blocks')
         element.contentEditable = true
-        element.innerText = type
+        element.innerText = text
         document.getElementById("ri-Editor").append(element)
 
 
@@ -400,9 +404,9 @@ function Lesson(props) {
         })
     }
 
-    async function saveLesson(e) {
-        e.preventDefault()
+    async function saveLesson() {
         let documentData = []
+        setLoading(true)
         const Body = document.getElementById('ri-Editor').children
         console.log(Body);
 
@@ -421,6 +425,7 @@ function Lesson(props) {
             level: parseInt(document.getElementById('lessonLevel-editor').value),
             note: JSON.stringify(documentData)
         }, adminSigned().token).then((data) => {
+            setLoading(false)
             alert("Lesson Uplaoded")
             clearEditor()
             console.log(data);
@@ -433,14 +438,71 @@ function Lesson(props) {
         document.getElementById('lessonTitle-editor').value = "";
         document.getElementById('lessonLevel-editor').value = "";
 
-        let editorContent = document.getElementById("ri-Editor").children;
-        for (let i = 1; i < editorContent.length; i++) {
+        const editorContent = document.getElementById("ri-Editor").children;
+        for (let i = 1; i <= editorContent.length; i++) {
             const element = editorContent[i];
-            console.log(element);
-
+            console.log(element, "removed");
             element.parentNode.removeChild(element);
+
+            if (i === editorContent.length) {
+                document.getElementById("lessonEditor").style.display = "none"
+            }
         }
-        document.getElementById("lessonEditor").style.display = "none"
+    }
+
+    function OpenCreatedLesson(getLevel) {
+        setUpdate(true)
+        console.log(getLevel);
+        openExeEditor()
+
+        const targetLesson = lessonPayload[getLevel -= 1]
+        let obj
+
+        document.getElementById('lessonTitle-editor').value = targetLesson.title;
+        document.getElementById('lessonLevel-editor').value = targetLesson.level;
+
+        eval('obj = ' + targetLesson.note)
+        obj.forEach((item) => {
+            console.log(item);
+            createBlock(item.type, item.content)
+        })
+
+        console.log(obj);
+
+    }
+
+    async function handleUpdate() {
+        setLoading(true)
+        let documentData = []
+        const Body = document.getElementById('ri-Editor').children
+        console.log(Body);
+
+        for (let i = 1; i < Body.length; i++) {
+            const element = Body[i];
+            let tags = {
+                type: element.localName,
+                content: element.innerText
+            }
+
+            documentData.push(tags)
+        }
+
+        await adminPost('lesson/ad/updatelesson', {
+            level: parseInt(document.getElementById('lessonLevel-editor').value),
+            newNote: JSON.stringify(documentData)
+        }, adminSigned().token).then((data) => {
+            setLoading(false)
+            alert("Lesson Updated")
+            clearEditor()
+            console.log(data);
+        }).catch((error) => {
+            alert(error.response.data.message)
+        })
+    }
+
+    function submitAction(e) {
+        e.preventDefault()
+        isUpdate ? handleUpdate() : saveLesson()
     }
 
 
@@ -469,18 +531,23 @@ function Lesson(props) {
                                 {
                                     lessonPayload.map((item, index) => {
                                         return (
-                                            <div key={'ex' + index} className="listStats">
-                                                <div className="baseBox-name bS-name-lesson">
-                                                    <p>{item.title}</p>
-                                                </div>
-                                                <div className="baseBox-name">
-                                                    <p>{item.level}</p>
-                                                </div>
+                                            <>
+                                                {index === 0 ? (<h2>level0</h2>) : (
+                                                    index === 4 ? <h2>level2</h2> : <></>
+                                                )}
+                                                <div key={'ex' + index} className="listStats" onClick={() => { OpenCreatedLesson(item.level) }}>
+                                                    <div className="baseBox-name bS-name-lesson">
+                                                        <p>{item.title}</p>
+                                                    </div>
+                                                    <div className="baseBox-name">
+                                                        <p>{item.level}</p>
+                                                    </div>
 
-                                                <div className="baseBox-name">
-                                                    <Icon icon="ic:baseline-delete" />
+                                                    <div className="baseBox-name">
+                                                        <Icon icon="ic:baseline-delete" />
+                                                    </div>
                                                 </div>
-                                            </div>
+                                            </>
                                         )
                                     })
                                 }
@@ -497,11 +564,11 @@ function Lesson(props) {
 
 
             <div className="lesson-editor" id='lessonEditor'>
-                <form className="lessonWrap-editor" onSubmit={saveLesson}>
+                <form className="lessonWrap-editor" onSubmit={submitAction}>
                     <div className="lessonTop">
                         <div className="exrText">
-                            <h1>New Lesson</h1>
-                            <p>Create a new lesson to engage your students</p>
+                            <h1>Lesson Editor</h1>
+                            <p>Create and manage your lessons to engage your students</p>
                         </div>
                         <div className="icoRExe" onClick={closeForm}>
                             <Icon icon="mingcute:close-fill" width="1.2em" height="1.2em" />
@@ -528,9 +595,14 @@ function Lesson(props) {
                                     })
                                 }
                             </div>
+
                         </div>
 
-                        <button>Save Lesson</button>
+                        <button>{
+                            loading ? "Submitting..." : (
+                                isUpdate ? "Update Lesson" : "Save Lesson"
+                            )
+                        }</button>
                     </div>
                 </form>
             </div>
@@ -726,16 +798,16 @@ function Excerises(props) {
                             <div className="qusetionBlock">
                                 <div className="bl">
                                     <p>Question 1</p>
-                                    <input type="text" id="que-exe"/>
+                                    <input type="text" id="que-exe" />
                                 </div>
 
                                 <div className="bl">
                                     <p>Answers|  Seprate answers with commas, max of FOUR answers</p>
-                                    <input type="text" id="opp-exe"/>
+                                    <input type="text" id="opp-exe" />
                                 </div>
                                 <div className="bl">
                                     <p>Correct Answer</p>
-                                    <input type="text" id="cor-exe"/>
+                                    <input type="text" id="cor-exe" />
                                 </div>
 
                             </div>
@@ -770,7 +842,7 @@ function Payments(props) {
 
                             <div className="topNames">
                                 <div className="baseBox-name bS-name-lesson">
-                                    <p>Name</p>
+                                    <p>Payment Type</p>
                                 </div>
                                 <div className="baseBox-name">
                                     <p>Email</p>

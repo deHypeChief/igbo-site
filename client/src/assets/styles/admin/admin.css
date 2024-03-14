@@ -428,7 +428,7 @@
     padding: 15px 30px;
 }
 
-.qusetionBlock{
+.qusetionBlock {
     display: flex;
     flex-direction: column;
     gap: 15px;
@@ -450,18 +450,20 @@
     padding: 10px 15px;
     width: 100%;
 }
-.editorExe{
+
+.editorExe {
     height: 100%;
     overflow-y: scroll;
 }
-.topexe{
+
+.topexe {
     display: flex;
     justify-content: space-between;
 }
 
 
 /* lessono */
-.lesson-editor{
+.lesson-editor {
     display: none;
     left: 0;
     position: absolute;
@@ -474,7 +476,7 @@
     justify-content: center;
 }
 
-.lessonWrap-editor{
+.lessonWrap-editor {
     padding: 20px 30px 30px;
     background: white;
     width: 70vw;
@@ -482,23 +484,24 @@
     overflow-y: scroll;
 }
 
-.lessonEdit{
+.lessonEdit {
     margin: 20px 0;
     background: rgba(0, 0, 0, 0.011);
     height: 75%;
     overflow-y: scroll;
 }
 
-.lessonTop{
+.lessonTop {
     display: flex;
     justify-content: space-between;
 }
 
-.formHeaderInputSec{
+.formHeaderInputSec {
     display: flex;
     flex-direction: column;
     gap: 20px;
 }
+
 .formHeaderInputSec input {
     border-radius: 0;
     font-family: headerSub;
@@ -506,16 +509,17 @@
     padding: 10px 15px;
     width: 50%;
 }
-.formHeaderInputSec select{
+
+.formHeaderInputSec select {
     width: 50%;
     padding: 10px 15px;
     font-family: headerSub;
 }
 
 
-.lessonEditorBox{
+.lessonEditorBox {
     margin: 20px 0;
-    padding: 20px  0;
+    padding: 20px 0;
     min-height: 90vh;
     /* background: rgba(0, 0, 0, 0.047); */
 }
@@ -553,12 +557,33 @@
     min-height: 80vh;
     padding-bottom: 80px;
 }
-.ri-Blocks:focus-visible{
+
+.ri-Blocks:focus-visible {
     outline: none;
     border: none;
     border-radius: 0;
     border-bottom: 1px solid rgba(0, 0, 0, 0.246);
 }
-.ri-Editor .ri-Blocks{
+
+.ri-Editor .ri-Blocks {
     max-width: initial;
+}
+.screenNotSuported{
+    display: none;
+}
+
+@media screen and (max-width: 800px) {
+    .screenNotSuported {
+        background: white;
+        display:flex ;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        z-index: 10000;
+    }
 }

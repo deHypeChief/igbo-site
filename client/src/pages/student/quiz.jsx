@@ -1,10 +1,16 @@
 import '../../assets/styles/quiz.css'
 import { useEffect, useState } from "react"
 import { Button } from "../../components/button/button"
+
 import successImg from "../../assets/images/9486910-removebg-preview 1.png"
+import failImg from "../../assets/images/9479419-removebg-preview 1.png"
 import { Link, useParams } from "react-router-dom"
 import { ClientLayout } from "../../components/layout/layout"
 import { postUser, postUserData, userSigned } from '../../utilis/authManger'
+
+import old from "../../assets/images/old_igbo_man_da7737e6-18aa-4cbb-af3f-7f4ac8120bbd-removebg-preview.png"
+import successImg1 from "../../assets/images/a_cartoon_Igbo__f22b054e-e1b7-4124-bc0b-6e0c09990fdf-removebg-preview.png"
+import successImg2 from "../../assets/images/a_happy_little__596c32f0-ff9d-445b-8399-011f4cf18db3-removebg-preview.png"
 
 export default function Quiz() {
     const [passed, setPassed] = useState(null)
@@ -22,7 +28,7 @@ export default function Quiz() {
             setQuestions(JSON.parse(data.data.data.questions))
         })
 
-       
+
     }, [])
 
 
@@ -39,7 +45,7 @@ export default function Quiz() {
                 }
             })
             if (correct_ans == questions.length) {
-                postUser("/user/exp", { exp: test.xp },userSigned().token).then(() => {
+                postUser("/user/exp", { exp: test.xp }, userSigned().token).then(() => {
                     setPassed(true)
                 })
             } else {
@@ -98,6 +104,10 @@ function Success(props) {
     return (
         <>
             <section className="qBox">
+                <div className="imgSucessPerson">
+                    <img className='im-left' src={successImg1} alt="" />
+                    <img className="im-right" src={successImg2} alt="" />
+                </div>
                 <div className="qBoxWrap">
                     <img src={successImg} alt="" />
                     <h1>Hurray You Won</h1>
@@ -117,8 +127,13 @@ function Failed(props) {
     return (
         <>
             <section className="qBox">
+                <div className="imgSucessPerson">
+                    <img className='im-fail' src={old} alt="" />
+                </div>
+                
                 <div className="qBoxWrap">
-                    <img src={successImg} alt="" />
+                    <br />
+                    <img src={failImg} alt="" />
                     <h1>You Lost</h1>
                     <p>Try harder next time</p>
                     <div className="qButtons">

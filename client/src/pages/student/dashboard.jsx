@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import '../../assets/styles/student.css'
 import { Button } from '../../components/button/button'
 import { ClientLayout } from '../../components/layout/layout'
-import { getUser, getUserData, userSigned } from '../../utilis/authManger'
+import { getUser, getUserData, userLogOut, userSigned } from '../../utilis/authManger'
 import { Link, useNavigate } from 'react-router-dom'
 import TeacherPopUp from '../teacher'
 
@@ -35,7 +35,13 @@ export default function StudentDashboard() {
             getUser("/user/me", userSigned().token).then((data) => {
                 console.log(data);
                 setData(data.data.data, userSigned().token)
+            }).catch((error) => {
+                if (error.response.status == 401) {
+                    navTo('/signin')
+                    userLogOut()
+                }
             })
+
             
             getUserData("/lesson/", userSigned().token)
             .then((data) => {

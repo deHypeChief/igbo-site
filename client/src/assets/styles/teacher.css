@@ -26,9 +26,26 @@
     width: 200px;
     background-color: var(--primaryColor);
     border-radius: 1000px;
+    overflow: hidden;
 }
 .tutorBttnWrap{
     display: flex;
     gap: 50px;
     padding-top: 40px;
+}
+@media screen and (max-width: 600px) {
+    .mainBttnWrap {
+        width: 180px;
+    }
+    .tutorBttnWrap {
+        gap: 10px;
+    }
+    .tutorImg {
+        overflow: hidden;
+    }
+    .teachWrap {
+        background: var(--baseColor);
+        padding: 100px 20px 0;
+        gap: 18px;
+    }
 }

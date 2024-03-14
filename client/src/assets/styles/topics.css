@@ -1,9 +1,11 @@
 .topicWrap{
     display: flex;
-    padding-top: 26vh;
-    justify-content: space-between;
+    /* justify-content: space-between; */
     flex-wrap: wrap;
-    gap: 22px;
+    gap: 12px;
+    padding: var(--spacing-side);
+    padding-top: 26vh;
+
     padding-bottom: 100px;
 }
 
@@ -12,7 +14,7 @@
     background: white;
     border-radius: 10px;
     height: 260px;
-    width: 400px;
+    width: 380px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;

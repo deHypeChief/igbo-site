@@ -72,8 +72,6 @@ export function SignIn() {
 export function SignUp() {
     const [accComplete, isAccComplete] = useState(false)
     const [loading, setLoading] = useState(false)
-    const navTo = useNavigate()
-
 
     const [formData, setFormData] = useState({
         name: '',
@@ -131,7 +129,7 @@ export function SignUp() {
                                 placeholder='Password' required />
 
                             <p className='authSecP'>Already have an account <Link to={'/signin'}>Sign In</Link></p>
-                            <Button>{loading ? "loadding ..." : "Sign In"}</Button>
+                            <Button>{loading ? "loadding ..." : "Sign Up"}</Button>
                         </form>
                     </div>
                 )}

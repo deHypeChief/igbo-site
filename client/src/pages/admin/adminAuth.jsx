@@ -2,8 +2,8 @@ import '../../assets/styles/admin/adminAuth.css'
 import { Button } from '../../components/button/button'
 import { AdminLayout } from '../../components/layout/layout';
 import logo from "../../assets/images/logo/learn_igbo_logo.svg"
-import { useState } from 'react';
-import { authAdmin } from '../../utilis/authManger';
+import { useEffect, useState } from 'react';
+import { adminSigned, authAdmin } from '../../utilis/authManger';
 import { useNavigate } from 'react-router-dom';
 
 export default function AdminAuth() {
@@ -11,6 +11,12 @@ export default function AdminAuth() {
   const [formData, setFormData] = useState({
     adminID: "",
     pin: ""
+  })
+
+  useEffect(()=>{
+    if(adminSigned()){
+      navTo('/admin/dashboard')
+    }
   })
 
   function handleInputChange(event) {
