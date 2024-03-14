@@ -63,7 +63,7 @@ export default function Pricing() {
                     badgeText: "Online"
                 }
             ],
-            pricing: 10
+            pricing: 0.1
         }
     ]
 
