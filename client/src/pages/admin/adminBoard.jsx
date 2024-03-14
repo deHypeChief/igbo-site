@@ -354,7 +354,6 @@ function Lesson(props) {
         clearEditor()
     }
     function openExeEditor() {
-        clearEditor()
         document.getElementById("lessonEditor").style.display = "flex"
     }
 
