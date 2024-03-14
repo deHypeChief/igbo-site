@@ -1,6 +1,6 @@
 import express from 'express';
 import mongoose from 'mongoose';
-import { connectToMongoDB } from './db/dbConfig.js';
+import { connectToMongoDB, dbClose } from './db/dbConfig.js';
 import adminRoute from './db/routes/adminRoute.js';
 import userRoute from './db/routes/userRoute.js';
 import lessonRoute from './db/routes/lessonRoute.js';
@@ -33,6 +33,13 @@ app.use('/api/test', testRoute);
 app.use((err, req, res, next) => {
   console.error(err.stack);
   res.status(500).send('Something went wrong!');
+});
+
+
+process.on('SIGINT', async () => {
+  console.log('Received SIGINT. Closing MongoDB connection...');
+  await dbClose();
+  process.exit(0);
 });
 
 app.listen(PORT, () => {

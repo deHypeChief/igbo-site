@@ -37,7 +37,7 @@ export default function Admin() {
                 setTestData(data.data.data)
             })
 
-    })
+    }, [])
 
     function handleSideButton(e) {
         const otherButtons = document.getElementsByClassName("sActive")
