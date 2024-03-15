@@ -1,0 +1,6 @@
+Learnigboon2024# - rootpassword
+
+apt-get update
+sudo apt install git
+
+mongodb+srv://admin:G9Afocs2JosrZjFO@igbo-sitedb.mryfikk.mongodb.net/?retryWrites=true&w=majority&appName=igbo-siteDB
