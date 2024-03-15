@@ -6,6 +6,7 @@ const testRoute = express.Router()
 
 // Admin route
 testRoute.post('/ad/createTest', protectAdmin, createTest)
+
 testRoute.delete('/ad/deletTest', protectAdmin, deleteTest);
 
 

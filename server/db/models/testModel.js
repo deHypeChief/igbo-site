@@ -1,11 +1,6 @@
 import mongoose from "mongoose";
 
 const testSchema = new mongoose.Schema({
-    testType: {
-        type: String,
-        required: true,
-        default: true
-    },
     questions:{
         type: String,
         required: true,

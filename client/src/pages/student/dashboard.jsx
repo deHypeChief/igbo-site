@@ -21,10 +21,10 @@ export default function StudentDashboard() {
         {}
     ])
 
-    function openPoster(){
+    function openPoster() {
         setTeacherPoster(true)
     }
-    function closePoster(){
+    function closePoster() {
         setTeacherPoster(false)
     }
 
@@ -42,18 +42,18 @@ export default function StudentDashboard() {
                 }
             })
 
-            
+
             getUserData("/lesson/", userSigned().token)
-            .then((data) => {
-                setLesson(data.data.data)
-            })
+                .then((data) => {
+                    setLesson(data.data.data)
+                })
         }
     }, [])
 
     return (
         <ClientLayout>
             <div className="dashboardStu">
-                {teacherPoster ? <TeacherPopUp action={closePoster}/> : <></>}
+                {teacherPoster ? <TeacherPopUp action={closePoster} /> : <></>}
                 <div className="profile">
                     <div className="profileWrap">
                         <div className="profileBox">
@@ -82,15 +82,22 @@ export default function StudentDashboard() {
                         </div>
                         <div className="lessBox">
                             <h3 className="lessText">
-                                2
+                                {
+                                    data.level > 0 ? ("Beginner ") : (
+                                        data.level > 4 ? "Intermediate " : (
+                                            data.level > 8 ? "Advanced  " : ""
+                                        )
+                                    )
+
+                                }
                             </h3>
                             <p>Current <br /> Rank</p>
                         </div>
                         <div className="lessBox">
                             <h3 className="lessText">
-                                2
+                                {12 - parseInt(data.level)}
                             </h3>
-                            <p>Current <br /> Level</p>
+                            <p>Lessons <br /> Left</p>
                         </div>
                     </div>
 
@@ -101,7 +108,7 @@ export default function StudentDashboard() {
                         lesson.map((item, index) => {
                             if (item.level == data.level) {
                                 return (
-                                    <div key={"les" + index } className="nextLessWrap">
+                                    <div key={"les" + index} className="nextLessWrap">
                                         <h1>{item.title}</h1>
                                         <p>Get a one on lesson with a teacher and improve on your Igbo skills faster</p>
                                         <Link to={"/u/lesson/" + item.level}>

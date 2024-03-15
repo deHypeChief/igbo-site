@@ -27,8 +27,6 @@ export default function Quiz() {
             setTest(data.data.data)
             setQuestions(JSON.parse(data.data.data.questions))
         })
-
-
     }, [])
 
 
@@ -66,27 +64,40 @@ export default function Quiz() {
                     questions.map((items, indexMain) => {
                         let rads = []
                         let indexNum = indexMain
+                        console.log(items);
                         return (
                             <div key={"quz" + indexMain} id={"quz" + indexMain} className="quizInfo">
-                                <div className="quizTopSection">
-                                    <h2>Question {indexMain += 1}</h2>
-                                    <h1>{items.question}</h1>
-                                </div>
-                                <div className="quizOptions">
-                                    {
-                                        items.options.split(",").map((ans, index) => {
-                                            do {
-                                                let radNumber = Math.floor(Math.random() * items.options.split(",").length)
 
-                                                if (rads.includes(radNumber)) {
-                                                    radNumber = Math.floor(Math.random() * items.options.split(",").length)
-                                                } else {
-                                                    rads.push(radNumber)
-                                                    return <Button action={() => { GetAns(items.options.split(",")[radNumber], "quz" + indexNum) }} key={"ans" + index}>{items.options.split(",")[radNumber]}</Button>
-                                                }
-                                            } while (rads.length < 4);
-                                        })
-                                    }
+                                {
+                                    items.image != "" ? (
+                                        <div className="imageSectionQuiz">
+                                            <img src={items.imageUrl} alt="quizImage" />
+                                        </div>
+                                    ) : (
+                                        <></>
+                                    )
+                                }
+                                <div className="quizOtherInfo">
+                                    <div className="quizTopSection">
+                                        <h2>Question {indexMain += 1}</h2>
+                                        <h1>{items.question}</h1>
+                                    </div>
+                                    <div className="quizOptions">
+                                        {
+                                            items.options.split(",").map((ans, index) => {
+                                                do {
+                                                    let radNumber = Math.floor(Math.random() * items.options.split(",").length)
+
+                                                    if (rads.includes(radNumber)) {
+                                                        radNumber = Math.floor(Math.random() * items.options.split(",").length)
+                                                    } else {
+                                                        rads.push(radNumber)
+                                                        return <Button action={() => { GetAns(items.options.split(",")[radNumber], "quz" + indexNum) }} key={"ans" + index}>{items.options.split(",")[radNumber]}</Button>
+                                                    }
+                                                } while (rads.length < 4);
+                                            })
+                                        }
+                                    </div>
                                 </div>
                             </div>
                         )
@@ -130,7 +141,7 @@ function Failed(props) {
                 <div className="imgSucessPerson">
                     <img className='im-fail' src={old} alt="" />
                 </div>
-                
+
                 <div className="qBoxWrap">
                     <br />
                     <img src={failImg} alt="" />

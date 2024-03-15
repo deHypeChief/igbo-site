@@ -2,7 +2,7 @@
     color: white;
     padding: var(--spacing-side);
     padding: 0 150px;
-    padding-top: 22vh;
+    padding-top: 10vh;
     overflow-y: hidden;
     height: 100vh;
 }
@@ -10,11 +10,12 @@
 .quizInfo {
     width: 100%;
     height: 100vh;
-    /*  */
     display: flex;
-    flex-direction: column;
+    /* flex-direction: column; */
     align-items: center;
     text-align: center;
+    overflow-y: hidden;
+    gap: 80px;
 }
 
 .quizTopSection h1 {
@@ -102,7 +103,17 @@
 .imgSucessPerson img {
     width: 500px;
 }
-
+.imageSectionQuiz{
+    height: 400px;
+    width: 400px;
+    background: red;
+}
+.imageSectionQuiz img{
+    width:100%;
+}
+.quizTopSection {
+    text-align: left;
+}
 @media screen and (max-width: 600px) {
     .quiz {
         padding: 0 30px;

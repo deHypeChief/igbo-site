@@ -532,7 +532,7 @@ function Lesson(props) {
                                         return (
                                             <>
                                                 {index === 0 ? (<h2>  <br /> Beginner Level</h2>) : (
-                                                    index === 4 ? <h2> <br /> Intermediate Level</h2> :(
+                                                    index === 4 ? <h2> <br /> Intermediate Level</h2> : (
                                                         index === 8 ? <h2> <br /> Advanced Level </h2> : <></>
                                                     )
                                                 )}
@@ -619,7 +619,6 @@ function Excerises(props) {
     }, [])
 
     const formPayload = {
-        testType: "",
         questions: "",
         xp: 0,
         lesson: 0
@@ -639,16 +638,20 @@ function Excerises(props) {
         <div class="qusetionBlock">
             <div class="bl">
                 <p>Question ${quizCount}</p>
-                <input type="text" />
+                <input type="text" required  />
             </div>
             
             <div class="bl">
                 <p>Answers|  Seprate answers with commas, max of FOUR answers</p>
-                <input type="text" />
+                <input type="text"  required />
             </div>
             <div class="bl">
                 <p>Correct Answer</p>
-                <input type="text" />
+                <input type="text"  required />
+            </div>
+            <div className="bl">
+                <p>Image Url</p>
+                <input type="text" required  placeholder='ImageUrl (optional*)' id="img-exe" />
             </div>
 
         </div>
@@ -664,23 +667,22 @@ function Excerises(props) {
         e.preventDefault()
         const formData = e.target
 
-        for (let i = 0; i < formData.length - 2; i += 3) {
+        formPayload.xp = parseInt(formData[0].value)
+        formPayload.lesson = parseInt(formData[1].value)
 
-            if (i >= 3) {
-                const groupObj = {
-                    question: formData[i].value,
-                    options: formData[i + 1].value,
-                    correctAnswer: formData[i + 2].value,
-                };
+        for (let i = 2; i < formData.length - 2; i += 4) {
 
-                // Append the object to the groupedData array
-                exceriseGroup.push(groupObj);
-            } else {
-                formPayload.testType = formData[i + 1].value
-                formPayload.lesson = parseInt(formData[i + 2].value)
-                formPayload.xp = parseInt(formData[i].value)
-            }
+            const groupObj = {
+                question: formData[i].value,
+                options: formData[i + 1].value,
+                correctAnswer: formData[i + 2].value,
+                imageUrl: formData[i + 3].value
+            };
+
+            // Append the object to the groupedData array
+            exceriseGroup.push(groupObj);
         }
+        console.log(formPayload);
         formPayload.questions = JSON.stringify(exceriseGroup)
 
         adminPost("test/ad/createTest", formPayload, adminSigned().token)
@@ -700,6 +702,7 @@ function Excerises(props) {
         document.getElementById('que-exe').value = "";
         document.getElementById('cor-exe').value = "";
         document.getElementById('opp-exe').value = "";
+        document.getElementById('img-exe').value = "";
 
 
         setQuizCount(2)
@@ -784,31 +787,29 @@ function Excerises(props) {
                     <br />
                     <form action="" id={'quizFrom'} onSubmit={handleSubmit}>
                         <div className="formHeaderInputSec">
-                            <input type="text" id={"quizMark"} placeholder='Marks for the Quiz' />
-
-                            <select required id="quizType" name="" >
-                                <option value="Select Level" id='LessonType'>Select Exercise Type</option>
-                                <option value="quiz">Quiz</option>
-                                <option value="assigment">Assigment</option>
-                            </select>
-                            <input type="text" id={"quizLevel"} placeholder='Level of the Quiz' />
-
+                            <input type="text" required  id={"quizMark"} placeholder='Marks for the Quiz' />
+                            <input type="text"  required id={"quizLevel"} placeholder='Level of the Quiz' />
                         </div>
 
                         <div id="quizFormWrap">
                             <div className="qusetionBlock">
                                 <div className="bl">
                                     <p>Question 1</p>
-                                    <input type="text" id="que-exe" />
+                                    <input type="text" required id="que-exe" />
                                 </div>
 
                                 <div className="bl">
                                     <p>Answers|  Seprate answers with commas, max of FOUR answers</p>
-                                    <input type="text" id="opp-exe" />
+                                    <input type="text" required id="opp-exe" />
                                 </div>
                                 <div className="bl">
                                     <p>Correct Answer</p>
-                                    <input type="text" id="cor-exe" />
+                                    <input type="text" required id="cor-exe" />
+                                </div>
+
+                                <div className="bl">
+                                    <p>Image Url</p>
+                                    <input type="text" required placeholder='ImageUrl (optional*)' id="img-exe" />
                                 </div>
 
                             </div>

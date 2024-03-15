@@ -2,7 +2,7 @@ import '../../assets/styles/lesson.css'
 import { ClientLayout } from "../../components/layout/layout";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { postUserData, userSigned } from "../../utilis/authManger";
+import { postUser, postUserData, userSigned } from "../../utilis/authManger";
 import { Button } from "../../components/button/button";
 
 export default function Lesson() {
@@ -33,6 +33,14 @@ export default function Lesson() {
         }
     }, [])
 
+
+    function updateExp(){
+        postUser("/user/exp", { exp: 200}, userSigned().token).then(() => {
+            navTo('/u/topics')
+        })
+    }
+
+
     return (
         <ClientLayout>
             <section className="lessons">
@@ -61,9 +69,17 @@ export default function Lesson() {
                         })
                     }
                 </div>
-                <Link to={'/u/quiz/' + parseInt(lessonData.level)}>
-                    <Button>Start Quiz</Button>
-                </Link>
+
+
+                {
+                    lessonData.level === 4 || lessonData.level === 8 || lessonData.level === 12 ? (
+                        <Link to={'/u/quiz/' + parseInt(lessonData.level)}>
+                            <Button>Start Quiz</Button>
+                        </Link>
+                    ) : (
+                            <Button action={updateExp}>Next Lesson</Button>
+                    )
+                }
 
             </section>
         </ClientLayout>

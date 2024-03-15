@@ -3,9 +3,9 @@ import Test from '../models/testModel.js'
 
 
 export async function createTest(req, res) {
-    const { testType, questions, xp, lesson } = req.body
+    const {  questions, xp, lesson } = req.body
 
-    if (!testType || !questions || !xp || !lesson) {
+    if ( !questions || !xp || !lesson) {
         res.status(500).json({ message: "some fields are missing" })
     } else {
         const exsiting_Test = await Test.findOne({ lesson })
@@ -15,14 +15,8 @@ export async function createTest(req, res) {
                 message: "A test has been assinge to this level"
             })
         } else {
-            const exsiting_Lesson = await Lesson.findOne({ lesson })
-            if (!exsiting_Lesson) {
-                res.status(500).json({
-                    message: "The Lesson level does not exist"
-                })
-            } else {
+            
                 await Test.create({
-                    testType,
                     questions,
                     lesson,
                     xp
@@ -30,7 +24,6 @@ export async function createTest(req, res) {
                     res.status(201).json({
                         message: "Test created",
                         data: {
-                            type: data.quiz,
                             questions: data.questions,
                             expPoint: data.xp,
                             lessonLevel: data.lesson,
@@ -43,7 +36,7 @@ export async function createTest(req, res) {
                         error: error
                     })
                 })
-            }
+            
         }
     }
 }
