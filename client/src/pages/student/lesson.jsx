@@ -12,6 +12,7 @@ export default function Lesson() {
         note: "--"
     })
     const [noteData, setNoteData] = useState([])
+    const [loading, setLoading] = useState(false)
 
     let obj
 
@@ -35,7 +36,9 @@ export default function Lesson() {
 
 
     function updateExp(){
+        setLoading(true)
         postUser("/user/exp", { exp: 200}, userSigned().token).then(() => {
+            setLoading(false)
             navTo('/u/topics')
         })
     }
@@ -77,7 +80,11 @@ export default function Lesson() {
                             <Button>Start Quiz</Button>
                         </Link>
                     ) : (
-                            <Button action={updateExp}>Next Lesson</Button>
+                            loading ? (
+                                <Button>Loading</Button>
+                            ): (
+                                <Button action={updateExp}>Next Lesson</Button>
+                            )
                     )
                 }
 

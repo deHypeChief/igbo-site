@@ -33,7 +33,7 @@ export default function Quiz() {
     function GetAns(ans, id) {
         userAns.push(ans)
         document.getElementById(id).style.display = "none"
-        console.log(userAns, document.getElementById(id).id);
+        // console.log(userAns, document.getElementById(id).id);
         if (userAns.length == questions.length) {
 
             console.log("done");
@@ -64,12 +64,11 @@ export default function Quiz() {
                     questions.map((items, indexMain) => {
                         let rads = []
                         let indexNum = indexMain
-                        console.log(items);
                         return (
                             <div key={"quz" + indexMain} id={"quz" + indexMain} className="quizInfo">
 
                                 {
-                                    items.image != "" ? (
+                                    items.image != "" || items.image != "-" ? (
                                         <div className="imageSectionQuiz">
                                             <img src={items.imageUrl} alt="quizImage" />
                                         </div>

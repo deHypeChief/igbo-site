@@ -111,8 +111,24 @@
 .profileBox{
     overflow: hidden
 }
+.imggetTutor{
+    height: 400px;
+    width: 100%;
+    position: relative;
+}
+.getTutor{
+    overflow: hidden;
+}
+.imggetTutor img{
+    position: absolute;
+    width: 500px;
+    left: -80px;
+}
+
+
 
 @media screen and (max-width: 600px) {
+    
     .dashboardStu{
         display: flex;
         flex-direction: column;

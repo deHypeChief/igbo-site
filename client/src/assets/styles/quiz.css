@@ -103,21 +103,41 @@
 .imgSucessPerson img {
     width: 500px;
 }
-.imageSectionQuiz{
+
+.imageSectionQuiz {
     height: 400px;
     width: 400px;
     background: red;
 }
-.imageSectionQuiz img{
-    width:100%;
+
+.imageSectionQuiz img {
+    width: 100%;
 }
+
 .quizTopSection {
     text-align: left;
 }
+
 @media screen and (max-width: 600px) {
+    .quizInfo {
+        display: block;
+         flex-direction: column; 
+        overflow-y: scroll;
+        padding: 22vh 0 100px;
+    }
+    .quizInfo::-webkit-scrollbar{
+        display: none;
+    }
+    .quizOtherInfo{
+        padding-top:30px;
+    }
+    .imageSectionQuiz {
+        width: 100%;
+        height: 300px;
+    }
     .quiz {
         padding: 0 30px;
-        padding-top: 28vh;
+        padding-top: 0vh;
     }
 
     .quizTopSection h1 {
@@ -145,19 +165,23 @@
     .imgSucessPerson {
         padding: 0 0px;
     }
+
     .imgSucessPerson img {
-    width: 300px;
-}
-    .im-fail{
-    width: 300px;
-    margin-left: -100px;
-}
-.im-left{
-     width: 300px;
-    margin-left: -130px;   
-}
-.im-right{
-     width: 300px;
-    margin-left: 50px;
-}
+        width: 300px;
+    }
+
+    .im-fail {
+        width: 300px;
+        margin-left: -100px;
+    }
+
+    .im-left {
+        width: 300px;
+        margin-left: -130px;
+    }
+
+    .im-right {
+        width: 300px;
+        margin-left: 50px;
+    }
 }

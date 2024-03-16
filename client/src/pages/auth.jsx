@@ -26,7 +26,7 @@ export function SignIn() {
     const handleSubmit = (event) => {
         event.preventDefault();
         setLoading(true)
-        // Do something with the form data, like sending it to a server
+        // Do something with the form data, like sending it to server
         authUser('/user/authUser', formData).then((data) => {
             if (data) {
                 setLoading(false)
@@ -37,6 +37,7 @@ export function SignIn() {
             }
         }).catch((error)=> {
             alert(error.response.data.message)
+            setLoading(false)
         })
     };
 
@@ -61,7 +62,7 @@ export function SignIn() {
                             onChange={handleInputChange} />
 
                         <p className='authSecP'>Don&apos;t have an account <Link to={'/signup'}>Sign Up</Link></p>
-                        <Button>{loading ? "loadding ..." : "Sign In"}</Button>
+                        <Button>{loading ? "loading ..." : "Sign In"}</Button>
                     </form>
                 </div>
             </section>
@@ -97,6 +98,7 @@ export function SignUp() {
             }
         }).catch((error)=> {
             alert(error.response.data.message)
+            setLoading(false)
         })
     };
 
@@ -129,7 +131,7 @@ export function SignUp() {
                                 placeholder='Password' required />
 
                             <p className='authSecP'>Already have an account <Link to={'/signin'}>Sign In</Link></p>
-                            <Button>{loading ? "loadding ..." : "Sign Up"}</Button>
+                            <Button>{loading ? "loading ..." : "Sign Up"}</Button>
                         </form>
                     </div>
                 )}

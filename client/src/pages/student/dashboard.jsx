@@ -7,6 +7,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import TeacherPopUp from '../teacher'
 
 import dashProfile from '../../assets/images/A kid called BEAST _ NFT.jpeg'
+import tutorImage from '../../assets/images/a_cartoon_Igbo__3d54e65c-ec54-4e12-bb66-b7fd056570fd-removebg-preview.png'
 
 export default function StudentDashboard() {
     const navTo = useNavigate()
@@ -95,7 +96,7 @@ export default function StudentDashboard() {
                         </div>
                         <div className="lessBox">
                             <h3 className="lessText">
-                                {12 - parseInt(data.level)}
+                                {parseInt(lesson.length) - parseInt(data.level) < 0 ? 0 : parseInt(lesson.length) - parseInt(data.level)}
                             </h3>
                             <p>Lessons <br /> Left</p>
                         </div>
@@ -124,6 +125,9 @@ export default function StudentDashboard() {
                     <h1>Get a private tutor</h1>
                     <p>Get a one on lesson with a teacher and improve on your Igbo skills faster</p>
                     <Button action={openPoster}>Get A Tutor</Button>
+                    <div className="imggetTutor">
+                    <img src={tutorImage} alt="" />
+                    </div>
                 </div>
             </div>
         </ClientLayout>
