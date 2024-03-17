@@ -1,7 +1,6 @@
 import express from 'express'
-import { authUser, createUser, getMe, getUsers, updateExp } from '../controllers/userController.js'
+import { authUser, createUser, getMe, getUsers, paymentRecord, updateExp } from '../controllers/userController.js'
 import { protectAdmin, protectUser } from '../middleware/authMiddleware.js'
-import { recordPayment } from '../controllers/paymentController.js'
 const userRoute = express.Router()
 
 userRoute.post('/authUser', authUser)
@@ -9,7 +8,7 @@ userRoute.post('/createUser', createUser)
 
 
 // paymentRoute
-userRoute.post('/recPayment', protectUser, recordPayment)
+userRoute.post('/recPayment', protectUser, paymentRecord)
 
 // Admin auth route
 userRoute.get('/ad/users',protectAdmin, getUsers)

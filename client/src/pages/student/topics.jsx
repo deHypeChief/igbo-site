@@ -20,22 +20,41 @@ export default function Topics() {
             console.log(data.data.data);
             setLesson(data.data.data)
         })
-        
+
     }, [])
+
+    const objective =  [
+        (
+            <>
+                <ul>
+                    <li>Objetive One</li>
+                </ul>
+            </>
+        ),
+
+    ]
 
     return (
         <ClientLayout>
             <section className="topicWrap">
                 {
                     user ? (
-                        lesson.map((item) => {
-                            if(item.level == user.level){
+                        lesson.map((item, index) => {
+                            if (item.level == user.level) {
                                 return (
                                     <div key={item.level} className="topicBox">
                                         <div className="card-topic">
-                                            <h2 className="level-topic">
-                                                level {item.level}
-                                            </h2>
+                                            <div className="card-info-top">
+                                                <h2 className="level-topic">
+                                                    level {item.level}
+                                                </h2>
+                                                {index >= 0 && index < 4 ? (<h2>  Beginner Level</h2>) : (
+                                                    index >= 4 && index < 8 ? <h2> Intermediate Level</h2> : (
+                                                        index >= 8 ? <h2> Advanced Level </h2> : <></>
+                                                    )
+                                                )}
+                                            </div>
+                                            <br />
                                             <h1 className="title-topic">
                                                 {item.title}
                                             </h1>
@@ -44,19 +63,28 @@ export default function Topics() {
                                                 basiscs of Igbo
                                             </p>
                                         </div>
+                                        <br />
                                         <Link to={"/u/lesson/" + item.level}>
                                             <Button>Start Lesson</Button>
                                         </Link>
                                     </div>
                                 )
-                            }else{
-                                if(item.level > user.level){
+                            } else {
+                                if (item.level > user.level) {
                                     return (
                                         <div key={item.level} className="topicBox">
                                             <div className="card-topic">
-                                                <h2 className="level-topic">
-                                                    level {item.level}
-                                                </h2>
+                                                <div className="card-info-top">
+                                                    <h2 className="level-topic">
+                                                        level {item.level}
+                                                    </h2>
+                                                    {index >= 0 && index < 4 ? (<h2>  Beginner Level</h2>) : (
+                                                        index >= 4 && index < 8 ? <h2> Intermediate Level</h2> : (
+                                                            index >= 8 ? <h2> Advanced Level </h2> : <></>
+                                                        )
+                                                    )}
+                                                </div>
+                                                <br />
                                                 <h1 className="title-topic">
                                                     {item.title}
                                                 </h1>
@@ -65,17 +93,26 @@ export default function Topics() {
                                                     basiscs of Igbo
                                                 </p>
                                             </div>
-                                                <Button>Locked</Button>
+                                            <br />
+                                            <Button>Locked</Button>
                                         </div>
                                     )
-                                }else{
-                                    if(item.level < user.level){
+                                } else {
+                                    if (item.level < user.level) {
                                         return (
                                             <div key={item.level} className="topicBox">
                                                 <div className="card-topic">
-                                                    <h2 className="level-topic">
-                                                        level {item.level}
-                                                    </h2>
+                                                    <div className="card-info-top">
+                                                        <h2 className="level-topic">
+                                                            level {item.level}
+                                                        </h2>
+                                                        {index >= 0 && index < 4 ? (<h2>  Beginner Level</h2>) : (
+                                                            index >= 4 && index < 8 ? <h2> Intermediate Level</h2> : (
+                                                                index >= 8 ? <h2> Advanced Level </h2> : <></>
+                                                            )
+                                                        )}
+                                                    </div>
+                                                    <br />
                                                     <h1 className="title-topic">
                                                         {item.title}
                                                     </h1>
@@ -84,14 +121,45 @@ export default function Topics() {
                                                         basiscs of Igbo
                                                     </p>
                                                 </div>
-                                                    <Button>Level Complete</Button>
+                                                <br />
+                                                <Button>Level Complete</Button>
                                             </div>
                                         )
                                     }
                                 }
                             }
                         })
-                    ) : <h2>Loading ....</h2>
+                    ) : (
+                        lesson?.map((item, index) => {
+                            return (
+                                <>
+                                    <div key={item.level} className="topicBox">
+                                        <div className="card-topic">
+                                            <div className="card-info-top">
+                                                <h2 className="level-topic">
+                                                    level {item.level}
+                                                </h2>
+                                                {index >= 0 && index < 4 ? (<h2>  Beginner Level</h2>) : (
+                                                    index >= 4 && index < 8 ? <h2> Intermediate Level</h2> : (
+                                                        index >= 8 ? <h2> Advanced Level </h2> : <></>
+                                                    )
+                                                )}
+                                            </div>
+                                            <br />
+
+                                            <h1 className="title-topic">
+                                                {item.title}
+                                            </h1>
+                                            <p className="pah-topic">
+                                                Get your bacis solid by learning the
+                                                basiscs of Igbo
+                                            </p>
+                                        </div>
+                                    </div>
+                                </>
+                            )
+                        })
+                    )
                 }
 
 

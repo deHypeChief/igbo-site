@@ -12,21 +12,41 @@ import tutorImage from '../../assets/images/a_cartoon_Igbo__3d54e65c-ec54-4e12-b
 export default function StudentDashboard() {
     const navTo = useNavigate()
     const [teacherPoster, setTeacherPoster] = useState(false)
+    const [plan, setPlan] = useState(null)
     const [data, setData] = useState({
         name: "--",
         level: "--",
         email: "--",
         exp: "--"
     })
-    const [lesson, setLesson] = useState([
-        {}
-    ])
+    const [lesson, setLesson] = useState([{}])
 
     function openPoster() {
         setTeacherPoster(true)
     }
     function closePoster() {
         setTeacherPoster(false)
+    }
+
+    function TrailPropmt(){
+        return (
+            <>
+                <div className="trialBox">
+                    <div className="trialBox-mail">
+                        <h1>Upgrade Your Plan</h1>
+                        <p>Get more out of the app by upgrading your plan, access more levels and amazing features</p>
+                        <div className="trialGroup">
+                            <Link to={"/u/pricing"}>
+                                <Button>View Pricing</Button>
+                            </Link>
+                            <Button action={()=>{
+                                setPlan(null)
+                            }}>Go Back</Button>
+                        </div>
+                    </div>
+                </div>
+            </>
+        )
     }
 
     useEffect(() => {
@@ -36,6 +56,8 @@ export default function StudentDashboard() {
             getUser("/user/me", userSigned().token).then((data) => {
                 console.log(data);
                 setData(data.data.data, userSigned().token)
+                setPlan(data.data.data.userPayment)
+
             }).catch((error) => {
                 if (error.response.status == 401) {
                     navTo('/signin')
@@ -55,6 +77,7 @@ export default function StudentDashboard() {
         <ClientLayout>
             <div className="dashboardStu">
                 {teacherPoster ? <TeacherPopUp action={closePoster} /> : <></>}
+                {plan === "Trial" || plan === "Trial plan" ? <TrailPropmt/> : <></> }
                 <div className="profile">
                     <div className="profileWrap">
                         <div className="profileBox">
@@ -63,6 +86,9 @@ export default function StudentDashboard() {
                         <div className="profileInfo">
                             <h1>{data ? data.name : "loading"}</h1>
                             <p>{data ? data.email : "loading"}</p>
+                            <div className="dashInfo">
+                                <p>{data?.userPayment ? `${data?.userPayment} Plan` : "Gettting your plan"}</p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -122,11 +148,13 @@ export default function StudentDashboard() {
                     }
                 </div>
                 <div className="getTutor">
-                    <h1>Get a private tutor</h1>
-                    <p>Get a one on lesson with a teacher and improve on your Igbo skills faster</p>
-                    <Button action={openPoster}>Get A Tutor</Button>
-                    <div className="imggetTutor">
-                    <img src={tutorImage} alt="" />
+                    <div className="getTutor-trial">
+                        <h1>Get a private tutor</h1>
+                        <p>Get a one on lesson with a teacher and improve on your Igbo skills faster</p>
+                        <Button action={openPoster}>Get A Tutor</Button>
+                        <div className="imggetTutor">
+                            <img src={tutorImage} alt="" />
+                        </div>
                     </div>
                 </div>
             </div>

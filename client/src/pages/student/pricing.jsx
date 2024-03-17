@@ -3,7 +3,7 @@ import { ClientLayout } from "../../components/layout/layout";
 import './../../assets/styles/pricing.css'
 import { useNavigate } from "react-router-dom";
 import { Icon } from "@iconify/react";
-import { userSigned } from "../../utilis/authManger";
+import { postUser, userSigned } from "../../utilis/authManger";
 
 
 export default function Pricing() {
@@ -215,7 +215,7 @@ import { useFlutterwave, closePaymentModal } from 'flutterwave-react-v3';
 
 function MakePayment(props) {
     const { payObject, payAction } = props
-
+    const [loading, setLoading] = useState()
 
     const navTo = useNavigate()
     const [formData, setFormData] = useState({
@@ -248,7 +248,6 @@ function MakePayment(props) {
             description: 'Payment for ' + payObject?.title,
         },
     }
-
     const configForMonthlyPay = {
         public_key: f_KEY,
         tx_ref: Date.now(),
@@ -265,7 +264,8 @@ function MakePayment(props) {
             title: payObject?.title,
             description: `Payment for ${payObject?.title}`,
         },
-      };    
+      }; 
+
     const handleFlutterPayment = useFlutterwave(payObject.monthly ? configForMonthlyPay : config);
 
     function handleInput(event) {
@@ -289,19 +289,25 @@ function MakePayment(props) {
             <form className="paymentWrap" onSubmit={
                 (e) => {
                     e.preventDefault()
+                    setLoading(true)
                     handleFlutterPayment({
                         callback: (response) => {
                             console.log(response);
                             if (response.status) {
-                                alert("Payment " + response.status)
-                                navTo("/u")
+                                postUser("user/recPayment", {paymentType: payObject.title}, userSigned().token)
+                                .then((data)=>{
+                                    setLoading(false)
+                                    alert(data.data.data.messagees)
+                                    navTo("/u")
+                                })
+                                
                             } else {
                                 alert("Error making payment")
                             }
                             closePaymentModal() // this will close the modal programmatically
                         },
                         onClose: () => {
-
+                            setLoading(false)
                         },
                     });
                 }
@@ -336,7 +342,7 @@ function MakePayment(props) {
                 </div>
 
                 <div className="infoForm">
-                    <h2>Persoanl Info</h2>
+                    <h2>Personal Info</h2>
                     <div className="PayInputWrap">
                         <input type="text" name="firstName" onChange={handleInput} value={formData.firstName} required placeholder="First Name" />
                         <input type="text" name="lastName" onChange={handleInput} value={formData.lastName} required placeholder="Last Name" />
@@ -347,7 +353,7 @@ function MakePayment(props) {
                     <div className="payaction-">
                         <div className="paySecButton">
                         <button>
-                            Make Payment
+                            {loading ? "loading..." : "Make Payment"}
                         </button>
                         <button onClick={closePayment}>
                             Cancel Payment

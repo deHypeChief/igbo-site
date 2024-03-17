@@ -651,7 +651,7 @@ function Excerises(props) {
             </div>
             <div className="bl">
                 <p>Image Url</p>
-                <input type="text" required  placeholder='ImageUrl (optional*)' id="img-exe" />
+                <input type="text"  placeholder='ImageUrl (optional*)' id="img-exe" />
             </div>
 
         </div>
@@ -809,7 +809,7 @@ function Excerises(props) {
 
                                 <div className="bl">
                                     <p>Image Url</p>
-                                    <input type="text" required placeholder='ImageUrl (optional*)' id="img-exe" />
+                                    <input type="text"  placeholder='ImageUrl (optional*)' id="img-exe" />
                                 </div>
 
                             </div>

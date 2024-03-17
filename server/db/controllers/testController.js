@@ -78,7 +78,7 @@ export async function getTestByLevel(req, res) {
             messagees: "requested test found",
             data: data
         })
-    }).catch(() => {
+    }).catch((error) => {
         res.status(500).json({
             message: "Error getting Lesson",
             error: error

@@ -18,6 +18,9 @@ const userSchema = new mongoose.Schema({
     },
     exp: {
         type: Number,
+    },
+    userPayment:{
+        type: String
     }
 })
 

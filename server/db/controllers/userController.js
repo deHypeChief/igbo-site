@@ -27,7 +27,8 @@ export async function createUser(req, res) {
                 email,
                 password: hashedPassword,
                 level: 1,
-                exp: 0
+                exp: 0,
+                userPayment: "Trial"
             }).then((data) => {
                 res.status(201).json({
                     _id: data.id,
@@ -35,7 +36,8 @@ export async function createUser(req, res) {
                     name: data.name,
                     token: generateToken({ id: data.id }),
                     level: data.level,
-                    exp: data.exp
+                    exp: data.exp,
+                    payment: data.userPayment
                 })
             }).catch((error) => {
                 res.status(500).json({
@@ -114,5 +116,25 @@ export async function updateExp(req, res) {
                     { message: "error updating exp" }
                 )
             })
+    }
+}
+
+
+
+export async function paymentRecord(req, res){
+    const { paymentType } = req.body
+
+    if(paymentType){
+        await User.findByIdAndUpdate( req.user.id, {userPayment: paymentType})
+        .then((data)=>{
+            res.status(200).json({
+                messagees: `${paymentType} plan has been added to to your account`,
+                data: data
+            })
+        }).catch((error)=>{
+            res.status(403).json(
+                { message: "error updating exp" }
+            )
+        })
     }
 }

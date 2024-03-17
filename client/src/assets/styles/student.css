@@ -125,6 +125,52 @@
     left: -80px;
 }
 
+.dashInfo{
+    background: var(--primaryColor);
+    width: fit-content;
+    border-radius: 100px;
+    margin-top: 10px;
+}
+.dashInfo p{
+    color: white;
+    font-weight: 600;
+    font-size:.9rem;
+    padding: 5px 10px;
+}
+
+.trialBox{
+    height: 100vh;
+    position: fixed;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.12);
+    backdrop-filter: blur(10px);
+    top: 0;
+    left: 0;
+    z-index: 20;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.trialBox-mail{
+    background: white;
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding: 60px 40px;
+    border-radius: 20px;
+}
+.trialBox h1{
+    font-size: 3rem;
+}
+.trialBox-mail p{
+    text-align: center;
+}
+.trialGroup{
+    display: flex;
+    gap: 15px;
+}
 
 
 @media screen and (max-width: 600px) {
@@ -154,7 +200,7 @@
         font-size: 1.5rem;
     }
     .getTutor, .profile, .stats, .lesson{
-        padding : 40px 50px;
+        padding : 40px 30px;
     }
     .profile{
         padding: 40px 20px;

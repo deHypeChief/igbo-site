@@ -2,7 +2,7 @@ import '../../assets/styles/lesson.css'
 import { ClientLayout } from "../../components/layout/layout";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { postUser, postUserData, userSigned } from "../../utilis/authManger";
+import { getUser, postUser, postUserData, userSigned } from "../../utilis/authManger";
 import { Button } from "../../components/button/button";
 
 export default function Lesson() {
@@ -13,6 +13,7 @@ export default function Lesson() {
     })
     const [noteData, setNoteData] = useState([])
     const [loading, setLoading] = useState(false)
+    const [plan, setPlan] = useState(null)
 
     let obj
 
@@ -22,6 +23,12 @@ export default function Lesson() {
         if (!userSigned()) {
             navTo('/signin')
         } else {
+            getUser("/user/me", userSigned().token).then((data) => {
+                console.log(data);
+                setPlan(data.data.data.userPayment)
+            })
+
+
             postUserData('/lesson/oneLesson', { level: id }).then((data) => {
                 eval('obj = ' + data.data.data.note)
                 setNoteData(obj)
@@ -33,6 +40,24 @@ export default function Lesson() {
             })
         }
     }, [])
+
+    function TrailPropmt(){
+        return (
+            <>
+                <div className="trialBox">
+                    <div className="trialBox-mail">
+                        <h1>Unlock the level</h1>
+                        <p>Level is locke to access the level upgrade your plan</p>
+                        <div className="trialGroup">
+                            <Link to={"/u/pricing"}>
+                                <Button>View Pricing</Button>
+                            </Link>
+                        </div>
+                    </div>
+                </div>
+            </>
+        )
+    }
 
 
     function updateExp(){
@@ -46,6 +71,7 @@ export default function Lesson() {
 
     return (
         <ClientLayout>
+            {plan === "Trial" || plan === "Trial plan"  && parseInt(lessonData.level) >= 3 ? <TrailPropmt/> : <></> }
             <section className="lessons">
                 <h2>Level {lessonData.level}</h2>
                 <h1>
