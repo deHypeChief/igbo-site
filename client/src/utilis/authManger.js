@@ -76,6 +76,7 @@ export function adminLogOut() {
     }
 }
 
+
 export async function getAdmin(endpoint, token) {
     return await api.get(endpoint, { headers: headers(token) });
 }
