@@ -31,7 +31,6 @@ export function userLogOut() {
         return null;
     }
 }
-
 export const authUser = async (endpoint, payload) => {
     return await api.post(endpoint, payload);
 };
