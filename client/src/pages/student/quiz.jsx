@@ -43,9 +43,13 @@ export default function Quiz() {
                 }
             })
             if (correct_ans == questions.length) {
-                postUser("/user/exp", { exp: test.xp }, userSigned().token).then(() => {
+                if(parseInt(id) > 0){
+                    postUser("/user/exp", { exp: test.xp }, userSigned().token).then(() => {
+                        setPassed(true)
+                    })
+                }else{
                     setPassed(true)
-                })
+                }
             } else {
                 setPassed(false)
             }
