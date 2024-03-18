@@ -62,9 +62,7 @@ export function SignIn() {
                             onChange={handleInputChange} />
 
                         <p className='authSecP'>Don&apos;t have an account <Link to={'/signup'}>Sign Up</Link></p>
-                        <div className="forgetOptions">
-                            <Link><p>Forgot Password</p></Link>
-                        </div>
+                        
                         <Button>{loading ? "loading ..." : "Sign In"}</Button>
                     </form>
                 </div>
