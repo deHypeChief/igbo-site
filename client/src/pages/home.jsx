@@ -74,7 +74,7 @@ export default function Home() {
                         <Link to='/signin'>
                             <Button>Sign In</Button>
                         </Link>
-                        <Link to='/demo/:id'>
+                        <Link to='/demo/0'>
                             <Button>Play Demo</Button>
                         </Link>
                         </div>
