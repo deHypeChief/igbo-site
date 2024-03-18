@@ -121,20 +121,86 @@ export async function updateExp(req, res) {
 
 
 
-export async function paymentRecord(req, res){
+export async function paymentRecord(req, res) {
     const { paymentType } = req.body
 
-    if(paymentType){
-        await User.findByIdAndUpdate( req.user.id, {userPayment: paymentType})
-        .then((data)=>{
-            res.status(200).json({
-                messagees: `${paymentType} plan has been added to to your account`,
-                data: data
+    if (paymentType) {
+        await User.findByIdAndUpdate(req.user.id, { userPayment: paymentType })
+            .then((data) => {
+                res.status(200).json({
+                    messagees: `${paymentType} plan has been added to to your account`,
+                    data: data
+                })
+            }).catch((error) => {
+                res.status(400).json(
+                    { message: "error updating exp" }
+                )
             })
-        }).catch((error)=>{
-            res.status(403).json(
-                { message: "error updating exp" }
-            )
-        })
     }
 }
+
+
+// import nodemailer from 'nodemailer'
+
+// const adminMail = "dev.hype7@gmail.com"
+// const adminPassword = "#justHYPE7"
+// const baseUrl = "http://localhost:5173/"
+
+// const transporter = nodemailer.createTransport({
+//     service: 'gmail',
+//     auth: {
+//         user: adminMail,
+//         pass: adminPassword
+//     }
+// });
+
+// export async function forgotPassword(req, res) {
+//     const { email } = req.user
+
+//     await User.findOne({ email: email })
+//         .then((data) => {
+//             const mailOptions = {
+//                 from: adminMail,
+//                 to: email,
+//                 subject: 'Reset Password',
+//                 text: `Use this link to reset your password link: ${baseUrl}changePassword/${data._id}`
+//             };
+
+//             // Send email
+//             transporter.sendMail(mailOptions, (error, info) => {
+//                 if (error) {
+//                     console.log('Error:', error);
+//                     res.status(400).json({
+//                         message: "error sending mail",
+//                         error: error
+//                     })
+//                 } else {
+//                     console.log('Email sent:', info.response);
+//                     res.status(200).json({
+//                         message: "Mail sent ",
+//                         data: info.response
+//                     })
+//                 }
+//             });
+//         })
+//         .catch((error) => {
+//             res.status(400).json(
+//                 {
+//                     message: "Mail not found",
+//                     error: error
+//                 }
+//             )
+//         })
+// }
+
+// export async function changePassword(req, res) {
+//     const { id } = req.body
+
+//     await User.findById({ id })
+//         .then((data) => {
+//             res.status(200).json({
+//                 message: "Mail sent ",
+//                 data: info.response
+//             })
+//         })
+// }

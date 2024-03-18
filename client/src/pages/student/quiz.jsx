@@ -120,12 +120,26 @@ function Success(props) {
                 </div>
                 <div className="qBoxWrap">
                     <img src={successImg} alt="" />
-                    <h1>Hurray You Won</h1>
-                    <p>Nice job lets move
-                        over to the next lesson</p>
-                    <Link to="/u/topics">
-                        <Button>Next Lesson</Button>
-                    </Link>
+                    {
+                        id === 0 ? (
+                            <>
+                                <h1>Hurray You Won</h1>
+                                <p>Improve your igbo skill by creating an account </p>
+                                <Link to="/signup">
+                                    <Button>Create an Account</Button>
+                                </Link>
+                            </>
+                        ) : (
+                            <>
+                                <h1>Hurray You Won</h1>
+                                <p>Nice job lets move
+                                    over to the next lesson</p>
+                                <Link to="/u/topics">
+                                    <Button>Next Lesson</Button>
+                                </Link>
+                            </>
+                        )
+                    }
                 </div>
             </section>
         </>
@@ -144,13 +158,32 @@ function Failed(props) {
                 <div className="qBoxWrap">
                     <br />
                     <img src={failImg} alt="" />
-                    <h1>You Lost</h1>
-                    <p>Try harder next time</p>
-                    <div className="qButtons">
-                        <Link to={"/u/lesson/" + id}>
-                            <Button>Retake Lesson</Button>
-                        </Link>
-                    </div>
+                    {
+                        id === 0 ? (
+                            <>
+                                <h1>You Lost</h1>
+                                <p>Create an account to improve your igbo skills </p>
+                                <div className="qButtons">
+                                    <Link to={"/demo/" + id}>
+                                        <Button>Try Again</Button>
+                                    </Link>
+                                    <Link to={"/signup" + id}>
+                                        <Button>Create Account</Button>
+                                    </Link>
+                                </div>
+                            </>
+                        ) : (
+                            <>
+                                <h1>You Lost</h1>
+                                <p>Try harder next time</p>
+                                <div className="qButtons">
+                                    <Link to={"/u/lesson/" + id}>
+                                        <Button>Retake Lesson</Button>
+                                    </Link>
+                                </div>
+                            </>
+                        )
+                    }
                 </div>
             </section>
         </>

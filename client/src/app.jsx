@@ -1,6 +1,6 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "./pages/home";
-import { SignIn, SignUp } from "./pages/auth";
+import { ChangePassword, ForgotPassword, SignIn, SignUp } from "./pages/auth";
 import TeacherPopUp from "./pages/teacher";
 import StudentDashboard from "./pages/student/dashboard";
 import Topics from "./pages/student/topics";
@@ -21,6 +21,10 @@ export default function App(){
                         <Route path='/signup' element={<SignUp />} />
                         <Route path='/teacher' element={<TeacherPopUp />} />
                         <Route path='/demo/:id' element={<Quiz/>}/>
+
+                        {/* changes haulted */}
+                        {/* <Route path='/forgotPassword' element={<ForgotPassword/>}/> */}
+                        {/* <Route path='/changePassword/:id' element={<ChangePassword/>}/> */}
                     </Route>
 
                     <Route path='/u'>
