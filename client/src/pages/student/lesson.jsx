@@ -71,7 +71,7 @@ export default function Lesson() {
 
     return (
         <ClientLayout>
-            {plan === "Trial" || plan === "Trial plan"  && parseInt(lessonData.level) >= 3 ? <TrailPropmt/> : <></> }
+            {/* {plan === "Trial" || plan === "Trial plan"  && parseInt(lessonData.level) >= 3 ? <TrailPropmt/> : <></> } */}
             <section className="lessons">
                 <h2>Level {lessonData.level}</h2>
                 <h1>
