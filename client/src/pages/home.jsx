@@ -74,7 +74,7 @@ export default function Home() {
                         <Link to='/signin'>
                             <Button>Sign In</Button>
                         </Link>
-                        <Link to='/demo/0'>
+                        <Link to='/demo/1'>
                             <Button>Play Demo</Button>
                         </Link>
                         </div>
@@ -107,6 +107,7 @@ Join me as we explore this journey together</p>
             </section>
 
             <section className="features">
+                <div className="featureWrap">
                 <div className="featureWrap">
                     {
                         featuresList.map((value) => {

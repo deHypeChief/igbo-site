@@ -125,7 +125,7 @@ function Success(props) {
                 <div className="qBoxWrap">
                     <img src={successImg} alt="" />
                     {
-                        id === 0 ? (
+                        id === 1 ? (
                             <>
                                 <h1>Hurray You Won</h1>
                                 <p>Improve your igbo skill by creating an account </p>
@@ -163,7 +163,7 @@ function Failed(props) {
                     <br />
                     <img src={failImg} alt="" />
                     {
-                        id === 0 ? (
+                        id === 1 ? (
                             <>
                                 <h1>You Lost</h1>
                                 <p>Create an account to improve your igbo skills </p>
