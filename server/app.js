@@ -18,7 +18,7 @@ const app = express();
 const PORT = process.env.PORT || 3600;
 
 // app.use(cors({
-//   origin: process.env.NODE_ENV == "dev" ? 'http://localhost:5173' : 'https://igbo-learning.vercel.app',
+//   origin: process.env.NODE_ENV == "dev" ? 'http://localhost:5173' : 'https://igbo-site.vercel.app/',
 // }));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
@@ -28,6 +28,7 @@ app.use(express.json());
 // app.get('/', (req, res) => {
 //   res.send('Server is up and running');
 // });
+express.static.mime.define({'application/javascript': ['js']});
 app.use(express.static(path.join(__dirname, 'dist')));
 
 // main Routes
