@@ -108,7 +108,6 @@ Join me as we explore this journey together</p>
 
             <section className="features">
                 <div className="featureWrap">
-                <div className="featureWrap">
                     {
                         featuresList.map((value) => {
                             return (
