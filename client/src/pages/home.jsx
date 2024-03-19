@@ -17,13 +17,13 @@ import aboutImg from "../assets/images/learnigboonline_1710147103698.jpeg"
 
 export default function Home() {
     const navTo = useNavigate()
-    useEffect(()=> {
-        if(userSigned()){
+    useEffect(() => {
+        if (userSigned()) {
             navTo('/u')
         }
     })
 
-    
+
     const featuresList = [
         {
             id: "fImg1",
@@ -71,12 +71,12 @@ export default function Home() {
                             approach Igbo learning
                         </p>
                         <div className="heroLink">
-                        <Link to='/signin'>
-                            <Button>Sign In</Button>
-                        </Link>
-                        <Link to='/demo/1'>
-                            <Button>Play Demo</Button>
-                        </Link>
+                            <Link to='/signin'>
+                                <Button>Sign In</Button>
+                            </Link>
+                            <Link to='/demo/1'>
+                                <Button>Play Demo</Button>
+                            </Link>
                         </div>
                     </div>
                     <div className="heroImage">
@@ -92,8 +92,8 @@ export default function Home() {
                     </div>
                     <div className="igboContent">
                         <h1>About The Author</h1>
-                        <p>I’m Nneka Agu, a mother, teacher, trainer. I am passionate about impacting young mind’s through trainings (growing up great series), teaching ( Igbo online classes). <br /><br /> 
-Join me as we explore this journey together</p>
+                        <p>I’m Nneka Agu, a mother, teacher, trainer. I am passionate about impacting young mind’s through trainings (growing up great series), teaching ( Igbo online classes). <br /><br />
+                            Join me as we explore this journey together</p>
                         <Link to="/u/pricing">
                             <Button>Get a tutor</Button>
                         </Link>
@@ -138,8 +138,8 @@ Join me as we explore this journey together</p>
                         <h1>Learn with
                             our Community</h1>
                         <p>Kids love fun and that is where we come in, with various amazing topics for your kids </p>
-                        <Link to="">
-                        <Button>Join Us</Button>
+                        <Link to="https://www.instagram.com/learnigboonline?igsh=MWkwNWU3eTNkY2c4dA==">
+                            <Button>Join Us</Button>
                         </Link>
                     </div>
                 </div>

@@ -47,7 +47,7 @@ export default function Lesson() {
                 <div className="trialBox">
                     <div className="trialBox-mail">
                         <h1>Unlock the level</h1>
-                        <p>Level is locke to access the level upgrade your plan</p>
+                        <p>Level is locked to access the level upgrade your plan</p>
                         <div className="trialGroup">
                             <Link to={"/u/pricing"}>
                                 <Button>View Pricing</Button>

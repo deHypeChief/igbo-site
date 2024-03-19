@@ -44,11 +44,11 @@ export default function Quiz() {
                 }
             })
             if (correct_ans == questions.length) {
-                if(parseInt(id) > 0){
+                if (parseInt(id) > 0) {
                     postUser("/user/exp", { exp: test.xp }, userSigned().token).then(() => {
                         setPassed(true)
                     })
-                }else{
+                } else {
                     setPassed(true)
                 }
             } else {
@@ -74,11 +74,11 @@ export default function Quiz() {
 
                                 {
                                     items.image != "" || items.image != "-" ? (
+                                        <></>
+                                    ) : (
                                         <div className="imageSectionQuiz">
                                             <img src={items.imageUrl} alt="quizImage" />
                                         </div>
-                                    ) : (
-                                        <></>
                                     )
                                 }
                                 <div className="quizOtherInfo">
@@ -109,7 +109,7 @@ export default function Quiz() {
                 }
 
             </section>
-        </ClientLayout>
+        </ClientLayout >
     )
 }
 
