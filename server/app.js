@@ -6,29 +6,43 @@ import userRoute from './db/routes/userRoute.js';
 import lessonRoute from './db/routes/lessonRoute.js';
 import testRoute from './db/routes/testRoute.js';
 import cors from 'cors';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 connectToMongoDB();
 
 const app = express();
 const PORT = process.env.PORT || 3600;
 
-app.use(cors({
-  origin: process.env.NODE_ENV == "dev" ? 'http://localhost:5173':'https://igbo-learning.vercel.app',
-}));
+// app.use(cors({
+//   origin: process.env.NODE_ENV == "dev" ? 'http://localhost:5173' : 'https://igbo-learning.vercel.app',
+// }));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
 
-// routes
-app.get('/', (req, res) => {
-  res.send('Server is up and running');
-});
+// // routes
+// app.get('/', (req, res) => {
+//   res.send('Server is up and running');
+// });
+app.use(express.static(path.join(__dirname, 'dist')));
 
 // main Routes
 app.use('/api/admin', adminRoute);
 app.use('/api/user', userRoute);
 app.use('/api/lesson', lessonRoute);
 app.use('/api/test', testRoute);
+
+
+app.get('*', (req, res) => {
+  res.sendFile(path.resolve(__dirname, 'dist', 'index.html'));
+});
+
+
+
 
 app.use((err, req, res, next) => {
   console.error(err.stack);

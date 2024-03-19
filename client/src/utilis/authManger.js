@@ -2,7 +2,8 @@ import axios from "axios";
 // https://igbo-site.vercel.app
 
 
-const urlOrigin = window.location.origin
+const isDev = true
+const urlOrigin = isDev ? "http://localhost:3031" : "http://learnigboonline.com/"
 
 const API_BASE_URL = urlOrigin + '/api'; // Replace this with your API base URL 
 
