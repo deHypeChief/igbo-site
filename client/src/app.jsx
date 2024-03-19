@@ -1,6 +1,6 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "./pages/home";
-import { ChangePassword, ForgotPassword, SignIn, SignUp } from "./pages/auth";
+import { SignIn, SignUp } from "./pages/auth";
 import TeacherPopUp from "./pages/teacher";
 import StudentDashboard from "./pages/student/dashboard";
 import Topics from "./pages/student/topics";

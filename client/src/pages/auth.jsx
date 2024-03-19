@@ -2,7 +2,7 @@ import { Button } from "../components/button/button"
 import '../assets/styles/auth.css'
 import { Link, useNavigate } from "react-router-dom"
 import { useState } from "react"
-import Navbar from "../components/navbar/navbar"
+// import Navbar from "../components/navbar/navbar
 import { ClientLayout } from "../components/layout/layout"
 
 import { authUser, createUser } from "../utilis/authManger"
@@ -132,7 +132,7 @@ export function SignUp() {
                                 placeholder='Password' required />
 
                             <p className='authSecP'>Already have an account <Link to={'/signin'}>Sign In</Link></p>
-                            <Button>{loading ? "loading ..." : "Send Link"}</Button>
+                            <Button>{loading ? "loading ..." : "Sign Up"}</Button>
                         </form>
                     </div>
                 )}
@@ -144,87 +144,87 @@ export function SignUp() {
 
 
 
-export function ForgotPassword() {
-    const [formData, setFormData] = useState({
-        email: '',
-    });
-    const [loading, setLoading] = useState(false)
+// export function ForgotPassword() {
+//     const [formData, setFormData] = useState({
+//         email: '',
+//     });
+//     const [loading, setLoading] = useState(false)
 
 
-    const handleInputChange = (event) => {
-        const { name, value } = event.target;
-        setFormData({
-            ...formData,
-            [name]: value
-        });
-    };
-    return (
-        <ClientLayout>
-            <section className="auth">
-                <div className="authSignBox signIn">
-                    <form className="authIn" action='submit'>
-                        <h1>Change Your Password</h1>
-                        <p>Enter your email related to your account</p>
+//     const handleInputChange = (event) => {
+//         const { name, value } = event.target;
+//         setFormData({
+//             ...formData,
+//             [name]: value
+//         });
+//     };
+//     return (
+//         <ClientLayout>
+//             <section className="auth">
+//                 <div className="authSignBox signIn">
+//                     <form className="authIn" action='submit'>
+//                         <h1>Change Your Password</h1>
+//                         <p>Enter your email related to your account</p>
 
-                        <input type="text" placeholder='Email Address'
-                            name="email"
-                            required
-                            value={formData.email}
-                            onChange={handleInputChange}
-                        />
-                        <Button>{loading ? "loading ..." : "Change Password"}</Button>
-                    </form>
-                </div>
-            </section>
-        </ClientLayout>
-    )
-}
-
-
-export function ChangePassword() {
-    const [formData, setFormData] = useState({
-        password: '',
-        confirmPassword: "",
-    });
+//                         <input type="text" placeholder='Email Address'
+//                             name="email"
+//                             required
+//                             value={formData.email}
+//                             onChange={handleInputChange}
+//                         />
+//                         <Button>{loading ? "loading ..." : "Change Password"}</Button>
+//                     </form>
+//                 </div>
+//             </section>
+//         </ClientLayout>
+//     )
+// }
 
 
-    const [loading, setLoading] = useState(false)
+// export function ChangePassword() {
+//     const [formData, setFormData] = useState({
+//         password: '',
+//         confirmPassword: "",
+//     });
 
 
-    const handleInputChange = (event) => {
-        const { name, value } = event.target;
-        setFormData({
-            ...formData,
-            [name]: value
-        });
-    };
-    return (
-        <ClientLayout>
-            <section className="auth">
-                <div className="authSignBox signIn">
-                    <form className="authIn" action='submit'>
-                        <h1>Change Your Password</h1>
-                        <p>Enter your email related to your account</p>
+//     const [loading, setLoading] = useState(false)
 
-                        <input type="text" placeholder='Password'
-                            name="password"
-                            required
-                            value={formData.password}
-                            onChange={handleInputChange}
-                        />
-                        <input type="text" placeholder='Confirm Password'
-                            name="confirmPassword"
-                            required
-                            value={formData.confirmPassword}
-                            onChange={handleInputChange}
-                        />
-                        <Button>{loading ? "loading ..." : "Change Password"}</Button>
-                    </form>
-                </div>
-            </section>
-        </ClientLayout>
-    )
-}
+
+//     const handleInputChange = (event) => {
+//         const { name, value } = event.target;
+//         setFormData({
+//             ...formData,
+//             [name]: value
+//         });
+//     };
+//     return (
+//         <ClientLayout>
+//             <section className="auth">
+//                 <div className="authSignBox signIn">
+//                     <form className="authIn" action='submit'>
+//                         <h1>Change Your Password</h1>
+//                         <p>Enter your email related to your account</p>
+
+//                         <input type="text" placeholder='Password'
+//                             name="password"
+//                             required
+//                             value={formData.password}
+//                             onChange={handleInputChange}
+//                         />
+//                         <input type="text" placeholder='Confirm Password'
+//                             name="confirmPassword"
+//                             required
+//                             value={formData.confirmPassword}
+//                             onChange={handleInputChange}
+//                         />
+//                         <Button>{loading ? "loading ..." : "Change Password"}</Button>
+//                     </form>
+//                 </div>
+//             </section>
+//         </ClientLayout>
+//     )
+// }
 
 
 function AccountCreated() {

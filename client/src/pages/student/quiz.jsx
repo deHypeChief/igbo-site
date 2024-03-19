@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import '../../assets/styles/quiz.css'
 import { useEffect, useState } from "react"
 import { Button } from "../../components/button/button"
