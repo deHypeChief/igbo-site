@@ -3,13 +3,13 @@ import axios from "axios";
 
 
 const isDev = false
-const urlOrigin = isDev ? "http://localhost:3031" : "https://igbo-learning.vercel.app"
+const urlOrigin = isDev ? "http://localhost:3031" : "https://igbo-site.vercel.app/"
 
 const API_BASE_URL = urlOrigin + '/api'; // Replace this with your API base URL 
 
 const api = axios.create({
     baseURL: API_BASE_URL,
-    orign: urlOrigin
+    orign: window.location.origin
 });
 
 function headers(token) {
