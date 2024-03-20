@@ -31,7 +31,7 @@ export default function Pricing() {
                     badgeText: "Zoom"
                 }
             ],
-            pricing: 38500,
+            pricing: 38,
             monthly: false
         },
         {
@@ -48,7 +48,7 @@ export default function Pricing() {
                     badgeText: "As preferred"
                 }
             ],
-            pricing: 100000,
+            pricing: 100,
             monthly: false
         },
         {
@@ -65,7 +65,7 @@ export default function Pricing() {
                     badgeText: "Online"
                 }
             ],
-            pricing: 12500,
+            pricing: 12,
             monthly: true
         }
     ]
@@ -110,7 +110,7 @@ export default function Pricing() {
                                                 </div>
                                                 <div className="p-price">
                                                     <h3 className="price">
-                                                        ₦{item.pricing}
+                                                        ${item.pricing}
                                                     </h3>
                                                     <button onClick={() => {
                                                         handlePricing(item)
@@ -142,14 +142,14 @@ export default function Pricing() {
                                     <div className="p-badges"></div>
                                     <div className="p-price">
                                         <h3 className="price">
-                                            ₦1999
+                                            $2
                                         </h3>
                                         <button onClick={() => {
                                             handlePricing({
                                                 title: "Igbo E-books",
                                                 pargh: `They are written in simple to read,
                                                 everyday language`,
-                                                pricing: 1999,
+                                                pricing: 2,
                                                 monthly: false
                                             })
                                         }}>
@@ -245,7 +245,7 @@ function MakePayment(props) {
         public_key: f_KEY,
         tx_ref: Date.now(),
         amount: payObject?.pricing,
-        currency: 'NGN',
+        currency: 'USD',
         payment_options: 'card,mobilemoney,ussd',
         customer: {
             email: formData.email,
@@ -261,7 +261,7 @@ function MakePayment(props) {
         public_key: f_KEY,
         tx_ref: Date.now(),
         amount: payObject?.pricing,
-        currency: 'NGN',
+        currency: 'USD',
         payment_options:"card",
         payment_plan: "63659",
         customer: {

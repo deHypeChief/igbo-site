@@ -193,6 +193,10 @@ gap: 10px;
 .payTotal h1{
     font-size: 3rem;
 }
+.p-book{
+    display:flex;
+    gap: 10px;
+}
 
 @media screen and (max-width: 600px){
     .priceListWrap {
