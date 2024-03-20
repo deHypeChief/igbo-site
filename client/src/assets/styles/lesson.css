@@ -41,7 +41,7 @@
 
 .lessonActionButton{
     display: flex;
-    justify-content: right;
+    justify-content: space-between;
 }
 .lessonHuman img{
     width: 350px;
@@ -54,7 +54,9 @@
 .lessonTextArea .h1note{
     font-size: 2rem;
 }
-
+.h1note, .h2note, .pnote{
+    padding: 5px 0;
+}
 
 .lessonTextSection {
     height: 85%;
@@ -73,7 +75,7 @@
     }
     .lessonBoxArea {
         width: 100%;
-        height: 570px;
+        height:700px;
         padding: 30px 15px;
     }
     .lessonInfoArea {
@@ -83,7 +85,7 @@
         width: 230px;
     }
     .lessonTextSection {
-        height: 75%;
+        height: 60%;
     }
     .lessonHuman {
         position: absolute;

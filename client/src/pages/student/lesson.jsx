@@ -18,6 +18,7 @@ export default function Lesson() {
     const [noteData, setNoteData] = useState([])
     const [loading, setLoading] = useState(false)
     const [plan, setPlan] = useState(null)
+    const [data, setData] = useState()
 
     let obj
 
@@ -30,12 +31,13 @@ export default function Lesson() {
             getUser("/user/me", userSigned().token).then((data) => {
                 console.log(data);
                 setPlan(data.data.data.userPayment)
+                setData(data.data.data)
             })
 
 
             postUserData('/lesson/oneLesson', { level: id }).then((data) => {
                 eval('obj = ' + data.data.data.note)
-                setNoteData(SplitLesson(obj, 8))
+                setNoteData(SplitLesson(obj, 2))
                 setLessonData(data.data.data)
                 document.getElementById("dasboardTitle").innerText = data.data.data.title
             }).catch(error => {
@@ -76,10 +78,15 @@ export default function Lesson() {
     ]
     function updateExp() {
         setLoading(true)
-        postUser("/user/exp", { exp: 200 }, userSigned().token).then(() => {
-            setLoading(false)
+        if(parseInt(id) > data.level){
+            postUser("/user/exp", { exp: 200 }, userSigned().token).then(() => {
+                setLoading(false)
+                navTo('/u/topics')
+            })
+        }else
+        {       
             navTo('/u/topics')
-        })
+        }
     }
 
     return (
@@ -106,6 +113,18 @@ export default function Lesson() {
                                             </div>
                                         </div>
                                         <div className="lessonActionButton">
+                                            {
+                                                index == 0 ? <></> : (
+                                                    <Button action={
+                                                        ()=>{
+                                                            console.log(`note${parseInt(index) - 1}`);
+                                                            document.getElementById(`note${parseInt(index) - 1}`).style.display = "block"
+                                                        }
+                                                    }>
+                                                        Back
+                                                    </Button>
+                                                )
+                                            }
 
                                             <Button action={() => {
                                                 if (index < noteData.length - 1) {

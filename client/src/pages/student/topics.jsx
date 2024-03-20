@@ -23,7 +23,7 @@ export default function Topics() {
 
     }, [])
 
-    const objective =  [
+    const objective = [
         (
             <>
                 <ul>
@@ -122,7 +122,9 @@ export default function Topics() {
                                                     </p>
                                                 </div>
                                                 <br />
-                                                <Button>Level Complete</Button>
+                                                <Link to={"/u/lesson/" + item.level}>
+                                                    <Button>Lesson Done</Button>
+                                                </Link>
                                             </div>
                                         )
                                     }

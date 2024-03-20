@@ -111,8 +111,8 @@ export default function StudentDashboard() {
                                                 data.level > 4 ? "Intermediate " : (
                                                     data.level > 8 ? "Advanced  " : ""
                                                 )
+                                                
                                             )
-
                                         }
                                     </h3>
                                     <p className='lessPargh'>Rank</p>
@@ -121,43 +121,7 @@ export default function StudentDashboard() {
                         </div>
                     </div>
                 </div>
-                {/* <div className="stats">
-                    <h2>Your Stats</h2>
-                    <div className="lessonsStat">
-                        <div className="lessBox">
-                            <h3 className="lessText">
-                                {data.level}
-                            </h3>
-                            <p>Current <br /> Level</p>
-                        </div>
-                        <div className="lessBox">
-                            <h3 className="lessText">
-                                {data.exp}
-                            </h3>
-                            <p>Exp <br /> Point</p>
-                        </div>
-                        <div className="lessBox">
-                            <h3 className="lessText">
-                                {
-                                    data.level > 0 ? ("Beginner ") : (
-                                        data.level > 4 ? "Intermediate " : (
-                                            data.level > 8 ? "Advanced  " : ""
-                                        )
-                                    )
-
-                                }
-                            </h3>
-                            <p>Current <br /> Rank</p>
-                        </div>
-                        <div className="lessBox">
-                            <h3 className="lessText">
-                                {parseInt(lesson.length) - parseInt(data.level) < 0 ? 0 : parseInt(lesson.length) - parseInt(data.level)}
-                            </h3>
-                            <p>Lessons <br /> Left</p>
-                        </div>
-                    </div>
-
-                </div> */}
+                
                 <div className="lesson">
                     <h2>Current Lesson</h2>
                     {
