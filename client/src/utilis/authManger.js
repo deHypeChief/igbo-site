@@ -3,7 +3,7 @@ import axios from "axios";
 
 
 const isDev = false
-const urlOrigin = isDev ? "http://localhost:3031" : "https://igbo-learning.vercel.app/"
+const urlOrigin = isDev ? "http://localhost:3031" : "https://igbo-learning.vercel.app"
 
 const API_BASE_URL = urlOrigin + '/api'; // Replace this with your API base URL 
 
