@@ -6,30 +6,58 @@
     padding-top: 25vh;
     padding-bottom: 100px;
 }
-.lessons h2{
-    font-size: 1.6rem;
-    font-family: mainFont;
-    opacity: 0.5;
-    color: white;
-}
-.lessons h1{
-    color: white;
-}
 
-.lessonBox{
-    background: white;
-    height: fit-content;
-    padding: 30px 40px;
-    width: 100%;
-    border-radius: 20px;
-    margin-top: 60px;
-    font-size: 25px;
-    font-weight: 900;
-    margin-bottom: 50px;
-    color: black;
-}
 .lessonBox .h1head, .lessonBox .h2head, .lessonBox .phead{
     color: black;
+}
+
+.lessonBoxArea{
+    background: white;
+    padding: 30px 40px;
+    display: flex;
+    /* flex-direction: row-reverse; */
+    overflow: hidden;
+    border-radius: 20px;
+    height: 450px;
+    width:750px;
+    position: relative;  
+}
+.lessonHuman{
+    position: absolute;
+    left: -20px;
+    bottom: -10px;
+}
+.lessonNoteWrap{
+    height: 100%;
+}
+.lessonInfoArea{
+    padding-left: 260px;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    display: block;
+    overflow-y: hidden;
+}
+
+.lessonActionButton{
+    display: flex;
+    justify-content: right;
+}
+.lessonHuman img{
+    width: 350px;
+}
+
+
+.lessonTextArea{
+    height: 100%;
+}
+.lessonTextArea .h1note{
+    font-size: 2rem;
+}
+
+
+.lessonTextSection {
+    height: 85%;
 }
 
 @media screen and (max-width: 600px) {
@@ -42,5 +70,25 @@
         border-radius: 20px;
         margin-top: 30px;
         font-size: 20px;
+    }
+    .lessonBoxArea {
+        width: 100%;
+        height: 570px;
+        padding: 30px 15px;
+    }
+    .lessonInfoArea {
+        padding-left: 0px;
+    }
+    .lessonHuman img {
+        width: 230px;
+    }
+    .lessonTextSection {
+        height: 75%;
+    }
+    .lessonHuman {
+        position: absolute;
+        left: -48px;
+        bottom: -6px;
+        pointer-events: none;
     }
 }

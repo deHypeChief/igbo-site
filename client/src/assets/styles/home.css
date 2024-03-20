@@ -24,7 +24,7 @@
 
 .heroContent {
     padding-top: 30vh;
-    padding-left: 12vw;
+    padding-left: 8vw;
 }
 
 .heroContent p {
@@ -259,10 +259,15 @@ footer {
 .vTitles:nth-child(1) {
     margin-top: -40px;
 }
+.heroSocialLinks{
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
 
 @media screen and (max-width: 600px) {
     .heroLink {
-        /* flex-direction: column; */
+        flex-direction: column;
         margin-top: 20px;
     }
     .igboContent {
@@ -334,7 +339,7 @@ footer {
     .aboutIgbo {
         min-height: 100vh;
         margin-bottom: 150px;
-        margin-top: 100px;
+        margin-top: 247px;
     }
 
     .igboImg {
@@ -356,7 +361,7 @@ footer {
     }
 
     .heroImage img {
-        transform: translateY(-48px) translateX(280px);
+        transform: translateY(48px) translateX(280px);
     }
 
     .heroImage img {

@@ -5,6 +5,10 @@ import { useEffect, useState } from "react";
 import { getUser, postUser, postUserData, userSigned } from "../../utilis/authManger";
 import { Button } from "../../components/button/button";
 
+
+import lessonHuman1 from '../../assets/images/a_cartoon_Igbo__f22b054e-e1b7-4124-bc0b-6e0c09990fdf-removebg-preview.png'
+import lessonHuman2 from '../../assets/images/a_happy_little__596c32f0-ff9d-445b-8399-011f4cf18db3-removebg-preview.png'
+
 export default function Lesson() {
     const [lessonData, setLessonData] = useState({
         level: "loading lessons",
@@ -31,8 +35,7 @@ export default function Lesson() {
 
             postUserData('/lesson/oneLesson', { level: id }).then((data) => {
                 eval('obj = ' + data.data.data.note)
-                setNoteData(obj)
-
+                setNoteData(SplitLesson(obj, 2))
                 setLessonData(data.data.data)
                 document.getElementById("dasboardTitle").innerText = data.data.data.title
             }).catch(error => {
@@ -41,7 +44,15 @@ export default function Lesson() {
         }
     }, [])
 
-    function TrailPropmt(){
+    function SplitLesson(data, chunkSize) {
+        const chunks = [];
+        for (let i = 0; i < data.length; i += chunkSize) {
+            chunks.push(data.slice(i, i + chunkSize));
+        }
+        return chunks;
+    }
+
+    function TrailPropmt() {
         return (
             <>
                 <div className="trialBox">
@@ -59,60 +70,72 @@ export default function Lesson() {
         )
     }
 
-
-    function updateExp(){
+    const radImage = [
+        lessonHuman1,
+        lessonHuman2
+    ]
+    function updateExp() {
         setLoading(true)
-        postUser("/user/exp", { exp: 200}, userSigned().token).then(() => {
+        postUser("/user/exp", { exp: 200 }, userSigned().token).then(() => {
             setLoading(false)
             navTo('/u/topics')
         })
     }
 
-
     return (
         <ClientLayout>
-            {/* {plan === "Trial" || plan === "Trial plan"  && parseInt(lessonData.level) >= 3 ? <TrailPropmt/> : <></> } */}
+            {plan === "Trial" && parseInt(lessonData.level) >= 3 ? <TrailPropmt /> : <></>}
             <section className="lessons">
-                <h2>Level {lessonData.level}</h2>
-                <h1>
-                    {lessonData.title}
-                </h1>
-                <div className="lessonBox">
-                    {
-                        noteData?.map((item, index) => {
-                            if (item.type === "h1") {
+
+                <div className="lessonBoxArea">
+                    <div className="lessonInfoArea">
+
+                        {
+                            noteData?.map((item, index) => {
                                 return (
-                                    <h1 className="h1head" key={"a" + index}>{item.content}</h1>
+                                    <div className='lessonNoteWrap' key={"note" + index} id={"note" + index} >
+                                        <div className="lessonTextSection">
+                                            <div className="lessonTextArea">
+                                                {
+                                                    item?.map((text, textIndex) => {
+                                                        return (
+                                                            <text.type className={text.type + "note"} key={"text" + textIndex}>{text.content}</text.type>
+                                                        )
+                                                    })
+                                                }
+                                            </div>
+                                        </div>
+                                        <div className="lessonActionButton">
+
+                                            <Button action={() => {
+                                                if (index < noteData.length - 1) {
+                                                    document.getElementById("note" + index).style.display = "none"
+                                                } else {
+                                                    if (id === "4" || id === "8" || id === "12") {
+                                                        navTo("/u/quiz/" + id)
+                                                    } else {
+                                                        updateExp()
+                                                    }
+                                                }
+                                            }}>
+                                                {loading ? "loading..." : (
+                                                    index < noteData.length - 1 ? "Next" : (
+                                                        id === "4" || id === "8" || id === "12" ? "Take Quiz" : "Next Lesson"
+                                                    )
+                                                )}
+                                            </Button>
+
+                                        </div>
+                                    </div>
                                 )
-                            }
-                            if (item.type === "h2") {
-                                return (
-                                    <h2 className="h2head" key={"a" + index}>{item.content}</h2>
-                                )
-                            }
-                            if (item.type === "p") {
-                                return (
-                                    <p className="phead" key={"a" + index}>{item.content}</p>
-                                )
-                            }
-                        })
-                    }
+                            })
+                        }
+
+                    </div>
+                    <div className="lessonHuman">
+                        <img src={radImage[Math.floor(Math.random() * radImage.length)]} alt="" />
+                    </div>
                 </div>
-
-
-                {
-                    lessonData.level === 4 || lessonData.level === 8 || lessonData.level === 12 ? (
-                        <Link to={'/u/quiz/' + parseInt(lessonData.level)}>
-                            <Button>Start Quiz</Button>
-                        </Link>
-                    ) : (
-                            loading ? (
-                                <Button>Loading</Button>
-                            ): (
-                                <Button action={updateExp}>Next Lesson</Button>
-                            )
-                    )
-                }
 
             </section>
         </ClientLayout>

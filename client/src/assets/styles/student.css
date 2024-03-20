@@ -1,16 +1,17 @@
-.dashboardStu{
+.dashboardStu {
     display: grid;
-    grid-template-areas: 
-    "aaa aaa aaa bbb"
-    "ddd ddd ddd bbb"
-    "ccc ccc ccc bbb";
+    grid-template-areas:
+        "aaa aaa aaa bbb"
+        "ddd ddd ddd bbb"
+        "ccc ccc ccc bbb";
     padding: var(--spacing-side);
     gap: 15px;
     margin: 25vh 0 10vh;
 }
-.profile{
+
+.profile {
     height: 220px;
-    width:800px;
+    width: 800px;
     background: var(--baseColor);
     grid-area: aaa;
     border-radius: 30px;
@@ -19,7 +20,8 @@
     justify-content: space-between;
     padding: 0 50px 0;
 }
-.stats{
+
+.stats {
     height: 100%;
     width: 100%;
     background: var(--baseColor);
@@ -28,7 +30,8 @@
     padding: 50px;
     width: 100%;
 }
-.lesson{
+
+.lesson {
     height: 100%;
     width: 100%;
     background: var(--baseColor);
@@ -36,7 +39,8 @@
     border-radius: 30px;
     padding: 50px;
 }
-.getTutor{
+
+.getTutor {
     height: 100%;
     width: 350px;
     background: var(--baseColor);
@@ -46,99 +50,114 @@
 }
 
 
-.stats h2, .lesson h2{
+.stats h2,
+.lesson h2 {
     padding-bottom: 10px;
     font-size: 1.3rem;
     font-weight: 900;
 }
-.lessonsStat{
+
+.lessonsStat {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
     gap: 20px;
 }
-.lessBox{
+
+.lessBox {
     text-align: center;
 }
-.lessBox h3{
+
+.lessBox h3 {
     font-family: mainFont;
     font-size: 2rem;
 }
-.lessBox p{
+
+.lessBox p {
     font-weight: 900;
     font-size: 1.1rem;
 }
 
 
-.getTutor h1{
+.getTutor h1 {
     font-size: 2.4rem;
 }
-.getTutor p{
+
+.getTutor p {
     font-size: 1.1rem;
     font-weight: 900;
     padding: 20px 0 30px;
 }
 
 
-.profileWrap{
+.profileWrap {
     display: flex;
     align-items: center;
     gap: 30px;
 }
-.profileBox{
+
+.profileBox {
     height: 120px;
     width: 120px;
     background: var(--primaryColor);
     border-radius: 1001px;
 }
-.profileInfo h1{
+
+.profileInfo h1 {
     font-size: 2rem;
 }
-.profileInfo p{
+
+.profileInfo p {
     font-weight: 900;
     font-size: 1.2rem;
 }
 
 
-.nextLessWrap h1{
+.nextLessWrap h1 {
     font-size: 2rem;
 }
-.nextLessWrap p{
+
+.nextLessWrap p {
     font-size: 1.1rem;
     font-weight: 900;
     padding: 20px 0 30px;
 }
-.profileBox{
+
+.profileBox {
     overflow: hidden
 }
-.imggetTutor{
+
+.imggetTutor {
     height: 400px;
     width: 100%;
     position: relative;
 }
-.getTutor{
+
+.getTutor {
     overflow: hidden;
 }
-.imggetTutor img{
+
+.imggetTutor img {
     position: absolute;
     width: 500px;
     left: -80px;
 }
 
-.dashInfo{
+.dashInfo {
     background: var(--primaryColor);
     width: fit-content;
     border-radius: 100px;
     margin-top: 10px;
 }
-.dashInfo p{
+
+.dashInfo p {
     color: white;
     font-weight: 600;
-    font-size:.9rem;
+    font-size: .9rem;
     padding: 5px 10px;
 }
 
-.trialBox{
+.trialBox {
     height: 100vh;
     position: fixed;
     width: 100%;
@@ -151,7 +170,8 @@
     justify-content: center;
     align-items: center;
 }
-.trialBox-mail{
+
+.trialBox-mail {
     background: white;
     width: fit-content;
     display: flex;
@@ -161,31 +181,37 @@
     padding: 60px 40px;
     border-radius: 20px;
 }
-.trialBox h1{
+
+.trialBox h1 {
     font-size: 3rem;
 }
-.trialBox-mail p{
+
+.trialBox-mail p {
     text-align: center;
 }
-.trialGroup{
+
+.trialGroup {
     display: flex;
     gap: 15px;
 }
 
 
 @media screen and (max-width: 600px) {
-    
-    .dashboardStu{
+
+    .dashboardStu {
         display: flex;
         flex-direction: column;
     }
+
     .getTutor {
         width: initial;
     }
+
     .profileBox {
         height: 50px;
         width: 50px;
     }
+
     .profileWrap {
         display: flex;
         flex-direction: column;
@@ -193,16 +219,34 @@
 
         gap: 10px;
     }
+
     .profile {
         width: initial;
     }
+
     .profileInfo h1 {
         font-size: 1.5rem;
     }
-    .getTutor, .profile, .stats, .lesson{
-        padding : 40px 30px;
+
+    .getTutor,
+    .profile,
+    .stats,
+    .lesson {
+        padding: 40px 30px;
     }
-    .profile{
+
+    .profile {
         padding: 40px 20px;
+    }
+
+    .trialGroup {
+        flex-direction: column;
+    }
+    .trialBox-mail {
+        border-radius: 0px;
+        margin-top: 80px 
+    }
+    .trialBox h1 {
+        text-align: center;
     }
 }

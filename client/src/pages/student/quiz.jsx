@@ -1,13 +1,13 @@
 /* eslint-disable react/prop-types */
 import '../../assets/styles/quiz.css'
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { Button } from "../../components/button/button"
 
 import successImg from "../../assets/images/9486910-removebg-preview 1.png"
 import failImg from "../../assets/images/9479419-removebg-preview 1.png"
-import { Link, useParams } from "react-router-dom"
+import { Link, useNavigate, useParams } from "react-router-dom"
 import { ClientLayout } from "../../components/layout/layout"
-import { postUser, postUserData, userSigned } from '../../utilis/authManger'
+import { getUser, postUser, postUserData, userSigned } from '../../utilis/authManger'
 
 import old from "../../assets/images/old_igbo_man_da7737e6-18aa-4cbb-af3f-7f4ac8120bbd-removebg-preview.png"
 import successImg1 from "../../assets/images/a_cartoon_Igbo__f22b054e-e1b7-4124-bc0b-6e0c09990fdf-removebg-preview.png"
@@ -16,24 +16,35 @@ import successImg2 from "../../assets/images/a_happy_little__596c32f0-ff9d-445b-
 export default function Quiz() {
     const [passed, setPassed] = useState(null)
     const { id } = useParams()
+    const navTo = useNavigate()
 
     const [questions, setQuestions] = useState([])
     const [test, setTest] = useState([])
+    const moveBar = useRef()
 
     let userAns = []
     let correct_ans = 0
 
     useEffect(() => {
+        getUser("/user/me", userSigned().token).then((data) => {
+            if(data.data.data.level > parseInt(id)){
+                // alert("You have passed this level")
+                navTo("/u")
+            }
+
+        })
+
         postUserData('/test/testLevel', { level: id }).then((data) => {
             setTest(data.data.data)
             setQuestions(JSON.parse(data.data.data.questions))
         })
     }, [])
 
-
-    function GetAns(ans, id) {
+    
+    function GetAns(ans, idTarget) {
         userAns.push(ans)
-        document.getElementById(id).style.display = "none"
+        moveBar.current.style.width = `${(userAns.length / questions.length) * 100}%`
+        document.getElementById(idTarget).style.display = "none"
         // console.log(userAns, document.getElementById(id).id);
         if (userAns.length == questions.length) {
 
@@ -44,7 +55,9 @@ export default function Quiz() {
                 }
             })
             if (correct_ans == questions.length) {
-                if (parseInt(id) > 0) {
+                console.log(id);
+                if (parseInt(id) > 1) {
+                    console.log("bong");
                     postUser("/user/exp", { exp: test.xp }, userSigned().token).then(() => {
                         setPassed(true)
                     })
@@ -65,6 +78,13 @@ export default function Quiz() {
                 passed == false ? <Failed id={id} /> : <></>
             )}
             <section className="quiz">
+                <div className="quizBar">
+                    <div className="quizLength">
+                        <div className="moveBar" ref={moveBar}>
+                            <div className="moveShadow"></div>
+                        </div>
+                    </div>
+                </div>
                 {
                     questions.map((items, indexMain) => {
                         let rads = []

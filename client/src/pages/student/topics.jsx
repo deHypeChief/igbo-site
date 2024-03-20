@@ -12,12 +12,12 @@ export default function Topics() {
 
     useEffect(() => {
         getUser("/user/me", userSigned().token).then((data) => {
-            console.log(data);
+            // console.log(data);
             setUser(data.data.data, userSigned().token)
         })
         document.getElementById("dasboardTitle").innerText = "Topics"
         getUserData('/lesson/').then((data) => {
-            console.log(data.data.data);
+            // console.log(data.data.data);
             setLesson(data.data.data)
         })
 
