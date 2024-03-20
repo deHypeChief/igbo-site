@@ -307,14 +307,6 @@ footer {
         align-items: center;
     }
 
-    .playCard {
-        height: 300px;
-        width: 100vw;
-        margin-left: 0px;
-        clip-path: polygon(0 5%, 100% 0%, 100% 100%, 0 96%);
-        margin-bottom: 50px;
-    }
-
     .footerBottom {
         display: flex;
         flex-direction: column;
@@ -357,6 +349,7 @@ footer {
         padding-top: 295px;
     }
     .playCard img {
+        width: 100%;
         transform: translateX(0px);
     }
 
