@@ -345,7 +345,7 @@ function MakePayment(props) {
 
                         <div className="payTotal">
                             <p>Total</p>
-                            <h1>₦{payObject?.pricing}</h1>
+                            <h1>${payObject?.pricing}</h1>
                         </div>
                     </div>
                 </div>
