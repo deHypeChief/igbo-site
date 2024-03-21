@@ -349,7 +349,7 @@ footer {
         padding-top: 295px;
     }
     .playCard img {
-        width: 100%;
+        width: initial;
         transform: translateX(0px);
     }
 
