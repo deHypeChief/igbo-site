@@ -74,10 +74,6 @@ export default function Navbar() {
         {
             title: "Topics",
             link: "/u/topics"
-        },
-        {
-            title: "Contact",
-            link: "/"
         }
     ]
     function handleDropdown() {
