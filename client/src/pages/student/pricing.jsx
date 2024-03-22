@@ -240,7 +240,7 @@ function MakePayment(props) {
         }
     }, [])
 
-    const f_KEY = 'FLWPUBK_TEST-7d71b3dd5e9a92d9cbd29ddb66a61685-X'
+    const f_KEY = 'FLWPUBK-fa49406e32189f8acb64f52a17ad78ca-X'
     const config = {
         public_key: f_KEY,
         tx_ref: Date.now(),
@@ -345,7 +345,7 @@ function MakePayment(props) {
 
                         <div className="payTotal">
                             <p>Total</p>
-                            <h1>₦{payObject?.pricing}</h1>
+                            <h1>${payObject?.pricing}</h1>
                         </div>
                     </div>
                 </div>
