@@ -78,7 +78,7 @@ export default function Lesson() {
     ]
     function updateExp() {
         setLoading(true)
-        if(parseInt(id) > data.level){
+        if(parseInt(id) == data.level){
             postUser("/user/exp", { exp: 200 }, userSigned().token).then(() => {
                 setLoading(false)
                 navTo('/u/topics')
