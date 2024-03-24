@@ -350,8 +350,10 @@ function Lesson(props) {
     const [isUpdate, setUpdate] = useState(false)
     const [loading, setLoading] = useState(false)
     const { lessonPayload } = props
+
     function closeForm() {
-        clearEditor()
+        alert("Reloading page to apply changes")
+        window.location.reload()
     }
     function openExeEditor() {
         document.getElementById("lessonEditor").style.display = "flex"
@@ -426,8 +428,8 @@ function Lesson(props) {
         }, adminSigned().token).then((data) => {
             setLoading(false)
             alert("Lesson Uplaoded")
-            clearEditor()
-            console.log(data);
+            alert("Reloading page to apply changes")
+        window.location.reload()
         }).catch((error) => {
             alert(error.response.data.message)
         })
@@ -492,8 +494,8 @@ function Lesson(props) {
         }, adminSigned().token).then((data) => {
             setLoading(false)
             alert("Lesson Updated")
-            clearEditor()
-            console.log(data);
+            alert("Reloading page to apply changes")
+            window.location.reload()
         }).catch((error) => {
             alert(error.response.data.message)
         })
@@ -610,6 +612,8 @@ function Lesson(props) {
         </>
     )
 }
+
+
 function Excerises(props) {
     const { exePayload } = props
     const [quizCount, setQuizCount] = useState(2)
@@ -690,6 +694,8 @@ function Excerises(props) {
                 console.log(data);
                 alert("Exersice Created")
                 clearEditor()
+                alert("Reloading page to apply changes")
+                window.location.reload()
             }).catch((error) => {
                 alert(error.response.data.message);
             })
