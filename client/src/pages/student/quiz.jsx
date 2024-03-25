@@ -93,7 +93,7 @@ export default function Quiz() {
                             <div key={"quz" + indexMain} id={"quz" + indexMain} className="quizInfo">
 
                                 {
-                                    items.image == "" || items.image == "-" ? (
+                                    items.imageUrl == "" || items.imageUrl == "-" ? (
                                         <></>
                                     ) : (
                                         <div className="imageSectionQuiz">
