@@ -45,14 +45,14 @@ export default function Quiz() {
         userAns.push(ans)
         moveBar.current.style.width = `${(userAns.length / questions.length) * 100}%`
         document.getElementById(idTarget).style.display = "none"
-        // console.log(userAns, document.getElementById(id).id);
-        if (userAns.length == questions.length) {
 
+        if (userAns.length == questions.length) {
             console.log("done");
             questions.forEach((data, index) => {
                 if (data.correctAnswer == userAns[index]) {
                     correct_ans += 1
                 }
+                console.log(data.correctAnswer, userAns[index], correct_ans);
             })
             if (correct_ans == questions.length) {
                 console.log(id);
@@ -92,7 +92,7 @@ export default function Quiz() {
                         return (
                             <div key={"quz" + indexMain} id={"quz" + indexMain} className="quizInfo">
 
-                                {
+                                {  
                                     items.imageUrl == "" || items.imageUrl == "-" ? (
                                         <></>
                                     ) : (
@@ -146,7 +146,7 @@ function Success(props) {
                 <div className="qBoxWrap">
                     <img src={successImg} alt="" />
                     {
-                        id === 1 ? (
+                        parseInt(id) === 1 ? (
                             <>
                                 <h1>Hurray You Won</h1>
                                 <p>Improve your igbo skill by creating an account </p>
@@ -184,7 +184,7 @@ function Failed(props) {
                     <br />
                     <img src={failImg} alt="" />
                     {
-                        id === 1 ? (
+                        parseInt(id) == 1 ? (
                             <>
                                 <h1>You Lost</h1>
                                 <p>Create an account to improve your igbo skills </p>

@@ -1,5 +1,5 @@
 import express from 'express'
-import { authUser, createUser, getMe, getUsers, paymentRecord, updateExp } from '../controllers/userController.js'
+import { authUser, changePassword, createUser, forgotPassword, getMe, getUsers, paymentRecord, updateExp } from '../controllers/userController.js'
 import { protectAdmin, protectUser } from '../middleware/authMiddleware.js'
 const userRoute = express.Router()
 
@@ -15,5 +15,8 @@ userRoute.get('/ad/users',protectAdmin, getUsers)
 
 userRoute.post('/exp', protectUser, updateExp)
 userRoute.get('/me',protectUser, getMe)
+
+userRoute.post('/changePassword', changePassword)
+userRoute.post('/resetPassword', forgotPassword)
 
 export default userRoute

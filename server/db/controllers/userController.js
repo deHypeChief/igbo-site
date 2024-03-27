@@ -1,4 +1,6 @@
+import { SendMail } from '../../utils/email.js'
 import { generateToken } from '../../utils/jwt.js'
+import generateRandomChars from '../../utils/randomChars.js'
 import User from '../models/userModel.js'
 import bcrypt from 'bcryptjs'
 
@@ -112,7 +114,7 @@ export async function updateExp(req, res) {
                     data: data
                 })
             }).catch((error) => {
-                res.status(403).json(
+                res.status(400).json(
                     { message: "error updating exp" }
                 )
             })
@@ -140,67 +142,48 @@ export async function paymentRecord(req, res) {
 }
 
 
-// import nodemailer from 'nodemailer'
 
-// const adminMail = "dev.hype7@gmail.com"
-// const adminPassword = "#justHYPE7"
-// const baseUrl = "http://localhost:5173/"
+export async function changePassword(req, res) {
+    const { newPassword, email } = req.body
 
-// const transporter = nodemailer.createTransport({
-//     service: 'gmail',
-//     auth: {
-//         user: adminMail,
-//         pass: adminPassword
-//     }
-// });
+    if(newPassword && email){
+        const saltRounds = 10
+        const salt = await bcrypt.genSalt(saltRounds)
+        const hashedPassword = await bcrypt.hash(newPassword, salt)
 
-// export async function forgotPassword(req, res) {
-//     const { email } = req.user
+        await User.findOneAndUpdate({ email: email }, {
+            password: hashedPassword
+        }, {
+            new: true
+        }).then(()=>{
+            res.status(200).json({
+                message: "Password Changed"
+            })
+        })
+        .catch(()=>{
+            res.status(400).json({
+                message: "Error changing password"
+            })
+        })
+    }
+}
 
-//     await User.findOne({ email: email })
-//         .then((data) => {
-//             const mailOptions = {
-//                 from: adminMail,
-//                 to: email,
-//                 subject: 'Reset Password',
-//                 text: `Use this link to reset your password link: ${baseUrl}changePassword/${data._id}`
-//             };
+export async function forgotPassword(req, res) {
+    const { email } = req.user
 
-//             // Send email
-//             transporter.sendMail(mailOptions, (error, info) => {
-//                 if (error) {
-//                     console.log('Error:', error);
-//                     res.status(400).json({
-//                         message: "error sending mail",
-//                         error: error
-//                     })
-//                 } else {
-//                     console.log('Email sent:', info.response);
-//                     res.status(200).json({
-//                         message: "Mail sent ",
-//                         data: info.response
-//                     })
-//                 }
-//             });
-//         })
-//         .catch((error) => {
-//             res.status(400).json(
-//                 {
-//                     message: "Mail not found",
-//                     error: error
-//                 }
-//             )
-//         })
-// }
-
-// export async function changePassword(req, res) {
-//     const { id } = req.body
-
-//     await User.findById({ id })
-//         .then((data) => {
-//             res.status(200).json({
-//                 message: "Mail sent ",
-//                 data: info.response
-//             })
-//         })
-// }
+    await User.findOne({ email: email })
+        .then((data) => {
+            SendMail("Reset Your Password", `Use this link to reset your password link: ${baseUrl}changePassword/${generateRandomChars(12)}`)
+            res.status(200).json({
+                message: "Password Reset Link has been sent to your mail"
+            })
+        })
+        .catch((error) => {
+            res.status(400).json(
+                {
+                    message: "Just your email address is required to change your password",
+                    error: error
+                }
+            )
+        })
+}

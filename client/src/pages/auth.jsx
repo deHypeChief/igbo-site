@@ -5,7 +5,7 @@ import { useState } from "react"
 // import Navbar from "../components/navbar/navbar
 import { ClientLayout } from "../components/layout/layout"
 
-import { authUser, createUser } from "../utilis/authManger"
+import { authUser, createUser, postUserData } from "../utilis/authManger"
 
 
 
@@ -60,6 +60,8 @@ export function SignIn() {
                             required
                             value={formData.password}
                             onChange={handleInputChange} />
+
+                    <p>Forgot password</p>
 
                         <p className='authSecP'>Don&apos;t have an account <Link to={'/signup'}>Sign Up</Link></p>
                         
@@ -143,88 +145,68 @@ export function SignUp() {
 
 
 
-
-// export function ForgotPassword() {
-//     const [formData, setFormData] = useState({
-//         email: '',
-//     });
-//     const [loading, setLoading] = useState(false)
-
-
-//     const handleInputChange = (event) => {
-//         const { name, value } = event.target;
-//         setFormData({
-//             ...formData,
-//             [name]: value
-//         });
-//     };
-//     return (
-//         <ClientLayout>
-//             <section className="auth">
-//                 <div className="authSignBox signIn">
-//                     <form className="authIn" action='submit'>
-//                         <h1>Change Your Password</h1>
-//                         <p>Enter your email related to your account</p>
-
-//                         <input type="text" placeholder='Email Address'
-//                             name="email"
-//                             required
-//                             value={formData.email}
-//                             onChange={handleInputChange}
-//                         />
-//                         <Button>{loading ? "loading ..." : "Change Password"}</Button>
-//                     </form>
-//                 </div>
-//             </section>
-//         </ClientLayout>
-//     )
-// }
+export function ChangePassword() {
+    const [formData, setFormData] = useState({
+        password: '',
+        confirmPassword: "",
+    });
 
 
-// export function ChangePassword() {
-//     const [formData, setFormData] = useState({
-//         password: '',
-//         confirmPassword: "",
-//     });
+    const [loading, setLoading] = useState(false)
 
 
-//     const [loading, setLoading] = useState(false)
+    const handleInputChange = (event) => {
+        const { name, value } = event.target;
+        setFormData({
+            ...formData,
+            [name]: value
+        });
+    };
 
+    function handleSubmit(){
+        setLoading(true)
+        if(formData.password === formData.confirmPassword){
+            postUserData("/changePassword", {
+                newPassword: formData.password,
+                email: "pasword"
+            }).then((data)=>{
+                console.log(data.data.data.message);
+            }).catch((err)=>{
+                console.log(err);
+            })
+        }else{
+        setLoading(false)
+            alert("The passwords does not match")
+        }
+    }
 
-//     const handleInputChange = (event) => {
-//         const { name, value } = event.target;
-//         setFormData({
-//             ...formData,
-//             [name]: value
-//         });
-//     };
-//     return (
-//         <ClientLayout>
-//             <section className="auth">
-//                 <div className="authSignBox signIn">
-//                     <form className="authIn" action='submit'>
-//                         <h1>Change Your Password</h1>
-//                         <p>Enter your email related to your account</p>
+    return (
+        <ClientLayout>
+            <section className="auth">
+                <div className="authSignBox signIn">
+                    <form className="authIn" action='submit' onSubmit={handleSubmit}>
+                        <h1>Change Your Password</h1>
+                        <p>Enter your email related to your account</p>
 
-//                         <input type="text" placeholder='Password'
-//                             name="password"
-//                             required
-//                             value={formData.password}
-//                             onChange={handleInputChange}
-//                         />
-//                         <input type="text" placeholder='Confirm Password'
-//                             name="confirmPassword"
-//                             required
-//                             value={formData.confirmPassword}
-//                             onChange={handleInputChange}
-//                         />
-//                         <Button>{loading ? "loading ..." : "Change Password"}</Button>
-//                     </form>
-//                 </div>
-//             </section>
-//         </ClientLayout>
-//     )
-// }
+                        <input type="text" placeholder='Password'
+                            name="password"
+                            required
+                            value={formData.password}
+                            onChange={handleInputChange}
+                        />
+                        <input type="text" placeholder='Confirm Password'
+                            name="confirmPassword"
+                            required
+                            value={formData.confirmPassword}
+                            onChange={handleInputChange}
+                        />
+                        <Button>{loading ? "loading ..." : "Change Password"}</Button>
+                    </form>
+                </div>
+            </section>
+        </ClientLayout>
+    )
+}
 
 
 function AccountCreated() {
