@@ -26,13 +26,14 @@ export default function Quiz() {
     let correct_ans = 0
 
     useEffect(() => {
-        getUser("/user/me", userSigned().token).then((data) => {
-            if(data.data.data.level > parseInt(id)){
-                // alert("You have passed this level")
-                navTo("/u")
-            }
-
-        })
+        if(userSigned().token){
+            getUser("/user/me", userSigned().token).then((data) => {
+                if(data.data.data.level > parseInt(id)){
+                    // alert("You have passed this level")
+                    navTo("/u")
+                }
+            })
+        }
 
         postUserData('/test/testLevel', { level: id }).then((data) => {
             setTest(data.data.data)
