@@ -50,10 +50,10 @@ export default function Quiz() {
         if (userAns.length == questions.length) {
             console.log("done");
             questions.forEach((data, index) => {
-                if (data.correctAnswer == userAns[index]) {
+                if (data.correctAnswer.toLowerCase() == userAns[index].toLowerCase()) {
                     correct_ans += 1
                 }
-                console.log(data.correctAnswer, userAns[index], correct_ans);
+                console.log(data.correctAnswer.toLowerCase(), userAns[index].toLowerCase(), correct_ans);
             })
             if (correct_ans == questions.length) {
                 console.log(id);
@@ -190,11 +190,8 @@ function Failed(props) {
                                 <h1>You Lost</h1>
                                 <p>Create an account to improve your igbo skills </p>
                                 <div className="qButtons">
-                                    <Link to={"/demo/" + id}>
-                                        <Button>Try Again</Button>
-                                    </Link>
-                                    <Link to={"/signup" + id}>
-                                        <Button>Create Account</Button>
+                                    <Link to={"/signup"}>
+                                        <Button>Learn Igbo</Button>
                                     </Link>
                                 </div>
                             </>
