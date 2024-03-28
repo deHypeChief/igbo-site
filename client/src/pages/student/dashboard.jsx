@@ -80,9 +80,9 @@ export default function StudentDashboard() {
                 {plan === "Trial" || plan === "Trial plan" ? <TrailPropmt /> : <></>}
                 <div className="profile">
                     <div className="profileWrap">
-                        <div className="profileBox">
+                        {/* <div className="profileBox">
                             <img src={dashProfile} alt="" />
-                        </div>
+                        </div> */}
                         <div className="profileInfo">
                             <h1>{data ? data.name : "loading"}</h1>
                             <p>{data ? data.email : "loading"}</p>
