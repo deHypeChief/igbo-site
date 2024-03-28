@@ -32,6 +32,64 @@ export async function createUser(req, res) {
                 exp: 0,
                 userPayment: "Trial"
             }).then((data) => {
+
+                SendMail(res, data.email, "Welcome to Learn Igbo Online", `<!DOCTYPE html>
+                <html lang="en">
+                <head>
+                    <meta charset="UTF-8">
+                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                    <title>Email Template</title>
+                    <style>
+                        /* Reset styles */
+                        body, html {
+                            margin: 0;
+                            padding: 0;
+                            font-family: Arial, sans-serif;
+                            font-size: 16px;
+                            line-height: 1.5;
+                        }
+                        /* Main container styles */
+                        .container {
+                            max-width: 600px;
+                            margin: 0 auto;
+                            padding: 20px;
+                        }
+                        /* Header styles */
+                        .header {
+                            background-color: #FF1C1C;
+                            padding: 20px;
+                            text-align: center;
+                        }
+                        /* Body content styles */
+                        .content {
+                            padding: 20px;
+                            background-color: #fff;
+                        }
+                        /* Footer styles */
+                        .footer {
+                            background-color: #FF1C1C;
+                            padding: 20px;
+                            text-align: center;
+                        }
+                    </style>
+                </head>
+                <body>
+                    <div class="container">
+                        <div class="header">
+                            <h1>Welcome to Learn Igbo Online</h1>
+                        </div>
+                        <div class="content">
+                            <p>Hello ${name},</p>
+                            <p>Welcome to learn igbo online.</p>
+                            <p>We are happy you are here, let's  unlock a new world of creative igbo learning</p>
+                        </div>
+                        <div class="footer">
+                            <p>Regards,<br>Mrs Nneka Agu</p>
+                        </div>
+                    </div>
+                </body>
+                </html>`)
+
                 res.status(201).json({
                     _id: data.id,
                     email: data.email,
@@ -144,7 +202,7 @@ export async function paymentRecord(req, res) {
 
 
 export async function changePassword(req, res) {
-    const { newPassword, email } = req.body
+    const { newPassword , email} = req.body
 
     if(newPassword && email){
         const saltRounds = 10
@@ -165,25 +223,38 @@ export async function changePassword(req, res) {
                 message: "Error changing password"
             })
         })
+    }else{
+        res.status(400).json(
+            {
+                message: "Invalid Link",
+                error: error
+            }
+        )
     }
 }
 
 export async function forgotPassword(req, res) {
-    const { email } = req.user
+    const { email, baseUrl } = req.body
 
-    await User.findOne({ email: email })
+    if(email){
+        await User.findOne({ email })
         .then((data) => {
-            SendMail("Reset Your Password", `Use this link to reset your password link: ${baseUrl}changePassword/${generateRandomChars(12)}`)
-            res.status(200).json({
-                message: "Password Reset Link has been sent to your mail"
-            })
+            SendMail(res, email , "Reset Your Password", `Use this link to reset your password link: ${baseUrl}/changePassword/${generateRandomChars(12)}_${btoa(email)}`)
         })
         .catch((error) => {
+            console.log(error);
             res.status(400).json(
                 {
-                    message: "Just your email address is required to change your password",
+                    message: "The email does not exist",
                     error: error
                 }
             )
         })
+    }else{
+        res.status(400).json(
+            {
+                message: "Just your email address is required to change your password",
+            }
+        )
+    }
 }

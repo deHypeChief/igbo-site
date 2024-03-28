@@ -1,23 +1,22 @@
 import nodemailer from 'nodemailer'
 
-const adminMail = "dev.hype7@gmail.com"
-const adminPassword = "#justHYPE7"
-const baseUrl = "http://localhost:5173/"
+const adminMail = "learnigboonline@hotmail.com"
+const adminPassword = "Learnigboon2024#"
 
 const transporter = nodemailer.createTransport({
-    service: 'gmail',
+    service: 'hotmail',
     auth: {
         user: adminMail,
         pass: adminPassword
     }
 });
 
-export function SendMail(subject, message){
+export function SendMail(res, email, subject, message){
     const mailOptions = {
         from: adminMail,
         to: email,
         subject: subject,
-        text: message
+        html: message
     };
 
     transporter.sendMail(mailOptions, (error, info) => {
@@ -30,7 +29,7 @@ export function SendMail(subject, message){
         } else {
             console.log('Email sent:', info.response);
             res.status(200).json({
-                message: "Mail sent ",
+                message: "Password Reset Link has been sent to your mail",
                 data: info.response
             })
         }

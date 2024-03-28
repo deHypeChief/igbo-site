@@ -1,11 +1,11 @@
 import { Button } from "../components/button/button"
 import '../assets/styles/auth.css'
-import { Link, useNavigate } from "react-router-dom"
-import { useState } from "react"
+import { Link, useNavigate, useParams } from "react-router-dom"
+import { useEffect, useState } from "react"
 // import Navbar from "../components/navbar/navbar
 import { ClientLayout } from "../components/layout/layout"
 
-import { authUser, createUser, postUserData } from "../utilis/authManger"
+import { authUser, createUser, postUserData, userSigned } from "../utilis/authManger"
 
 
 
@@ -16,6 +16,11 @@ export function SignIn() {
         email: '',
         password: ''
     });
+    useEffect(() => {
+        if (userSigned()) {
+            navTo('/u')
+        }
+    })
     const handleInputChange = (event) => {
         const { name, value } = event.target;
         setFormData({
@@ -41,6 +46,16 @@ export function SignIn() {
         })
     };
 
+    function handleForgotPassword(){
+        postUserData('/user/resetPassword', {email: formData.email, baseUrl: window.location.origin})
+        .then((data)=>{
+            console.log(data.data.data.message);
+            alert('Reset link has been sent to your mail')
+        }).catch((error)=>{
+            alert(error.response.data.message);
+        })
+    }
+
     return (
         <ClientLayout>
             <section className="auth">
@@ -61,7 +76,7 @@ export function SignIn() {
                             value={formData.password}
                             onChange={handleInputChange} />
 
-                    <p>Forgot password</p>
+                         <p onClick={handleForgotPassword}>Forgot password</p>
 
                         <p className='authSecP'>Don&apos;t have an account <Link to={'/signup'}>Sign Up</Link></p>
                         
@@ -146,10 +161,17 @@ export function SignUp() {
 
 
 export function ChangePassword() {
+    const navTo = useNavigate()
     const [formData, setFormData] = useState({
         password: '',
         confirmPassword: "",
     });
+    const {id} = useParams()
+    useEffect(() => {
+        if (userSigned()) {
+            navTo('/u')
+        }
+    })
 
 
     const [loading, setLoading] = useState(false)
@@ -163,15 +185,19 @@ export function ChangePassword() {
         });
     };
 
-    function handleSubmit(){
+    function handleSubmit(e){
+        e.preventDefault()
         setLoading(true)
         if(formData.password === formData.confirmPassword){
-            postUserData("/changePassword", {
+            postUserData("/user/changePassword", {
                 newPassword: formData.password,
-                email: "pasword"
+                email: atob(id.split("_")[1])
             }).then((data)=>{
-                console.log(data.data.data.message);
+                alert('Password Changed')
+                navTo('/signin')
+                console.log(data.data.message);
             }).catch((err)=>{
+                alert('Error updating your password')
                 console.log(err);
             })
         }else{
@@ -186,15 +212,14 @@ export function ChangePassword() {
                 <div className="authSignBox signIn">
                     <form className="authIn" action='submit' onSubmit={handleSubmit}>
                         <h1>Change Your Password</h1>
-                        <p>Enter your email related to your account</p>
-
-                        <input type="text" placeholder='Password'
+                        <br />
+                        <input type="password" placeholder='Password'
                             name="password"
                             required
                             value={formData.password}
                             onChange={handleInputChange}
                         />
-                        <input type="text" placeholder='Confirm Password'
+                        <input type="password" placeholder='Confirm Password'
                             name="confirmPassword"
                             required
                             value={formData.confirmPassword}
@@ -214,6 +239,7 @@ function AccountCreated() {
         <div className="accCreate">
             <div className="accWrap">
                 <h1>Your Account Has Been Created</h1>
+                <p>Go to your mail to confirm email address </p>
                 <Link to="/u">
                     <Button>Get Started</Button>
                 </Link>

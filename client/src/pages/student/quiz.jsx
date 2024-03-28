@@ -180,7 +180,7 @@ function Failed(props) {
                 <div className="imgSucessPerson">
                     <img className='im-fail' src={old} alt="" />
                 </div>
-
+                
                 <div className="qBoxWrap">
                     <br />
                     <img src={failImg} alt="" />
