@@ -27,16 +27,16 @@ export default function Topics() {
 
     }
 
-    const objective = [
-        (
-            <>
-                <ul>
-                    <li>Objetive One</li>
-                </ul>
-            </>
-        ),
+    // const objective = [
+    //     (
+    //         <>
+    //             <ul>
+    //                 <li>Objetive One</li>
+    //             </ul>
+    //         </>
+    //     ),
 
-    ]
+    // ]
 
     return (
         <ClientLayout>
@@ -62,10 +62,7 @@ export default function Topics() {
                                             <h1 className="title-topic">
                                                 {item.title}
                                             </h1>
-                                            <p className="pah-topic">
-                                                Get your bacis solid by learning the
-                                                basiscs of Igbo
-                                            </p>
+                                            
                                         </div>
                                         <br />
                                         <Link to={"/u/lesson/" + item.level}>
@@ -92,10 +89,7 @@ export default function Topics() {
                                                 <h1 className="title-topic">
                                                     {item.title}
                                                 </h1>
-                                                <p className="pah-topic">
-                                                    Get your bacis solid by learning the
-                                                    basiscs of Igbo
-                                                </p>
+                                                
                                             </div>
                                             <br />
                                             <Button>Locked</Button>
@@ -120,10 +114,7 @@ export default function Topics() {
                                                     <h1 className="title-topic">
                                                         {item.title}
                                                     </h1>
-                                                    <p className="pah-topic">
-                                                        Get your bacis solid by learning the
-                                                        basiscs of Igbo
-                                                    </p>
+                                                    
                                                 </div>
                                                 <br />
                                                 <Link to={"/u/lesson/" + item.level}>
@@ -156,10 +147,10 @@ export default function Topics() {
                                             <h1 className="title-topic">
                                                 {item.title}
                                             </h1>
-                                            <p className="pah-topic">
+                                            {/* <p className="pah-topic">
                                                 Get your bacis solid by learning the
                                                 basiscs of Igbo
-                                            </p>
+                                            </p> */}
                                         </div>
                                     </div>
                                 </>
