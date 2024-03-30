@@ -202,9 +202,9 @@ export async function paymentRecord(req, res) {
 
 
 export async function changePassword(req, res) {
-    const { newPassword , email} = req.body
+    const { newPassword, email } = req.body
 
-    if(newPassword && email){
+    if (newPassword && email) {
         const saltRounds = 10
         const salt = await bcrypt.genSalt(saltRounds)
         const hashedPassword = await bcrypt.hash(newPassword, salt)
@@ -213,17 +213,17 @@ export async function changePassword(req, res) {
             password: hashedPassword
         }, {
             new: true
-        }).then(()=>{
+        }).then(() => {
             res.status(200).json({
                 message: "Password Changed"
             })
         })
-        .catch(()=>{
-            res.status(400).json({
-                message: "Error changing password"
+            .catch(() => {
+                res.status(400).json({
+                    message: "Error changing password"
+                })
             })
-        })
-    }else{
+    } else {
         res.status(400).json(
             {
                 message: "Invalid Link",
@@ -236,21 +236,21 @@ export async function changePassword(req, res) {
 export async function forgotPassword(req, res) {
     const { email, baseUrl } = req.body
 
-    if(email){
+    if (email) {
         await User.findOne({ email })
-        .then((data) => {
-            SendMail(res, email , "Reset Your Password", `Use this link to reset your password link: ${baseUrl}/changePassword/${generateRandomChars(12)}_${btoa(email)}`)
-        })
-        .catch((error) => {
-            console.log(error);
-            res.status(400).json(
-                {
-                    message: "The email does not exist",
-                    error: error
-                }
-            )
-        })
-    }else{
+            .then((data) => {
+                SendMail(res, email, "Reset Your Password", `Use this link to reset your password link: ${baseUrl}/changePassword/${generateRandomChars(12)}_${btoa(email)}`)
+            })
+            .catch((error) => {
+                console.log(error);
+                res.status(400).json(
+                    {
+                        message: "The email does not exist",
+                        error: error
+                    }
+                )
+            })
+    } else {
         res.status(400).json(
             {
                 message: "Just your email address is required to change your password",
