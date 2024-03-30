@@ -46,6 +46,9 @@
 .topic_completed a .mainBttnWrap .bttnSubWrap button{
  background: rgb(41, 221, 0);
 }
+.topic_completed a .mainBttnWrap .bttnSubWrap {
+    background: #82ff1b;
+}
 
 @media screen and (max-width: 600px) {
     .topicWrap {
