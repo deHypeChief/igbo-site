@@ -126,7 +126,7 @@ export default function Lesson() {
                                                 )
                                             }
 
-                                            <Button action={() => {
+                                            <Button state={loading} action={() => {
                                                 if (index < noteData.length - 1) {
                                                     document.getElementById("note" + index).style.display = "none"
                                                 } else {

@@ -80,7 +80,7 @@ export function SignIn() {
 
                         <p className='authSecP'>Don&apos;t have an account <Link to={'/signup'}>Sign Up</Link></p>
                         
-                        <Button>{loading ? "loading ..." : "Sign In"}</Button>
+                        <Button state={loading}>{loading ? "loading ..." : "Sign In"}</Button>
                     </form>
                 </div>
             </section>
@@ -149,7 +149,7 @@ export function SignUp() {
                                 placeholder='Password' required />
 
                             <p className='authSecP'>Already have an account <Link to={'/signin'}>Sign In</Link></p>
-                            <Button>{loading ? "loading ..." : "Sign Up"}</Button>
+                            <Button state={loading}>{loading ? "loading ..." : "Sign Up"}</Button>
                         </form>
                     </div>
                 )}
@@ -225,7 +225,7 @@ export function ChangePassword() {
                             value={formData.confirmPassword}
                             onChange={handleInputChange}
                         />
-                        <Button>{loading ? "loading ..." : "Change Password"}</Button>
+                        <Button state={loading}>{loading ? "loading ..." : "Change Password"}</Button>
                     </form>
                 </div>
             </section>
