@@ -255,4 +255,9 @@
     .trialBox h1 {
         text-align: center;
     }
+    .statsPofile{
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+    }
 }
