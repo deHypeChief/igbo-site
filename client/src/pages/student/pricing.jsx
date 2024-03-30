@@ -24,11 +24,11 @@ export default function Pricing() {
             badges: [
                 {
                     badgeImg: "",
-                    badgeText: "1 hour per day"
+                    badgeText: "1 hour per week"
                 },
                 {
                     badgeImg: "",
-                    badgeText: "Zoom"
+                    badgeText: "via Zoom"
                 }
             ],
             pricing: 38,
