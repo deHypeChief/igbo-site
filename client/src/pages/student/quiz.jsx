@@ -50,10 +50,10 @@ export default function Quiz() {
         if (userAns.length === questions.length) {
             console.log("done");
             questions.forEach((data, index) => {
-                if (data.correctAnswer.toLowerCase() === userAns[index].toLowerCase()) {
+                if (data.correctAnswer.toLowerCase().trim() === userAns[index].toLowerCase().trim()) {
                     correct_ans += 1
                 }
-                console.log(data.correctAnswer.toLowerCase(),"/", userAns[index].toLowerCase(), correct_ans);
+                console.log(data.correctAnswer.toLowerCase().trim(),"/",userAns[index].toLowerCase().trim(), correct_ans);
             })
             if (correct_ans == questions.length) {
                 console.log(id);
