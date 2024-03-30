@@ -47,13 +47,13 @@ export default function Quiz() {
         moveBar.current.style.width = `${(userAns.length / questions.length) * 100}%`
         document.getElementById(idTarget).style.display = "none"
 
-        if (userAns.length == questions.length) {
+        if (userAns.length === questions.length) {
             console.log("done");
             questions.forEach((data, index) => {
-                if (data.correctAnswer.toLowerCase().includes(userAns[index].toLowerCase())) {
+                if (data.correctAnswer.toLowerCase() === userAns[index].toLowerCase()) {
                     correct_ans += 1
                 }
-                console.log(data.correctAnswer.toLowerCase(), userAns[index].toLowerCase(), correct_ans);
+                console.log(data.correctAnswer.toLowerCase(),"/", userAns[index].toLowerCase(), correct_ans);
             })
             if (correct_ans == questions.length) {
                 console.log(id);
