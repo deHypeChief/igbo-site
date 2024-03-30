@@ -364,4 +364,8 @@ footer {
     .heroImage {
         height: fit-content;
     }
+    .igboImg img {
+        width: 500px;
+        transform: translateX(-60px);
+    }
 }
