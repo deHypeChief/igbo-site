@@ -36,7 +36,7 @@ export function SignIn() {
             if (data) {
                 setLoading(false)
                 alert("Login Valid")
-                console.log(data);
+                // console.log(data);
                 localStorage.setItem("user", JSON.stringify(data.data))
                 navTo('/u')
             }
@@ -49,7 +49,7 @@ export function SignIn() {
     function handleForgotPassword(){
         postUserData('/user/resetPassword', {email: formData.email, baseUrl: window.location.origin})
         .then((data)=>{
-            console.log(data.data.data.message);
+            // console.log(data.data.data.message);
             alert('Reset link has been sent to your mail')
         }).catch((error)=>{
             alert(error.response.data.message);
@@ -195,7 +195,7 @@ export function ChangePassword() {
             }).then((data)=>{
                 alert('Password Changed')
                 navTo('/signin')
-                console.log(data.data.message);
+                // console.log(data.data.message);
             }).catch((err)=>{
                 alert('Error updating your password')
                 console.log(err);

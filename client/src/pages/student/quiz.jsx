@@ -48,12 +48,12 @@ export default function Quiz() {
         document.getElementById(idTarget).style.display = "none"
 
         if (userAns.length === questions.length) {
-            console.log("done");
+            // console.log("done");
             questions.forEach((data, index) => {
                 if (data.correctAnswer.toLowerCase().trim() === userAns[index].toLowerCase().trim()) {
                     correct_ans += 1
                 }
-                console.log(data.correctAnswer.toLowerCase().trim(),"/",userAns[index].toLowerCase().trim(), correct_ans);
+                // console.log(data.correctAnswer.toLowerCase().trim(),"/",userAns[index].toLowerCase().trim(), correct_ans);
             })
             if (correct_ans == questions.length) {
                 console.log(id);
