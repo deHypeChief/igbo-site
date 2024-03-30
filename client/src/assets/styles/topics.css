@@ -43,6 +43,10 @@
     font-size:1.5rem;
 }
 
+.topic_completed a .mainBttnWrap .bttnSubWrap button{
+ background: rgb(41, 221, 0);
+}
+
 @media screen and (max-width: 600px) {
     .topicWrap {
         padding: 25vh 20px 100px;

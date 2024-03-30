@@ -23,6 +23,10 @@ export default function Topics() {
 
     }, [])
 
+    const styleComplete = {
+
+    }
+
     const objective = [
         (
             <>
@@ -100,7 +104,7 @@ export default function Topics() {
                                 } else {
                                     if (item.level < user.level) {
                                         return (
-                                            <div key={item.level} className="topicBox">
+                                            <div key={item.level} className="topicBox topic_completed" style={styleComplete}>
                                                 <div className="card-topic">
                                                     <div className="card-info-top">
                                                         <h2 className="level-topic">
