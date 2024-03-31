@@ -708,6 +708,7 @@ function Excerises(props) {
         document.getElementById("img-exe").value = getQuestion[0].imageUrl
 
         getQuestion.forEach((item)=>{
+            console.log(item.imageUrl, item.options, item.correctAnswer, item.question);
             createQuestionBox(item.imageUrl, item.options, item.correctAnswer, item.question)
         })
 
