@@ -92,12 +92,6 @@ export default function Admin() {
                                 </div>
                                 <p>Excerises</p>
                             </div>
-                            <div className="sbutton" onClick={handleSideButton}>
-                                <div className="sImage">
-                                    <Icon icon="ic:outline-payments" style={{ fontSize: '20px' }} />
-                                </div>
-                                <p>Payments</p>
-                            </div>
                             {/* <div className="sbutton" onClick={handleSideButton}>
                                 <div className="sImage">
                                     <Icon icon="material-symbols:admin-panel-settings-rounded" style={{ fontSize: '20px' }} />
@@ -115,9 +109,9 @@ export default function Admin() {
                             <p>Welcome back, Admin</p>
                         </div>
                         <div className="utilsWrap">
-                            <div className="search">
+                            {/* <div className="search">
                                 <input type="text" placeholder='Search' />
-                            </div>
+                            </div> */}
                             <div className="currentUser">
                                 <img src={mainLady} alt="" />
                             </div>
@@ -612,11 +606,11 @@ function Lesson(props) {
         </>
     )
 }
-
-
 function Excerises(props) {
     const { exePayload } = props
     const [quizCount, setQuizCount] = useState(2)
+    const [loading, setLoading] = useState()
+    const [isUpdate, setUpdate] = useState(false)
     // const [avLesson, setAvLesson] = useState()
 
     useEffect(() => {
@@ -663,9 +657,101 @@ function Excerises(props) {
         htmForm.insertAdjacentHTML('beforeend', htmlString)
         setQuizCount(prevCount => prevCount + 1)
     }
+    let upQuizCount = 2
+    function createQuestionBox(imgUrl, options, canswer, question){
+        const htmForm = document.getElementById("quizFormWrap")
+        const htmlString = `
+        <div class="qusetionBlock">
+            <div class="bl">
+                <p>Question ${upQuizCount}</p>
+                <input type="text" required  value=${question} />
+            </div>
+            
+            <div class="bl">
+                <p>Answers|  Seprate answers with commas, max of FOUR answers</p>
+                <input type="text"  required value=${options} />
+            </div>
+            <div class="bl">
+                <p>Correct Answer</p>
+                <input type="text"  required value=${canswer} />
+            </div>
+            <div className="bl">
+                <p>Image Url</p>
+                <input type="text"  placeholder='ImageUrl (optional*)' id="img-exe" value=${imgUrl || ""} />
+            </div>
 
+        </div>
+        `
+        htmForm.insertAdjacentHTML('beforeend', htmlString)
+        upQuizCount++
+        setQuizCount(prevCount => prevCount + 1)
+    }
 
     const exceriseGroup = []
+
+    function openCreatedTest(lessonId, index){
+        setUpdate(true)
+        openExeEditor()
+
+        const targetTest = props.exePayload[index]
+        console.log(targetTest);
+
+        document.getElementById("quizMark").value = targetTest.xp
+        document.getElementById("quizLevel").value = targetTest.lesson
+
+        const getQuestion = JSON.parse(targetTest.questions)
+        // console.log(getQuestion);
+
+        document.getElementById("opp-exe").value = getQuestion[0].options
+        document.getElementById("cor-exe").value = getQuestion[0].correctAnswer
+        document.getElementById("que-exe").value = getQuestion[0].question 
+        document.getElementById("img-exe").value = getQuestion[0].imageUrl
+
+        getQuestion.forEach((item)=>{
+            createQuestionBox(item.imageUrl, item.options, item.correctAnswer, item.question)
+        })
+
+    }
+
+    
+
+    async function handleTestUpdate(e){
+        e.preventDefault()
+        const formData = e.target
+
+        formPayload.xp = parseInt(formData[0].value)
+        formPayload.lesson = parseInt(formData[1].value)
+
+        for (let i = 2; i < formData.length - 2; i += 4) {
+
+            const groupObj = {
+                question: formData[i].value,
+                options: formData[i + 1].value,
+                correctAnswer: formData[i + 2].value,
+                imageUrl: formData[i + 3].value
+            };
+
+            // Append the object to the groupedData array
+            exceriseGroup.push(groupObj);
+        }
+        console.log(JSON.stringify(exceriseGroup));
+        formPayload.questions = JSON.stringify(exceriseGroup)
+
+        await adminPost('/test/updateTest', {
+            lesson: formPayload.lesson,
+            newQuestion: JSON.stringify(exceriseGroup),
+        }, adminSigned().token)
+        .then((data) => {
+            console.log(data);
+            setLoading(false)
+            alert("Test Updated")
+            alert("Reloading page to apply changes")
+            window.location.reload()
+        }).catch((error) => {
+            setLoading(false)
+            alert(error.response.data.message)
+        })
+    }
 
     function handleSubmit(e) {
         e.preventDefault()
@@ -691,15 +777,17 @@ function Excerises(props) {
 
         adminPost("test/ad/createTest", formPayload, adminSigned().token)
             .then((data) => {
+                setLoading(false)
                 console.log(data);
                 alert("Exersice Created")
-                clearEditor()
                 alert("Reloading page to apply changes")
                 window.location.reload()
             }).catch((error) => {
+                setLoading(false)
                 alert(error.response.data.message);
             })
     }
+    
 
     function clearEditor() {
         document.getElementById('quizLevel').value = "";
@@ -722,6 +810,11 @@ function Excerises(props) {
         document.getElementById("lessonEditor").style.display = "none"
     }
 
+    function submitAction(e) {
+        e.preventDefault()
+        setLoading(true)
+        isUpdate ? handleTestUpdate(e) : handleSubmit(e)
+    }
     return (
         <>
             <div className="lessonWrap">
@@ -733,9 +826,6 @@ function Excerises(props) {
                             <div className="topNames">
                                 <div className="baseBox-name bS-name-lesson">
                                     <p>Lesson</p>
-                                </div>
-                                <div className="baseBox-name">
-                                    <p>Type</p>
                                 </div>
                                 <div className="baseBox-name">
                                     <p>Exp</p>
@@ -750,12 +840,9 @@ function Excerises(props) {
                                 {
                                     exePayload.map((item, index) => {
                                         return (
-                                            <div key={"exe" + index} className="listStats">
+                                            <div key={"exe" + index} className="listStats" onClick={()=>{openCreatedTest(item.lesson, index)}}>
                                                 <div className="baseBox-name bS-name-lesson">
                                                     <p>{item.lesson}</p>
-                                                </div>
-                                                <div className="baseBox-name">
-                                                    <p>{item.testType}</p>
                                                 </div>
                                                 <div className="baseBox-name">
                                                     <p>{item.xp}</p>
@@ -791,7 +878,7 @@ function Excerises(props) {
                     </div>
 
                     <br />
-                    <form action="" id={'quizFrom'} onSubmit={handleSubmit}>
+                    <form action="" id={'quizFrom'} onSubmit={submitAction}>
                         <div className="formHeaderInputSec">
                             <input type="text" required  id={"quizMark"} placeholder='Marks for the Quiz' />
                             <input type="text"  required id={"quizLevel"} placeholder='Level of the Quiz' />
@@ -804,16 +891,16 @@ function Excerises(props) {
                                     <input type="text" required id="que-exe" />
                                 </div>
 
-                                <div className="bl">
+                                <div className="bl" id='b1-ans'>
                                     <p>Answers|  Seprate answers with commas, max of FOUR answers</p>
                                     <input type="text" required id="opp-exe" />
                                 </div>
-                                <div className="bl">
+                                <div className="bl" id='b1-cans'>
                                     <p>Correct Answer</p>
                                     <input type="text" required id="cor-exe" />
                                 </div>
 
-                                <div className="bl">
+                                <div className="bl" id='b1-qImage'>
                                     <p>Image Url</p>
                                     <input type="text"  placeholder='ImageUrl (optional*)' id="img-exe" />
                                 </div>
@@ -825,9 +912,17 @@ function Excerises(props) {
                             <button className="addQuestion" onClick={handleQuestion}>
                                 Add Question
                             </button>
-                            <button className="submitEx" type='submit'>
-                                Done
-                            </button>
+                            {
+                                isUpdate ? (
+                                    <button className="submitEx" type='submit' disabled={loading}>
+                                        {loading ? "Loading.." : "Update Quiz" }
+                                    </button>
+                                ):(
+                                    <button className="submitEx" type='submit' disabled={loading}>
+                                        {loading ? "Loading.." : "Save New Quiz" } 
+                                    </button>
+                                )
+                            }
                         </div>
                     </form>
 
@@ -836,7 +931,6 @@ function Excerises(props) {
         </>
     )
 }
-
 function Payments(props) {
     const { exePayload } = props
 

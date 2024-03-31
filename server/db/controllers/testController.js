@@ -115,3 +115,30 @@ export async function getLessonWithOutQuiz(req, res) {
         })
     }
 }
+
+
+export async function updateTest(req, res) {
+    const { lesson, newQuestion } = req.body
+    if (lesson && newQuestion) {
+        await Test.findOneAndUpdate(
+            {lesson: lesson},
+            {questions: newQuestion},
+            {new: true}
+        ).then((data) => {
+            res.status(200).json({
+                message: "Test Updated",
+                data: data 
+            })
+        }).catch((error) => {
+            res.status(400).json({
+                message: "Error updating test",
+                error: error
+            })
+        })
+
+    } else {
+        res.status(500).json({
+            message: "No level added"
+        })
+    }
+}
