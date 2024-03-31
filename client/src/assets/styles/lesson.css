@@ -1,4 +1,4 @@
-n.lessons{
+.lessons{
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -18,7 +18,7 @@ n.lessons{
     /* flex-direction: row-reverse; */
     overflow: hidden;
     border-radius: 20px;
-    height: 700px;
+    height: 600px;
     width:750px;
     position: relative;  
 }
