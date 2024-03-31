@@ -37,7 +37,7 @@ export default function Lesson() {
 
             postUserData('/lesson/oneLesson', { level: id }).then((data) => {
                 eval('obj = ' + data.data.data.note)
-                setNoteData(SplitLesson(obj, 7))
+                setNoteData(SplitLesson(obj, 9))
                 setLessonData(data.data.data)
                 document.getElementById("dasboardTitle").innerText = data.data.data.title 
             }).catch(error => {
