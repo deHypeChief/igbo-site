@@ -15,7 +15,7 @@ export default function StudentDashboard() {
     const [plan, setPlan] = useState(null)
     const [data, setData] = useState({
         name: "--",
-        level: "--",
+        level: 0,
         email: "--",
         exp: "--"
     })
@@ -107,9 +107,9 @@ export default function StudentDashboard() {
                                 <div className="lessBox">
                                     <h3 className="lessText">
                                         {
-                                            data.level > 0 ? ("Beginner ") : (
-                                                data.level > 4 ? "Intermediate " : (
-                                                    data.level > 8 ? "Advanced  " : ""
+                                            parseInt(data.level)>= 0 && parseInt(data.level) < 4 ? (`Beginner`) : (
+                                                parseInt(data.level) >= 4 && parseInt(data.level) < 8 ? "Intermediate " : (
+                                                    parseInt(data.level) >= 8 ? "Advanced  " : ""
                                                 )
                                                 
                                             )

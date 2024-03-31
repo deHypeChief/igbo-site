@@ -26,6 +26,9 @@ export default function Quiz() {
     let correct_ans = 0
 
     useEffect(() => {
+        if (!userSigned()) {
+            navTo('/signin')
+        } 
         if(userSigned().token){
             getUser("/user/me", userSigned().token).then((data) => {
                 if(data.data.data.level > parseInt(id)){
