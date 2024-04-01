@@ -658,26 +658,26 @@ function Excerises(props) {
         setQuizCount(prevCount => prevCount + 1)
     }
     let upQuizCount = 2
-    function createQuestionBox(imgUrl, options, canswer, question){
+    function createQuestionBox(index){
         const htmForm = document.getElementById("quizFormWrap")
         const htmlString = `
         <div class="qusetionBlock">
             <div class="bl">
                 <p>Question ${upQuizCount}</p>
-                <input type="text" required  value=${question} />
+                <input type="text" required  id='opp-exe${index}'/>
             </div>
             
             <div class="bl">
                 <p>Answers|  Seprate answers with commas, max of FOUR answers</p>
-                <input type="text"  required value=${options} />
+                <input type="text"  required id='cor-exe${index}' />
             </div>
             <div class="bl">
                 <p>Correct Answer</p>
-                <input type="text"  required value=${canswer} />
+                <input type="text"  required id='que-exe${index}'/>
             </div>
             <div className="bl">
                 <p>Image Url</p>
-                <input type="text"  placeholder='ImageUrl (optional*)' id="img-exe" value=${imgUrl || ""} />
+                <input type="text" id='img-exe${index}'  placeholder='ImageUrl (optional*)' id="img-exe" />
             </div>
 
         </div>
@@ -707,10 +707,14 @@ function Excerises(props) {
         document.getElementById("que-exe").value = getQuestion[0].question 
         document.getElementById("img-exe").value = getQuestion[0].imageUrl
 
-        for (let index = 0; index < getQuestion.length; index++) {
+        for (let index = 1; index < getQuestion.length; index++) {
             const element = getQuestion[index];
             
-            createQuestionBox(element.imageUrl, element.options, element.correctAnswer, element.question)
+            createQuestionBox(index)
+            document.getElementById("opp-exe"+index).value = element.options
+            document.getElementById("cor-exe"+index).value = element.correctAnswer
+            document.getElementById("que-exe"+index).value = element.question 
+            document.getElementById("img-exe"+index).value = element.imageUrl
         }
     }
 
