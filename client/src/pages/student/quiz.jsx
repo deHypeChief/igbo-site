@@ -13,6 +13,8 @@ import old from "../../assets/images/old_igbo_man_da7737e6-18aa-4cbb-af3f-7f4ac8
 import successImg1 from "../../assets/images/a_cartoon_Igbo__f22b054e-e1b7-4124-bc0b-6e0c09990fdf-removebg-preview.png"
 import successImg2 from "../../assets/images/a_happy_little__596c32f0-ff9d-445b-8399-011f4cf18db3-removebg-preview.png"
 
+let failedQuestions = []
+
 export default function Quiz() {
     const [passed, setPassed] = useState(null)
     const { id } = useParams()
@@ -26,10 +28,10 @@ export default function Quiz() {
     let correct_ans = 0
 
     useEffect(() => {
-        
-        if(userSigned().token){
+
+        if (userSigned().token) {
             getUser("/user/me", userSigned().token).then((data) => {
-                if(data.data.data.level > parseInt(id)){
+                if (data.data.data.level > parseInt(id)) {
                     // alert("You have passed this level")
                     navTo("/u")
                 }
@@ -42,7 +44,6 @@ export default function Quiz() {
         })
     }, [])
 
-    
     function GetAns(ans, idTarget) {
         userAns.push(ans)
         moveBar.current.style.width = `${(userAns.length / questions.length) * 100}%`
@@ -53,6 +54,13 @@ export default function Quiz() {
             questions.forEach((data, index) => {
                 if (data.correctAnswer.toLowerCase().trim() === userAns[index].toLowerCase().trim()) {
                     correct_ans += 1
+                }
+                else {
+                    failedQuestions.push({
+                        questionNum: index,
+                        questionData: questions[index],
+                        selectedAnswer: userAns[index]
+                    })
                 }
                 // console.log(data.correctAnswer.toLowerCase().trim(),"/",userAns[index].toLowerCase().trim(), correct_ans);
             })
@@ -67,6 +75,7 @@ export default function Quiz() {
                     setPassed(true)
                 }
             } else {
+                console.log(failedQuestions); //On complete show an array of all question failed
                 setPassed(false)
             }
 
@@ -77,7 +86,7 @@ export default function Quiz() {
 
 
             {passed ? <Success id={id} /> : (
-                passed == false ? <Failed id={id} /> : <></>
+                passed == false ? <Failed id={id} questionTotal={questions.length} failedList={failedQuestions} /> : <></>
             )}
             <section className="quiz">
                 <div className="quizBar">
@@ -94,7 +103,7 @@ export default function Quiz() {
                         return (
                             <div key={"quz" + indexMain} id={"quz" + indexMain} className="quizInfo">
 
-                                {  
+                                {
                                     items.imageUrl == "" || items.imageUrl == "-" ? (
                                         <></>
                                     ) : (
@@ -174,42 +183,68 @@ function Success(props) {
 }
 
 function Failed(props) {
-    const { id } = props
+    const { id, questionTotal, failedList } = props
     return (
         <>
             <section className="qBox">
-                <div className="imgSucessPerson">
+                {/* <div className="imgSucessPerson">
                     <img className='im-fail' src={old} alt="" />
-                </div>
-                
+                </div> */}
+
                 <div className="qBoxWrap">
-                    <br />
-                    <img src={failImg} alt="" />
-                    {
-                        parseInt(id) == 1 ? (
-                            <>
-                                <h1>You Lost</h1>
-                                <p>Create an account to improve your igbo skills </p>
-                                <div className="qButtons">
-                                    <Link to={"/signup"}>
-                                        <Button>Learn Igbo</Button>
-                                    </Link>
-                                </div>
-                            </>
-                        ) : (
-                            <>
-                                <h1>You Lost</h1>
-                                <p>Try harder next time</p>
-                                <div className="qButtons">
-                                    <Link to={"/u/lesson/" + id}>
-                                        <Button>Retake Lesson</Button>
-                                    </Link>
-                                </div>
-                            </>
-                        )
-                    }
+                    <div className="fWrap">
+                        <br />
+                        <img src={failImg} alt="" />
+                        {
+                            parseInt(id) == 1 ? (
+                                <>
+                                    <h1>You Lost</h1>
+                                    <p>Create an account to improve your igbo skills </p>
+                                    <div className="qButtons">
+                                        <Link to={"/signup"}>
+                                            <Button>Learn Igbo</Button>
+                                        </Link>
+                                    </div>
+                                </>
+                            ) : (
+                                <>
+                                    <h1>You Lost</h1>
+                                    <p>Try harder next time</p>
+                                    <div className="qButtons">
+                                        <Link to={"/u/lesson/" + id}>
+                                            <Button>Retake Lesson</Button>
+                                        </Link>
+                                    </div>
+                                </>
+                            )
+                        }
+                    </div>
+
+                    <div className="questionFailed">
+                        <div className="fHeader">
+                            <h2>Questions Failed</h2>
+                            <p className='fpara'>You failed {failedList.length} out of {questionTotal}.</p>
+                        </div>
+                        {
+                            failedList.map((item, index) => {
+                                return (
+                                    <div key={index + "failedQuest"} className="block">
+                                        <p>Question {item.questionNum + 1}</p>
+                                        <h2>
+                                            {item.questionData.question}?
+                                        </h2>
+                                        <p className='wrongBlock'>You selected: {item.selectedAnswer}</p>
+                                    </div>
+                                )
+                            })
+                        }
+                    </div>
                 </div>
+
+
             </section>
+
+
         </>
     )
 }
