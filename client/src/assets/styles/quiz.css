@@ -37,30 +37,6 @@
     text-align: left;
 }
 
-.qBox {
-    position: fixed;
-    height: 100vh;
-    z-index: 20;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    top: 0;
-    backdrop-filter: blur(30px);
-}
-
-.qBoxWrap {
-    margin-top: 100px;
-    width: 420px;
-    height: 450px;
-    background: white;
-    padding: 50px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    border-radius: 30px;
-}
-
 .qBoxWrap h1 {
     font-size: 2rem;
     text-align: center;
@@ -142,7 +118,6 @@
     background: var(--primaryColor);
     border-radius: 100px;
     padding: 3px 5px 0;
-    
     transition: 1s ease;
 }
 .moveShadow{
@@ -153,7 +128,89 @@
     transition: 1s ease;
 }
 
+
+
+.qBox {
+    position: fixed;
+    height: 100vh;
+    z-index: 20;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    top: 0;
+    backdrop-filter: blur(30px);
+}
+
+.qBoxWrap {
+    margin-top: 100px;
+    width: 800px;
+    height: fit-content;
+    padding: 50px 30px;
+    display: flex;
+    /* flex-direction: column; */
+    align-items: center;
+    border-radius: 30px;
+    overflow-y: scroll;
+    background: white;
+}
+.fWrap{
+    width: 600px;
+}
+.questionFailed{
+    width: 90%;
+    height: 380px;
+    overflow-y: scroll;
+    margin-top: 30px;
+}
+.qBoxWrap::-webkit-scrollbar{
+    display: none;
+}
+.questionFailed::-webkit-scrollbar{
+    display: none;
+}
+
+.block{
+    padding: 8px 0;
+    text-align: left;
+}
+.wrongBlock{
+    color: red;
+}
+
+.fHeader{
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+}
+.fHeader p {
+    text-align: left;
+}
+.questionFailed .fHeader p{
+    width: 100%;
+}
+.qBoxWrap .block p {
+    font-size: 1rem;
+    font-weight: 900;
+    text-align: left;
+    max-width: 100%;
+    padding-bottom: 20px;
+}
+.fWrap{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.fpara{
+    text-align: left;
+}
+
 @media screen and (max-width: 600px) {
+    .fHeader{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
     .quizInfo {
         display: block;
          flex-direction: column; 
@@ -219,4 +276,28 @@
         width: 300px;
         margin-left: 50px;
     }
+
+    .qBoxWrap {
+        height: 90vh;
+        overflow-y: scroll;
+    flex-direction: column;
+    padding-top: 100px;
+    }
+
+    .qBox {
+        background: white;
+    }
+    .questionFailed{
+        width: 90%;
+        height: fit-content;
+        overflow-y: initial;
+    }
+    .fpara{
+        text-align: center;
+        width: 100%;
+    }
+    .fHeader p {
+        text-align: center;
+    }
 }
+
