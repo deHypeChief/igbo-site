@@ -13,18 +13,19 @@ import old from "../../assets/images/old_igbo_man_da7737e6-18aa-4cbb-af3f-7f4ac8
 import successImg1 from "../../assets/images/a_cartoon_Igbo__f22b054e-e1b7-4124-bc0b-6e0c09990fdf-removebg-preview.png"
 import successImg2 from "../../assets/images/a_happy_little__596c32f0-ff9d-445b-8399-011f4cf18db3-removebg-preview.png"
 
-let failedQuestions = []
+
 
 export default function Quiz() {
     const [passed, setPassed] = useState(null)
     const { id } = useParams()
     const navTo = useNavigate()
-
+    
     const [questions, setQuestions] = useState([])
     const [test, setTest] = useState([])
     const moveBar = useRef()
 
     let userAns = []
+    let failedQuestions = []
     let correct_ans = 0
 
     useEffect(() => {
@@ -237,7 +238,6 @@ function Failed(props) {
                                     </div>
                                 )
                             })
-                            failedQuestions = []
                         }
                     </div>
                 </div>
