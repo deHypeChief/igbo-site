@@ -14,7 +14,7 @@ import successImg1 from "../../assets/images/a_cartoon_Igbo__f22b054e-e1b7-4124-
 import successImg2 from "../../assets/images/a_happy_little__596c32f0-ff9d-445b-8399-011f4cf18db3-removebg-preview.png"
 
 
-
+let failedQuestions = []
 export default function Quiz() {
     const [passed, setPassed] = useState(null)
     const { id } = useParams()
@@ -25,7 +25,6 @@ export default function Quiz() {
     const moveBar = useRef()
 
     let userAns = []
-    let failedQuestions = []
     let correct_ans = 0
 
     useEffect(() => {
