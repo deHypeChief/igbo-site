@@ -67,7 +67,7 @@ export default function Quiz() {
             if (correct_ans == questions.length) {
                 console.log(id);
                 if (parseInt(id) > 1) {
-                    console.log("bong");
+                    // console.log("bong");
                     postUser("/user/exp", { exp: test.xp }, userSigned().token).then(() => {
                         setPassed(true)
                     })
@@ -75,7 +75,7 @@ export default function Quiz() {
                     setPassed(true)
                 }
             } else {
-                console.log(failedQuestions); //On complete show an array of all question failed
+                // console.log(failedQuestions); //On complete show an array of all question failed
                 setPassed(false)
             }
 
@@ -212,7 +212,7 @@ function Failed(props) {
                                     <p>Try harder next time</p>
                                     <div className="qButtons">
                                         <Link to={"/u/lesson/" + id}>
-                                            <Button>Retake Lesson</Button>
+                                            <Button>Retake Lesson </Button>
                                         </Link>
                                     </div>
                                 </>
