@@ -237,6 +237,7 @@ function Failed(props) {
                                     </div>
                                 )
                             })
+                            failedQuestions = []
                         }
                     </div>
                 </div>
