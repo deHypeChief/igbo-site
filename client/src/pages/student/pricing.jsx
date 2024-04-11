@@ -295,7 +295,6 @@ function MakePayment(props) {
     // close payment modal
     function closePayment(event) {
         event.preventDefault()
-
         alert("Are about to leave the payment page")
         payAction(false)
     }

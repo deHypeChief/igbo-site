@@ -97,6 +97,10 @@ export default function Home() {
                         <Link to="/u/pricing">
                             <Button>Get a tutor</Button>
                         </Link>
+                        <br />
+                        <Link to="/u/pricing">
+                            <Button>Get the E-book</Button>
+                        </Link>
                     </div>
                 </div>
                 <div className="aboutWave">
