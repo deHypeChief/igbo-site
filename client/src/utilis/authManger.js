@@ -3,7 +3,7 @@
 
 
 const isDev = false
-const urlOrigin = isDev ? "http://localhost:3031" : "https://igbo-site.vercel.app"
+const urlOrigin = isDev ? "http://localhost:3031" : "https://igbo-site.onrender.com"
 
 const API_BASE_URL = urlOrigin + '/api'; // Replace this with your API base URL 
 
