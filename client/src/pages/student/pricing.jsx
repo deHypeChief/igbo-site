@@ -133,7 +133,7 @@ export default function Pricing() {
                                         <svg xmlns="http://www.w3.org/2000/svg" width="1.2em" height="1.2em" viewBox="0 0 36 36"><path fill="#553788" d="M15 31c0 2.209-.791 4-3 4H5c-4 0-4-14 0-14h7c2.209 0 3 1.791 3 4z" /><path fill="#9266cc" d="M34 33h-1V23h1a1 1 0 1 0 0-2H10c-4 0-4 14 0 14h24a1 1 0 1 0 0-2" /><path fill="#ccd6dd" d="M34.172 33H11c-2 0-2-10 0-10h23.172c1.104 0 1.104 10 0 10" /><path fill="#99aab5" d="M11.5 25h23.35c-.135-1.175-.36-2-.678-2H11c-1.651 0-1.938 6.808-.863 9.188C9.745 29.229 10.199 25 11.5 25" /><path fill="#269" d="M12 8a4 4 0 0 1-4 4H4C0 12 0 1 4 1h4a4 4 0 0 1 4 4z" /><path fill="#55acee" d="M31 10h-1V3h1a1 1 0 1 0 0-2H7C3 1 3 12 7 12h24a1 1 0 1 0 0-2" /><path fill="#ccd6dd" d="M31.172 10H8c-2 0-2-7 0-7h23.172c1.104 0 1.104 7 0 7" /><path fill="#99aab5" d="M8 5h23.925c-.114-1.125-.364-2-.753-2H8C6.807 3 6.331 5.489 6.562 7.5C6.718 6.142 7.193 5 8 5" /><path fill="#f4900c" d="M20 17a4 4 0 0 1-4 4H6c-4 0-4-9 0-9h10a4 4 0 0 1 4 4z" /><path fill="#ffac33" d="M35 19h-1v-5h1a1 1 0 1 0 0-2H15c-4 0-4 9 0 9h20a1 1 0 1 0 0-2" /><path fill="#ccd6dd" d="M35.172 19H16c-2 0-2-5 0-5h19.172c1.104 0 1.104 5 0 5" /><path fill="#99aab5" d="M16 16h19.984c-.065-1.062-.334-2-.812-2H16c-1.274 0-1.733 2.027-1.383 3.5c.198-.839.657-1.5 1.383-1.5" /></svg>
                                     </div>
                                     <h2 className="p-cardTitle">
-                                        Igbo E-books
+                                        Igbo E-book 1
                                     </h2>
                                     <p className="p-cardPargh">
                                         They are written in simple to read
@@ -142,14 +142,43 @@ export default function Pricing() {
                                     <div className="p-badges"></div>
                                     <div className="p-price">
                                         <h3 className="price">
-                                            $2
+                                            $1.49
                                         </h3>
                                         <button onClick={() => {
                                             handlePricing({
-                                                title: "Igbo E-books",
+                                                title: "Igbo E-book 1",
                                                 pargh: `They are written in simple to read
                                                 everyday language. The book would be download once payment is made.`,
-                                                pricing: 2,
+                                                pricing: 1.49,
+                                                monthly: false
+                                            })
+                                        }}>
+                                            Get Service
+                                        </button>
+                                    </div>
+                                </div>
+                                <div className="p-card">
+                                    <div className="p-image">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="1.2em" height="1.2em" viewBox="0 0 36 36"><path fill="#553788" d="M15 31c0 2.209-.791 4-3 4H5c-4 0-4-14 0-14h7c2.209 0 3 1.791 3 4z" /><path fill="#9266cc" d="M34 33h-1V23h1a1 1 0 1 0 0-2H10c-4 0-4 14 0 14h24a1 1 0 1 0 0-2" /><path fill="#ccd6dd" d="M34.172 33H11c-2 0-2-10 0-10h23.172c1.104 0 1.104 10 0 10" /><path fill="#99aab5" d="M11.5 25h23.35c-.135-1.175-.36-2-.678-2H11c-1.651 0-1.938 6.808-.863 9.188C9.745 29.229 10.199 25 11.5 25" /><path fill="#269" d="M12 8a4 4 0 0 1-4 4H4C0 12 0 1 4 1h4a4 4 0 0 1 4 4z" /><path fill="#55acee" d="M31 10h-1V3h1a1 1 0 1 0 0-2H7C3 1 3 12 7 12h24a1 1 0 1 0 0-2" /><path fill="#ccd6dd" d="M31.172 10H8c-2 0-2-7 0-7h23.172c1.104 0 1.104 7 0 7" /><path fill="#99aab5" d="M8 5h23.925c-.114-1.125-.364-2-.753-2H8C6.807 3 6.331 5.489 6.562 7.5C6.718 6.142 7.193 5 8 5" /><path fill="#f4900c" d="M20 17a4 4 0 0 1-4 4H6c-4 0-4-9 0-9h10a4 4 0 0 1 4 4z" /><path fill="#ffac33" d="M35 19h-1v-5h1a1 1 0 1 0 0-2H15c-4 0-4 9 0 9h20a1 1 0 1 0 0-2" /><path fill="#ccd6dd" d="M35.172 19H16c-2 0-2-5 0-5h19.172c1.104 0 1.104 5 0 5" /><path fill="#99aab5" d="M16 16h19.984c-.065-1.062-.334-2-.812-2H16c-1.274 0-1.733 2.027-1.383 3.5c.198-.839.657-1.5 1.383-1.5" /></svg>
+                                    </div>
+                                    <h2 className="p-cardTitle">
+                                        Igbo E-book 2
+                                    </h2>
+                                    <p className="p-cardPargh">
+                                        They are written in simple to read
+                                        everyday language.
+                                    </p>
+                                    <div className="p-badges"></div>
+                                    <div className="p-price">
+                                        <h3 className="price">
+                                            $1.49
+                                        </h3>
+                                        <button onClick={() => {
+                                            handlePricing({
+                                                title: "Igbo E-book 2",
+                                                pargh: `They are written in simple to read
+                                                everyday language. The book would be download once payment is made.`,
+                                                pricing: 1.49,
                                                 monthly: false
                                             })
                                         }}>
@@ -174,7 +203,7 @@ export default function Pricing() {
 
                                         </h3>
                                         <button>
-                                            Get Service
+                                            No Service Yet
                                         </button>
                                     </div>
                                 </div>
@@ -310,21 +339,31 @@ function MakePayment(props) {
                         callback: (response) => {
                             console.log(response);
                             if (response.status == "successful") {
-                                if (payObject.title === "Igbo E-books") {
-                                    console.log("Download Ebook");
+                                if (payObject.title === "Igbo E-book 1") {
+                                    console.log("Download Ebook 1");
                                     var a = document.createElement('a');
                                     a.href = 'https://1drv.ms/b/s!AlRvf77wSjNDa5-K0W55UWBtiII?e=gdk6td';
                                     a.style.display = 'none';
                                     a.click();
 
-                                    alert("Redirecting you to the ebook site")
+                                    alert("Redirecting you to the ebook 1 site")
                                 } else {
-                                    postUser("user/recPayment", { paymentType: payObject.title }, userSigned().token)
-                                        .then((data) => {
-                                            setLoading(false)
-                                            alert("your payment was " + response.status)
-                                            navTo("/u")
-                                        })
+                                    if (payObject.title === "Igbo E-book 2") {
+                                        console.log("Download Ebook 2");
+                                        var a = document.createElement('a');
+                                        a.href = 'https://1drv.ms/b/s!AlRvf77wSjNDcXTYqI_0kyQDwkk?e=d7u3Ye ';
+                                        a.style.display = 'none';
+                                        a.click();
+
+                                        alert("Redirecting you to the ebook 2 site")
+                                    } else {
+                                        postUser("user/recPayment", { paymentType: payObject.title }, userSigned().token)
+                                            .then((data) => {
+                                                setLoading(false)
+                                                alert("your payment was " + response.status)
+                                                navTo("/u")
+                                            })
+                                    }
                                 }
                             } else {
                                 alert("Error making payment")
