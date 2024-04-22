@@ -1,0 +1,5 @@
+.ebook{
+    padding: var(--spacing-side);
+    padding-top: 200px;
+    color: white;
+}

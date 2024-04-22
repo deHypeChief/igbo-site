@@ -136,8 +136,7 @@ export default function Pricing() {
                                         Igbo E-book 1
                                     </h2>
                                     <p className="p-cardPargh">
-                                        They are written in simple to read
-                                        everyday language.
+                                    Easy to read everyday conversation in igbo with translation.
                                     </p>
                                     <div className="p-badges"></div>
                                     <div className="p-price">
@@ -147,8 +146,7 @@ export default function Pricing() {
                                         <button onClick={() => {
                                             handlePricing({
                                                 title: "Igbo E-book 1",
-                                                pargh: `They are written in simple to read
-                                                everyday language. The book would be download once payment is made.`,
+                                                pargh: `Easy to read everyday conversation in igbo with translation.`,
                                                 pricing: 1.49,
                                                 monthly: false
                                             })
@@ -165,8 +163,7 @@ export default function Pricing() {
                                         Igbo E-book 2
                                     </h2>
                                     <p className="p-cardPargh">
-                                        They are written in simple to read
-                                        everyday language.
+                                        Easy to read everyday conversation in igbo with translation.
                                     </p>
                                     <div className="p-badges"></div>
                                     <div className="p-price">
@@ -176,8 +173,7 @@ export default function Pricing() {
                                         <button onClick={() => {
                                             handlePricing({
                                                 title: "Igbo E-book 2",
-                                                pargh: `They are written in simple to read
-                                                everyday language. The book would be download once payment is made.`,
+                                                pargh: `Easy to read everyday conversation in igbo with translation.`,
                                                 pricing: 1.49,
                                                 monthly: false
                                             })

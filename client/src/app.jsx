@@ -9,6 +9,7 @@ import Quiz from "./pages/student/quiz";
 import AdminAuth from "./pages/admin/adminAuth";
 import Admin from "./pages/admin/adminBoard";
 import Pricing from "./pages/student/pricing";
+import Ebook from "./pages/student/ebook";
 
 export default function App(){
     return(
@@ -31,6 +32,7 @@ export default function App(){
                         <Route path='/u/lesson/:id' element={<Lesson/>}/>
                         <Route path='/u/quiz/:id' element={<Quiz/>}/>
                         <Route path="/u/pricing" element={<Pricing/>}/>
+                        <Route path="/u/ebook" element={<Ebook/>}/>
                     </Route>
 
                     <Route path='/admin'>
