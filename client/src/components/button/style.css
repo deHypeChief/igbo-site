@@ -1,7 +1,7 @@
 button{
     font-size: 17px;
     font-weight: 600;
-    padding: 10px 30px;
+    padding: 10px 20px;
     border-radius: 100px;
     border: none;
     background: var(--main-ButtonColor);

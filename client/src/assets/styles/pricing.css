@@ -109,6 +109,9 @@ gap: 10px;
 
 
 
+
+
+
 .paymentPopUp{
     display: flex;
     justify-content: center;
@@ -213,5 +216,35 @@ gap: 10px;
         max-width: 350px;
         min-height: 350px;
         border: rgba(128, 128, 128, 0.247) 2px solid;
+    }
+
+
+
+    .payInfo{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: initial;
+        /* padding: var(--spacing-side); */
+        gap: 0;
+    }
+    .payTotal p {
+        padding-top: 0px;
+    }
+    .paymentPopUp {
+        padding-top: initial;
+    }
+    .paySecButton {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+    .paySecButton button{
+        width: 100%;
+    }
+    .infoForm {
+        padding: 30px 20px;
+    }
+    .pricing {
+        padding-bottom: 0px;
     }
 }
