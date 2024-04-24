@@ -10,87 +10,101 @@
 .lessonBox .h1head, .lessonBox .h2head, .lessonBox .phead{
     color: black;
 }
+.h1head{
+    font-size: 2.5rem;
+    font-weight: 800;
+    font-family: mainFont;
+}
 
-.lessonBoxArea{
-    background: white;
-    padding: 30px 40px;
+
+.desktopView{
+    padding-top: 30px;
     display: flex;
-    /* flex-direction: row-reverse; */
-    overflow: hidden;
+    gap: 20px;
+    margin-left: -50px;
+}
+.textLesson-in{
+    padding: 30px;
+}
+.textSection-lesson{
+    background: white;
     border-radius: 20px;
-    height: 600px;
-    width:750px;
-    position: relative;  
+    width: 600px;
+    height: fit-content;
 }
-.lessonHuman{
-    position: absolute;
-    left: -20px;
-    bottom: -10px;
+.textWrap{
+    /* background: pink; */
 }
-.lessonNoteWrap{
-    height: 100%;
+.humanWrap{
+    border-radius: 1000px;
+    overflow: hidden;
+    height: 240px;
+    width: 240px;
+    background: var(--main-ButtonColor);
 }
-.lessonInfoArea{
-    padding-left: 260px;
-    width: 100%;
-    height: 100%;
-    left: 0;
-    display: block;
-    overflow-y: hidden;
+.humanWrap img{
+    width: 250px;
+    transform: translateX(-20px);
 }
 
-.lessonActionButton{
+.textAction{
+    margin-top: 20px;
     display: flex;
     justify-content: space-between;
 }
-.lessonHuman img{
-    width: 350px;
-}
 
-
-.lessonTextArea{
-    height: 100%;
-}
-.lessonTextArea .h1note{
-    font-size: 2rem;
-}
-.h1note, .h2note, .pnote{
-    padding: 5px 0;
-}
-
-.lessonTextSection {
-    height: 85%;
-}
 
 @media screen and (max-width: 600px) {
     .lessons {
         display: block;
-        
     }
-    .lessonBox {
-        padding: 30px 21px;
-        border-radius: 20px;
-        margin-top: 30px;
-        font-size: 20px;
+    .desktopView{
+        padding-top: 0px;
+        display: flex;
+        flex-direction: column;
+        margin-left: 0px;
+        margin-top: -40px;
     }
-    .lessonBoxArea {
+    .sideHuman{
+        justify-content: center;
+        display: flex;
+    }
+    .textSection-lesson{
         width: 100%;
-        height:860px;
-        padding: 30px 15px;
     }
-    .lessonInfoArea {
-        padding-left: 0px;
+    .humanWrap{
+        border-radius: 1000px;
+        overflow: hidden;
+        height: 100px;
+        width: 100px;
     }
-    .lessonHuman img {
-        width: 230px;
+    .humanWrap img{
+        width: 120px;
+        transform: translateX(-20px);
     }
-    .lessonTextSection {
-        height: 60%;
+    .textLesson-in{
+        padding: 30px 20px;
     }
-    .lessonHuman {
-        position: absolute;
-        left: -48px;
-        bottom: -6px;
-        pointer-events: none;
+    .textAction{
+        padding-top: 0px;
+        margin-top: 20px;
+        gap:10px;
+        display: flex;
+        /* flex-direction: column; */
+        justify-content: space-between;
     }
+    .phead{
+        font: 1rem;
+        padding-top: 10px;
+    }
+    .h1head{
+        font-size: 2rem;
+    }
+    .lessonTextArea .h2head{
+        font-size: 1.3rem;
+        line-height: 1.8rem;
+    }
+}
+.h4head{
+    padding: 8px;
 }
