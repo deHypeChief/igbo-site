@@ -90,7 +90,7 @@
         margin-top: 20px;
         gap:10px;
         display: flex;
-        /* flex-direction: column; */
+        flex-direction: row-reverse;
         justify-content: space-between;
     }
     .phead{

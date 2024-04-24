@@ -560,9 +560,6 @@ export default function Lesson() {
                 ]
             ]
         }
-
-
-
     ]
 
     const { id } = useParams()
