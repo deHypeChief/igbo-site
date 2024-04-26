@@ -237,8 +237,7 @@ export default function Lesson() {
                     { "type": "h2", "content": "Keep up the fantastic work!" }
                 ]
             ]
-        }
-        ,
+        },
         {
             level: 4,
             content: [
@@ -251,19 +250,55 @@ export default function Lesson() {
                 ],
                 [
                     { type: "h1", content: "Singular Pronouns" },
-                    ...sivedContent.slice(2, 24),
+                    ...sivedContent.slice(2, 5),
+                    // ...sivedContent.slice(5, 6),
+                    
+                    { type: "h4", content: "" },
+                    { type: "h2", content: "Examples" },
+                    ...sivedContent.slice(6, 9),
                     { type: "h4", content: "" },
                     { type: "h2", content: "Can you create a sentence using any of these pronouns? 🤔" }
                 ],
                 [
-                    { type: "h1", content: "Plural Pronouns" },
-                    ...sivedContent.slice(25, 41),
+                    ...sivedContent.slice(9, 11),
+                    // ...sivedContent.slice(5, 6),
                     { type: "h4", content: "" },
-                    { type: "h2", content: "How would you describe a group using these pronouns? 💬" }
+                    { type: "h2", content: "Examples" },
+                    ...sivedContent.slice(12, 18),
+                    { type: "h4", content: "" },
+                    { type: "h2", content: "Going futher" }
+                ],
+                [
+                    ...sivedContent.slice(18, 20),
+                    // ...sivedContent.slice(5, 6),
+                    { type: "h4", content: "" },
+                    { type: "h2", content: "Examples" },
+                    ...sivedContent.slice(21, 25),
+                    { type: "h4", content: "" },
+                    { type: "h2", content: "Ohh i see..." }
+                ],
+                [
+                    { type: "h1", content: "Plural Pronouns" },
+                    ...sivedContent.slice(26, 27),
+                    // ...sivedContent.slice(5, 6),
+                    { type: "h4", content: "" },
+                    { type: "h2", content: "Examples" },
+                    ...sivedContent.slice(28, 37),
+                    { type: "h4", content: "" },
+                    { type: "h2", content: "So that how they use plural pronouns." }
+                ],
+                [
+                    ...sivedContent.slice(36, 37),
+                    // ...sivedContent.slice(5, 6),
+                    { type: "h4", content: "" },
+                    { type: "h2", content: "Examples" },
+                    ...sivedContent.slice(38, 42),
+                    { type: "h4", content: "" },
+                    { type: "h2", content: "Can you create a sentence using any of these pronouns? 🤔" }
                 ],
                 [
                     { type: "h1", content: "Simple Sentences with Pronouns" },
-                    ...sivedContent.slice(43, 49),
+                    ...sivedContent.slice(43, 55),
                     { type: "h4", content: "" },
                     { type: "h2", content: "Practice making sentences with these pronouns! 📝" }
                 ],
@@ -299,7 +334,10 @@ export default function Lesson() {
                 ],
                 [
                     { type: "h1", content: "Adjectives and Example Sentences" },
-                    ...sivedContent.slice(1, 20),
+                    ...sivedContent.slice(1, 6),
+                    { type: "h4", content: "" },
+                    { type: "h2", content: "Examples" },
+                    ...sivedContent.slice(7, 20),
                     { type: "h4", content: "" },
                     { type: "h2", content: "Can you create your own sentences with these adjectives? 💡" }
                 ],
@@ -363,23 +401,41 @@ export default function Lesson() {
                 ],
                 [
                     { type: "h1", content: "Verbs and Their Tenses" },
-                    ...sivedContent.slice(1, 40),
+                    ...sivedContent.slice(1, 2),
+                    { type: "h4", content: "" },
+                    { type: "h2", content: "Example : The verbs are in []" },
+                    ...sivedContent.slice(3, 7),
+                    ...sivedContent.slice(8, 16),
                     { type: "h4", content: "" },
                     { type: "h2", content: "Let's see verbs in action with examples! 🎬" }
                 ],
                 [
-                    { type: "h1", content: "Examples of Verb Tenses" },
-                    ...sivedContent.slice(40, 48),
+                    ...sivedContent.slice(17, 27),
+                    { type: "h4", content: "" },
+                    { type: "h2", content: "So thats how you use past tenses" }
+                ],
+                [
+                    ...sivedContent.slice(27, 34),
+                    { type: "h4", content: "" },
+                    { type: "h2", content: "We are leaving the present now next Future tenses" }
+                ],
+                [
+                    ...sivedContent.slice(34, 41),
+                    { type: "h4", content: "" },
+                    { type: "h2", content: "That's for future tense" }
+                ],
+                [
+                    ...sivedContent.slice(41, 43),
+                    { type: "h4", content: "" },
+                    { type: "h2", content: "Example" },
+                    ...sivedContent.slice(44, 48),
                     { type: "h4", content: "" },
                     { type: "h2", content: "Formulating Past Tense Verbs" }
                 ],
                 [
-                    ...sivedContent.slice(48, 49),
+                    ...sivedContent.slice(49, 56),
                     { type: "h4", content: "" },
                     { type: "h2", content: "Quick Translation Challenge!" }
-                ],
-                [
-                    ...sivedContent.slice(50)
                 ]
             ]
         },
@@ -395,7 +451,13 @@ export default function Lesson() {
                 ],
                 [
                     { type: "h1", content: "Examples of Prepositions" },
-                    ...sivedContent.slice(1, 17),
+                    ...sivedContent.slice(1, 2),
+                    { type: "h4", content: "" },
+                    { type: "h2", content: "Example: " },
+                    ...sivedContent.slice(3, 11),
+                    { type: "h4", content: "" },
+                    { type: "h2", content: "Example: " },
+                    ...sivedContent.slice(12, 17),
                     { type: "h4", content: "" },
                     { type: "h2", content: "" }
                 ],
@@ -452,12 +514,12 @@ export default function Lesson() {
                 ],
                 [
                     { type: "h1", content: "Examples with 'Mana'" },
-                    ...sivedContent.slice(24, 34),
+                    ...sivedContent.slice(25, 34),
                     { type: "h4", content: "" },
                 ],
                 [
                     { type: "h1", content: "Examples with 'Maka'" },
-                    ...sivedContent.slice(35, 43),
+                    ...sivedContent.slice(36, 43),
                     { type: "h4", content: "" },
                 ],
                 [
@@ -656,7 +718,6 @@ export default function Lesson() {
                     </div>
                     <div className="textSection-lesson">
                         <div className="textLesson-in">
-
                             <div className='textWrap'  >
                                 {
                                     modifiedContent[parseInt(id) - 1]?.content.map((item, index) => {
