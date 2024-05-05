@@ -16,7 +16,7 @@ import successImg2 from "../../assets/images/a_happy_little__596c32f0-ff9d-445b-
 
 let failedQuestions = []
 export default function Quiz() {
-    const [passed, setPassed] = useState(null)
+    const [passed, setPassed] = useState(true)
     const { id } = useParams()
     const navTo = useNavigate()
     

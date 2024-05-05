@@ -148,7 +148,7 @@
     height: fit-content;
     padding: 50px 30px;
     display: flex;
-    /* flex-direction: column; */
+    flex-direction: column;
     align-items: center;
     border-radius: 30px;
     overflow-y: scroll;
@@ -256,6 +256,7 @@
 
     .imgSucessPerson {
         padding: 0 0px;
+        zoom: 80%;
     }
 
     .imgSucessPerson img {
@@ -268,13 +269,13 @@
     }
 
     .im-left {
-        width: 300px;
-        margin-left: -130px;
+        width: 100px;
+        margin-left: -100px;
     }
 
     .im-right {
-        width: 300px;
-        margin-left: 50px;
+        width: 100px;
+        margin-left: 70px;
     }
 
     .qBoxWrap {

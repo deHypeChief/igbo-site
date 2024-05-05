@@ -634,7 +634,7 @@ export default function Lesson() {
             getUser("/user/me", userSigned().token).then((data) => {
                 setPlan(data.data.data.userPayment)
                 setData(data.data.data)
-                console.log(data.data.data);
+                // console.log(data.data.data);
             })
 
 
@@ -648,7 +648,7 @@ export default function Lesson() {
                 setLessonData(data.data.data)
                 document.getElementById("dasboardTitle").innerText = `Lesson ${id}`
                 setModifiedContent(modifiedList)
-                console.log(sivedContent);
+                // console.log(sivedContent);
             }).catch(error => {
                 console.log(error);
             })
