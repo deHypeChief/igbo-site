@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+lessonimport { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "./pages/home";
 import { ChangePassword, SignIn, SignUp } from "./pages/auth";
 import TeacherPopUp from "./pages/teacher";

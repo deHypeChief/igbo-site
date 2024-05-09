@@ -285,7 +285,7 @@ export default function Lesson() {
                     { type: "h2", content: "Examples" },
                     ...sivedContent.slice(28, 37),
                     { type: "h4", content: "" },
-                    { type: "h2", content: "So that how they use plural pronouns." }
+                    { type: "h2", content: "So that's how to use plural pronouns." }
                 ],
                 [
                     ...sivedContent.slice(36, 37),

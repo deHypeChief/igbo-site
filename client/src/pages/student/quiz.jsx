@@ -211,8 +211,8 @@ function Failed(props) {
                                     <h1>You Lost</h1>
                                     <p>Try harder next time</p>
                                     <div className="qButtons">
-                                        <Link to={"/u/lesson/" + id}>
-                                            <Button>Retake Lesson </Button>
+                                        <Link to={"/u/quiz/" + id}>
+                                            <Button>Retake Quiz</Button>
                                         </Link>
                                     </div>
                                 </>
